@@ -15,6 +15,13 @@ public class PlayerHeath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(PlayerHP == 0)
+        {
+            //die
+        }
+        if(PlayerHP < PlayerHPMax)
+        {
+            // can heal
+        }
     }
 }
