@@ -16,21 +16,19 @@ public class Manascript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-
-        //regenar 1 mana per sec
-        InvokeRepeating("Regenerate", 0, 1 / reg);
-
+        GameController.curr.Tick += Tick;
     }
 
-    // Update is called once per frame
-
-    // lägger till +1 till Mana
-    void Regenerate()
+    void Tick()
     {
         if (Mana < MaxMana)
         {
-            Mana++;
+            MaxMana ++;
+            if (Mana > MaxMana)
+            {
+                Mana = MaxMana;
+            }
         }
     }
+
 }
