@@ -707,7 +707,7 @@ MonoBehaviour:
   movementSpeed: 3
   dashTimeLeft: 0
   dashTime: 0.5
-  dashSpeed: 5
+  dashSpeed: 7
   manaForDash: 20
   dashDirection: 0
 --- !u!212 &691790534
