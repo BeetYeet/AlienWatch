@@ -67,6 +67,7 @@ public class PlayerMovement: MonoBehaviour
 			{
 				movementState = PlayerMovementState.Dashing;
 				player.rigidbody.velocity = dashSpeed * GetVectorDirection( dashDirection );
+				//TODO: Dash damage
 				return;
 			}
 			else
