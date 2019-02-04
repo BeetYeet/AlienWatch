@@ -28,6 +28,8 @@ public class PlayerMovement: MonoBehaviour
 	[SerializeField]
 	public PlayerDirection dashDirection; // which direction did the player dash
 
+    public Manascript mana;
+
 	void Start()
 	{
 		player = PlayerBaseClass.current;
@@ -47,11 +49,12 @@ public class PlayerMovement: MonoBehaviour
 		{
 			return;
 		}
-		if ( movementState != PlayerMovementState.Dashing && Input.GetKeyDown( KeyCode.Space ) )
+		if ( movementState != PlayerMovementState.Dashing && Input.GetKeyDown( KeyCode.JoystickButton5 ) && mana.Mana >= 20 )
 		{
-			if ( true && playerDir != PlayerDirection.None )// ( player.ManaScript.manaValue >= manaForDash )
+			if ( true && playerDir != PlayerDirection.None )
 			{
-				//player.ManaScript.manaValue -= manaForDash;
+                mana.Mana -= 20;
+				
 				dashTimeLeft += dashTime;
 				dashDirection = playerDir;
 			}

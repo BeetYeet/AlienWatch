@@ -29,7 +29,7 @@ public class GameController: MonoBehaviour
 
 	private void DoTick()
 	{
-		Tick.Invoke();
+        Tick?.Invoke();
 		nextTick += TickTime;
 	}
 

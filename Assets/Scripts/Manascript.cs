@@ -11,7 +11,7 @@ public class Manascript : MonoBehaviour
     public int Mana = 10;
 
     [SerializeField]
-    private int reg = 1;
+    private float reg = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,7 @@ public class Manascript : MonoBehaviour
 
 
         //regenar 1 mana per sec
-        InvokeRepeating("Regenerate", 0, 1 / reg);
+        InvokeRepeating("Regenerate", 0, 1f / reg);
 
     }
 
