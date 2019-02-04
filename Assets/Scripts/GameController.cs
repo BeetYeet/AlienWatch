@@ -5,17 +5,18 @@ using UnityEngine;
 public class GameController: MonoBehaviour
 {
 
-	public static GameController curr {
+	public static GameController curr
+	{
 		get;
 		private set;
 	}
 	public event System.Action Tick;
-	public int ticksPerMinute = 70;
+	public int ticksPerMinute = 600;
 	private float TickTime
 	{
 		get
 		{
-			return 60f/ticksPerMinute;
+			return 60f / ticksPerMinute;
 		}
 	}
 	private float nextTick;
@@ -33,9 +34,23 @@ public class GameController: MonoBehaviour
 		nextTick += TickTime;
 	}
 
-	void Update()
+	private bool CheckTick()
 	{
 		if ( Time.time > nextTick )
+		{
 			DoTick();
+
+		}
+		if ( Time.time > nextTick )
+		{
+			return true;
+		}
+		return false;
+	}
+
+	void Update()
+	{
+		while ( CheckTick() )
+			;
 	}
 }

@@ -49,9 +49,9 @@ public class PlayerMovement: MonoBehaviour
 		}
 		if ( movementState != PlayerMovementState.Dashing && Input.GetKeyDown( KeyCode.Space ) )
 		{
-			if ( true && playerDir != PlayerDirection.None )// ( player.ManaScript.manaValue >= manaForDash )
+			if ( player.playerMana.mana >= manaForDash && playerDir != PlayerDirection.None )
 			{
-				//player.ManaScript.manaValue -= manaForDash;
+				player.playerMana.mana -= manaForDash;
 				dashTimeLeft += dashTime;
 				dashDirection = playerDir;
 			}
