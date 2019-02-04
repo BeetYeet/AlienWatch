@@ -10,27 +10,24 @@ public class Manascript : MonoBehaviour
     public int MaxMana = 10;
     public int Mana = 10;
 
-    [SerializeField]
-    private int reg = 1;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-
-
-        //regenar 1 mana per sec
-        InvokeRepeating("Regenerate", 0, 1 / reg);
-
+        GameController.curr.Tick += Tick;
     }
 
-    // Update is called once per frame
-
-    // lägger till +1 till Mana
-    void Regenerate()
+    void Tick()
     {
-        if (Mana < MaxMana)
+      if(Mana < MaxMana)
         {
             Mana++;
         }
+      if(Mana == MaxMana)
+        {
+            Mana = MaxMana;
+        }
     }
+
 }
