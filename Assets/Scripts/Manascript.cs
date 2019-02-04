@@ -10,8 +10,7 @@ public class Manascript : MonoBehaviour
     public int MaxMana = 10;
     public int Mana = 10;
 
-    [SerializeField]
-    private int reg = 1;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -21,13 +20,13 @@ public class Manascript : MonoBehaviour
 
     void Tick()
     {
-        if (Mana < MaxMana)
+      if(Mana < MaxMana)
         {
-            MaxMana ++;
-            if (Mana > MaxMana)
-            {
-                Mana = MaxMana;
-            }
+            Mana++;
+        }
+      if(Mana == MaxMana)
+        {
+            Mana = MaxMana;
         }
     }
 
