@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuSkript : MonoBehaviour
 {
-    public string LevelToLoad = "";
+  
     
     public GameObject main;
     
@@ -24,7 +24,7 @@ public class MenuSkript : MonoBehaviour
     //-------------------------------------------
     public void restartScene()
     {
-        SceneManager.LoadScene(LevelToLoad);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void Credits()
