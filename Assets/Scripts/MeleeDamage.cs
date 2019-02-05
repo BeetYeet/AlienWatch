@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class MeleeDamage : MonoBehaviour
 {
+	public Faction faction;
+	public int damage;
+
 	private void OnTriggerEnter2D( Collider2D collision )
 	{
-		collision.SendMessageUpwards("DoDamage", SendMessageOptions.DontRequireReceiver);
+		DamageInfo di = new DamageInfo();
+		di.damage = damage;
+		di.faction = faction;
+		collision.SendMessageUpwards("DoDamage", di, SendMessageOptions.DontRequireReceiver);
 	}
 }
