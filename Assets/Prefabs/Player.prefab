@@ -17,9 +17,10 @@ GameObject:
   - component: {fileID: 262024043}
   - component: {fileID: 262024044}
   - component: {fileID: 262024045}
+  - component: {fileID: 3971684807725559059}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,8 +174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0a240d7636b3bf43891069500e8888a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
   PlayerHPMax: 100
-  PlayerHP: 100
 --- !u!114 &262024044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,3 +211,16 @@ MonoBehaviour:
   dashSpeed: 12
   manaForDash: 8
   dashDirection: 5
+--- !u!114 &3971684807725559059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980397184266233313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79b018b8c374cb48bdc95bdf9737d58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Deathscreen: {fileID: 0}

@@ -22,7 +22,7 @@ public class CameraFollow : MonoBehaviour
     public bool XMinEnabled = false;
     public float XMinValue = 0f;
 
-    private void FixedUpdate()
+    private void Update()
     {
         Vector3 targetPos = Target.position;
 
