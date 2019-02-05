@@ -25,7 +25,7 @@ public class PlayerHeath: Damageble
 		{
 			//die
 		}
-		if ( health < PlayerHPMax )
+		if ( health < healthMax )
 		{
 			// can heal
 		}
