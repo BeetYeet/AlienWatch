@@ -15,7 +15,7 @@ public class KillZoneScript : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            playerHeath.PlayerHP = 0;
+            playerHeath.health = 0;
         }
     }
 }
