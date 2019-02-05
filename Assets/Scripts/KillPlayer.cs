@@ -16,7 +16,7 @@ public class KillPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerHeath.health == 0)
+        if(playerHeath.health <= 0)
         {
             Die();
         }
