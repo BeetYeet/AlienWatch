@@ -24,9 +24,9 @@ public class wepon : MonoBehaviour
 
     void Shoot()
     {
-       Instantiate(grenadePrefab, FirePoint.position, Quaternion.identity);
+       Instantiate(grenadePrefab, FirePoint.position, transform.rotation);
     }
-    
-  
-    
+    //Quaternion.identity
+
+
 }
