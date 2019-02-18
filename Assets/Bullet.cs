@@ -13,7 +13,8 @@ public class Bullet : MonoBehaviour
     {
         bulletRB = GetComponent<Rigidbody2D>();
 
-        bulletRB.velocity = transform.up * speed;
+        bulletRB.velocity = PlayerMovement.GetVectorDirection(PlayerBaseClass.current.playerMovement.playerDir) *speed;
+        //transform.up * speed;
     }
 
     private void Update()
@@ -27,3 +28,4 @@ public class Bullet : MonoBehaviour
         }
     }
 }
+//rigidbody.velocity = PlayerMovement.GetVectorDirection(PlayerBaseClass.current.playerMovement.playerDir) * grenadeVelocity;
