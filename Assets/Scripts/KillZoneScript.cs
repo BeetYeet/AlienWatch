@@ -4,18 +4,11 @@ using UnityEngine;
 
 public class KillZoneScript : MonoBehaviour
 {
-    PlayerHeath playerHeath;
-
-    private void Start()
-    {
-        playerHeath = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHeath>();
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
-        {
-            playerHeath.health = 0;
-        }
+        DamageInfo _ = new DamageInfo();
+        _.damage = 99999;
+        _.faction = Faction.Alien;
+        collision.GetComponent<Damageble>().DoDamage(_);        
     }
 }
