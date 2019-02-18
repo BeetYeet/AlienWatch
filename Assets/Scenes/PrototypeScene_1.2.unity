@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2910a676594a7924894bca269a7e2303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ticksPerMinute: 70
+  ticksPerMinute: 1000
 --- !u!4 &1005695262
 Transform:
   m_ObjectHideFlags: 0
@@ -515,7 +515,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2013333393
 PrefabInstance:
@@ -627,7 +627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 854903601, guid: dedf45be3eb59804fbdf2a7d4eea75e3, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 854903601, guid: dedf45be3eb59804fbdf2a7d4eea75e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
