@@ -32,10 +32,10 @@ public class PlayerHeath: Damageble
 	}
 	public override void DoDamage( DamageInfo info )
 	{
-		if ( info.faction == Faction.Player )
+		if ( info.faction == Faction.Alien )
 		{
 			health -= info.damage;
-			if ( health <= 0 )
+			if ( health < 0 )
 			{
 				health = 0;
 			}
