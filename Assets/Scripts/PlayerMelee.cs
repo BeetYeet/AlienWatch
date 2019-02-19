@@ -39,7 +39,8 @@ public class PlayerMelee: MonoBehaviour
 	public Vector3 swipeLeftPos;
 	public Vector3 swipeRightPos;
 	private PlayerMovement.PlayerDirection lastValidDirection = PlayerMovement.PlayerDirection.Forward;
-	private int directionalRotation = 0;
+	private float directionalRotation = 0;
+	public float rotationAgressiveness = .1f;
 
 	void Start()
 	{
@@ -49,8 +50,9 @@ public class PlayerMelee: MonoBehaviour
 
 	void Tick()
 	{
-		directionalRotation = Mathf.RoundToInt( directionalRotation * .95f - GetRawRotation() * .05f );
-		directionalRotation = NormalizeRotation( directionalRotation );
+		float shortest_angle = ( ( ( ( GetRawRotation() - directionalRotation ) % 360 ) + 540 ) % 360 ) - 180;
+
+		directionalRotation = NormalizeRotation( directionalRotation + shortest_angle * rotationAgressiveness );
 	}
 
 	void Update()
@@ -60,7 +62,7 @@ public class PlayerMelee: MonoBehaviour
 			lastValidDirection = player.playerMovement.playerDir;
 		}
 
-		int validRotation = 0;
+		float validRotation = 0;
 
 
 		if ( ( Input.GetButtonDown( "Fire1" ) || Input.GetKeyDown( KeyCode.LeftControl ) ) && player.playerMovement.movementState != PlayerMovement.PlayerMovementState.Fixed )// && !isMeleeing )
@@ -81,6 +83,20 @@ public class PlayerMelee: MonoBehaviour
 			else if ( meleeTimeLeft > 0f )
 			{
 				DoMeleeDamage();
+
+				float totalRot = 0f;
+				if ( lastSwipe == MeleeSwipe.LeftToRight )
+				{
+					totalRot = rotMin + ( rotMax - rotMin ) * meleeAnimPart;
+					Debug.Log( "Swiping Right" );
+				}
+				else
+				{
+					totalRot = rotMax - ( rotMax - rotMin ) * meleeAnimPart;
+					Debug.Log( "Swiping Left" );
+				}
+
+				validRotation += totalRot;
 			}
 
 		}
@@ -89,11 +105,11 @@ public class PlayerMelee: MonoBehaviour
 			meleeTransform.localPosition = HelperClass.RotateAroundAxis( new Vector2( defaultPos.x, defaultPos.y ), Vector2.zero, GetRotationFromDirection() );
 			if ( lastSwipe == MeleeSwipe.LeftToRight )
 			{
-				meleeTransform.localEulerAngles = new Vector3( meleeTransform.localEulerAngles.x, meleeTransform.localEulerAngles.y, rotMax - GetRotationFromDirection() );
+				validRotation += rotMax;
 			}
 			else
 			{
-				meleeTransform.localEulerAngles = new Vector3( meleeTransform.localEulerAngles.x, meleeTransform.localEulerAngles.y, rotMin - GetRotationFromDirection() );
+				validRotation += rotMin;
 			}
 		}
 		else
@@ -139,13 +155,24 @@ public class PlayerMelee: MonoBehaviour
 			meleeTransform.position = HelperClass.RotateAroundAxis( new Vector2( meleeTransform.position.x, meleeTransform.position.y ), transform.position, GetRotationFromDirection() );
 		}
 
-		validRotation = NormalizeRotation( validRotation - directionalRotation );
-		meleeTransform.localEulerAngles = new Vector3( meleeTransform.localEulerAngles.x, meleeTransform.localEulerAngles.y, validRotation );
+		meleeTransform.localEulerAngles = new Vector3( meleeTransform.localEulerAngles.x, meleeTransform.localEulerAngles.y, NormalizeRotation( validRotation + directionalRotation ) );
+		Vector2 _1 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, NormalizeRotation( validRotation + directionalRotation ) );
+		Vector2 _2 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, directionalRotation );
+		Debug.DrawLine(
+		transform.position,
+		transform.position + new Vector3(_1.x, _1.y),
+		Color.green
+		);
+		Debug.DrawLine(
+		transform.position,
+		transform.position + new Vector3( _2.x, _2.y ),
+		Color.cyan
+		);
 	}
 
-	private int NormalizeRotation( int rot )
+	private float NormalizeRotation( float rot )
 	{
-		return ( ( rot + 180 ) % 360 ) - 180;
+		return ( ( rot + 180f ) % 360f ) - 180f;
 	}
 
 	public MeleeSwipe InvertSwipe( MeleeSwipe swipe )
@@ -160,23 +187,6 @@ public class PlayerMelee: MonoBehaviour
 	private void DoMeleeDamage()
 	{
 		//TODO: melee damage
-		float totalRot = 0f;
-
-		if ( lastSwipe == MeleeSwipe.LeftToRight )
-		{
-			totalRot = rotMin + ( rotMax - rotMin ) * meleeAnimPart;
-			Debug.Log( "Swiping Right" );
-		}
-		else
-		{
-			totalRot = rotMax - ( rotMax - rotMin ) * meleeAnimPart;
-			Debug.Log( "Swiping Left" );
-		}
-
-		//add rotation depending on direction
-		totalRot -= GetRotationFromDirection();
-
-		meleeTransform.localEulerAngles = new Vector3( meleeTransform.rotation.x, meleeTransform.rotation.x, totalRot );
 	}
 	public float GetRotationFromDirection()
 	{
@@ -188,19 +198,19 @@ public class PlayerMelee: MonoBehaviour
 		switch ( lastValidDirection )
 		{
 			case PlayerMovement.PlayerDirection.ForwardRight:
-				return 45f;
+				return 315f;
 			case PlayerMovement.PlayerDirection.Right:
-				return 90f;
+				return 270f;
 			case PlayerMovement.PlayerDirection.BackwardRight:
-				return 135f;
+				return 225f;
 			case PlayerMovement.PlayerDirection.Backward:
 				return 180f;
 			case PlayerMovement.PlayerDirection.BackwardLeft:
-				return 225f;
+				return 135f;
 			case PlayerMovement.PlayerDirection.Left:
-				return 270f;
+				return 90f;
 			case PlayerMovement.PlayerDirection.ForwardLeft:
-				return 315f;
+				return 45f;
 			default:
 				return 0f;
 		}

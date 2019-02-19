@@ -6,7 +6,7 @@ public static class HelperClass
 {
 	public static Vector2 RotateAroundAxis(Vector2 point, Vector2 rotationAxis, float degrees)
 	{
-		degrees *= 180 / Mathf.PI;
+		degrees *= Mathf.PI / 180f;
 		float x, y = 0f;
 		point -= rotationAxis;
 		x = point.x * Mathf.Cos( degrees ) - point.y * Mathf.Sin( degrees );
