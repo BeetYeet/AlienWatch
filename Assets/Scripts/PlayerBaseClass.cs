@@ -25,8 +25,11 @@ public class PlayerBaseClass: MonoBehaviour
 	{
 		get; private set;
 	}
-
-	void Awake()
+    public PlayerHeath playerHealth
+    {
+        get; private set;
+    }
+    void Awake()
 	{
 		RegisterCurrentPlayer();
 		GetPlayerScripts();
@@ -38,7 +41,8 @@ public class PlayerBaseClass: MonoBehaviour
 		rigidbody = GetComponent<Rigidbody2D>();
 		playerMelee = GetComponent<PlayerMelee>();
 		playerMana = GetComponent<PlayerMana>();
-	}
+        playerHealth = GetComponent<PlayerHeath>();
+    }
 
 	private void RegisterCurrentPlayer()
 	{
