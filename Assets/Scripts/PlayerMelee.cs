@@ -67,7 +67,6 @@ public class PlayerMelee: MonoBehaviour
 
 		if ( ( Input.GetButtonDown( "Fire1" ) || Input.GetKeyDown( KeyCode.LeftControl ) ) && player.playerMovement.movementState != PlayerMovement.PlayerMovementState.Fixed )// && !isMeleeing )
 		{
-			Debug.Log( "Did Melee" );
 			meleeTimeLeft += meleeTime;
 			player.playerMovement.TriggerFixed( meleeTime );
 			lastSwipe = InvertSwipe( lastSwipe );
@@ -88,12 +87,10 @@ public class PlayerMelee: MonoBehaviour
 				if ( lastSwipe == MeleeSwipe.LeftToRight )
 				{
 					totalRot = rotMin + ( rotMax - rotMin ) * meleeAnimPart;
-					Debug.Log( "Swiping Right" );
 				}
 				else
 				{
 					totalRot = rotMax - ( rotMax - rotMin ) * meleeAnimPart;
-					Debug.Log( "Swiping Left" );
 				}
 
 				validRotation += totalRot;
