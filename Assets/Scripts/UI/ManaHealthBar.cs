@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ManaHealthBar : MonoBehaviour
 {
-    [SerializeField] Transform ManaBar;
-    [SerializeField] Transform HealthBar;
+    public Transform ManaBar;
+    public Transform HealthBar;
 
-    [SerializeField] Vector2 originMana;
-    [SerializeField] Vector2 originHealth;
-    [SerializeField] float Size;
+    public Vector2 originMana;
+    public Vector2 originHealth;
+    public float Size;
 
 
     void Start()
@@ -23,8 +23,8 @@ public class ManaHealthBar : MonoBehaviour
         float hel = Health / PlayerBaseClass.current.playerHealth.healthMax;
         ManaBar.localScale = new Vector3(man, 1f);
         HealthBar.localScale = new Vector3(hel, 1f);
-        ManaBar.localPosition = new Vector3(originMana.x - originMana.x*(1-man)/2, originMana.y);
-        HealthBar.localPosition = new Vector3(originHealth.x - originHealth.x*(1-hel)/2, originHealth.y);
+        ManaBar.localPosition = - new Vector3(originMana.x + (1-man)/2, originMana.y);
+        HealthBar.localPosition = - new Vector3(originHealth.x + (1-hel)/2, originHealth.y);
     }
 
     private void Update()
