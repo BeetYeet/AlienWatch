@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Sword", fileName = "new Sword")]
+[CreateAssetMenu(menuName = "Items/Sword", fileName = "new Sword")]
 [System.Serializable]
 public class SwordObject : ScriptableObject
 {
+    [Header("Strings")]
+    [Space]
+    public string Name, Description;
+    [Header("Sprite")]
+    [Space]
     public Sprite SwordArt;
     [Header("Floats")]
     [Space]
