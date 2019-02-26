@@ -13,12 +13,12 @@ public class BuyTheItem : MonoBehaviour
         shopInventory = GameObject.FindGameObjectWithTag("Shop").GetComponent<ShopInventory>();
         shopInventory.Items[3] = null;
         while (shopInventory.Items.Count > 3)
-            shopInventory.Items.RemoveAt(shopInventory.Items.Count -1);
+            shopInventory.Items.RemoveAt(shopInventory.Items.Count - 1);
     }
 
     private void Update()
     {
-        
+
         if (gold.gold >= item.cost)
         {
 
@@ -30,24 +30,26 @@ public class BuyTheItem : MonoBehaviour
     }
     public void onBuy(bool Active)
     {
-        if(item.ShopStock > 0)
+        if (item.ShopStock > 0)
         {
             Active = true;
         }
-        if(Active == true)
-        if (gold.gold >= item.cost)
+        if (Active == true)
         {
-            gold.gold -= item.cost;
-            item.ShopStock -= 1;
+            if (gold.gold >= item.cost)
+            {
+                gold.gold -= item.cost;
+                item.ShopStock -= 1;
                 if (item.ShopStock <= 0)
                     Active = false;
-            Debug.Log(string.Format("you bought {0}!", item.name));
+                Debug.Log(string.Format("you bought {0}!", item.name));
+            }
+            else
+            {
+                Debug.Log("You cant buy!");
+            }
         }
-        else
-        {
-            Debug.Log("You cant buy!");
-        }
-        if(Active == false)
+        if (Active == false)
         {
             Debug.LogWarning(string.Format("{0} is out of stock!", item.name));
         }

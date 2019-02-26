@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: TestSword2
   m_EditorClassIdentifier: 
   Name: SwordLOG
-  Description: 
+  Description: fu
   rarity: 0
   cost: 20000
-  sprite: {fileID: 0}
-  SwordArt: {fileID: 21300000, guid: 543f93641c4d0c946877570765d7ae7a, type: 3}
+  sprite: {fileID: 21300000, guid: f39e932c28378204b921692c6245df6e, type: 3}
+  ShopStock: 1
   MeleeTime: 0
   RotationLeft: 0
   RotationRight: 0

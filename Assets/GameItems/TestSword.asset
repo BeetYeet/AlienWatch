@@ -16,8 +16,8 @@ MonoBehaviour:
   Description: SaDUD
   rarity: 0
   cost: 40000
-  sprite: {fileID: 0}
-  SwordArt: {fileID: 21300000, guid: 7fbeadfbd9a3f7147a1ff81adfdbd438, type: 3}
+  sprite: {fileID: 21300000, guid: 7fbeadfbd9a3f7147a1ff81adfdbd438, type: 3}
+  ShopStock: 1
   MeleeTime: 0
   RotationLeft: 0
   RotationRight: 0
