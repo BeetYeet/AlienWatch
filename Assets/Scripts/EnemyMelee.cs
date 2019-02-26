@@ -97,7 +97,7 @@ public class EnemyMelee : MonoBehaviour
     {
         if (Time.time > lastAttack && enemyMovement.attack == true)
         {
-            playerHealth.PlayerHP -= damage;
+            playerHealth.health -= damage;
             lastAttack = Time.time + timeBetweenAttacks;
         }
         
