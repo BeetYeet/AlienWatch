@@ -4,14 +4,8 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "Items/Sword", fileName = "new Sword")]
 [System.Serializable]
-public class SwordObject : ScriptableObject
+public class SwordObject : Item
 {
-    [Header("Strings")]
-    [Space]
-    public string Name, Description;
-    [Header("Sprite")]
-    [Space]
-    public Sprite SwordArt;
     [Header("Floats")]
     [Space]
     public float MeleeTime;
@@ -29,6 +23,9 @@ public class SwordObject : ScriptableObject
     [Header("Sword Return")]
     [Space]
     public SwordReturn Return;
+    public HitEffectData hitEffectData;
+
+
 }
 public enum SwordReturn
 {
@@ -36,3 +33,9 @@ public enum SwordReturn
     ReturnLeft,
     ReturnRight
 }
+
+public class HitEffectData
+{
+
+}
+

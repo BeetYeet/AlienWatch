@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d87499a4733d77a44a3eee438240379c, type: 3}
-  m_Name: TestSword
+  m_Name: TestSword2
   m_EditorClassIdentifier: 
-  Name: TestSword
-  Description: SaDUD
+  Name: SwordLOG
+  Description: 
   rarity: 0
-  cost: 40000
+  cost: 20000
   sprite: {fileID: 0}
-  SwordArt: {fileID: 21300000, guid: 7fbeadfbd9a3f7147a1ff81adfdbd438, type: 3}
+  SwordArt: {fileID: 21300000, guid: 543f93641c4d0c946877570765d7ae7a, type: 3}
   MeleeTime: 0
   RotationLeft: 0
   RotationRight: 0

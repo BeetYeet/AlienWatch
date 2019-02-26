@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: [Terrain_Static, AgroGate, Enemy, EnemyRanged, Terrain_Static]
+  tags:
+  - Terrain_Static
+  - AgroGate
+  - Enemy
+  - EnemyRanged
+  - Terrain_Static
+  - Descriptin
+  - Description
   layers:
   - Default
   - TransparentFX

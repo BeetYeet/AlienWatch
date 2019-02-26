@@ -6,8 +6,10 @@ public class ItemSlot : MonoBehaviour
 {
     [SerializeField] Image image;
     [SerializeField] TextMeshProUGUI text;
-    SwordObject _Sword;
-    public SwordObject Sword
+    [SerializeField] TextMeshProUGUI Description;
+    [SerializeField] TextMeshProUGUI CostText;
+    Item _Sword;
+    public Item Sword
     {
         get { return _Sword; }
         set
@@ -17,37 +19,23 @@ public class ItemSlot : MonoBehaviour
             {
                 image.enabled = false;
                 text.enabled = false;
+                Description.enabled = false;
+                CostText.enabled = false;
             }
             else
             {
+                CostText.text = _Sword.cost.ToString();
+                Description.text = _Sword.Description;
                 text.text = _Sword.Name;
-                image.sprite = _Sword.SwordArt;
+                image.sprite = _Sword.sprite;
+                CostText.enabled = true;
+                Description.enabled = true;
                 text.enabled = true;
                 image.enabled = true;
             }
         }
     }
-    GranadeObject _Granade;
-    public GranadeObject Granade
-    {
-        get { return _Granade; }
-        set
-        {
-            _Granade = value;
-            if(_Granade == null)
-            {
-                image.enabled = false;
-                text.enabled = false;
-            }
-            else
-            {
-                text.text = _Granade.Name;
-                image.sprite = _Granade.GameArt;
-                text.enabled = true;
-                image.enabled = true;
-            }
-        }
-    }
+        
 
     private void OnValidate()
     {
@@ -55,5 +43,9 @@ public class ItemSlot : MonoBehaviour
             image = GetComponent<Image>();
         if (text == null)
             text = GetComponentInChildren<TextMeshProUGUI>();
+        if (Description == null)
+            Description = GetComponentInChildren<TextMeshProUGUI>();
+        if (CostText == null)
+            CostText = GetComponentInChildren<TextMeshProUGUI>();
     }
 }
