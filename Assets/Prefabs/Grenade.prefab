@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5612410955122553395}
   - component: {fileID: 1971760519199794678}
   - component: {fileID: 8448468988895807006}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,4 +134,4 @@ MonoBehaviour:
   explotionPrefab: {fileID: 2710466766399856621, guid: 2529235acc83080428c47a5c5e7783ea,
     type: 3}
   timeToExplode: 2
-  speed: 20
+  speed: 50

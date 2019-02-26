@@ -8,6 +8,7 @@ public class PlayerMovement: MonoBehaviour
 	PlayerBaseClass player;
 	[SerializeField]
 	public PlayerDirection playerDir; // which direction is the player moving, or none?
+	public PlayerDirection lastValidDirection = PlayerMovement.PlayerDirection.Forward;
 	[SerializeField]
 	public PlayerMovementState movementState; // what is the player doing now movement-wise
 	bool canMove // can the player move or dash?
@@ -39,6 +40,10 @@ public class PlayerMovement: MonoBehaviour
 		playerDir = GetDirection();
 		HandleDashing();
 		HandleMovement();
+		if ( playerDir != PlayerDirection.None )
+		{
+			lastValidDirection = playerDir;
+		}
 	}
 
 	private void HandleDashing()

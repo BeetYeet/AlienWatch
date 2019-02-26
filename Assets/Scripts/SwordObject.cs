@@ -30,9 +30,3 @@ public class SwordObject : ScriptableObject
     [Space]
     public SwordReturn Return;
 }
-public enum SwordReturn
-{
-    DontReturn,
-    ReturnLeft,
-    ReturnRight
-}

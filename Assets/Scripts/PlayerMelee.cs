@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMelee: MonoBehaviour
 {
+	public float pausePercent = .5f;
 	PlayerBaseClass player;
 	public float meleeTime = .2f;
 	public float meleeTimeLeft = 0f;
@@ -38,9 +39,10 @@ public class PlayerMelee: MonoBehaviour
 	public Vector3 forwardPos;
 	public Vector3 swipeLeftPos;
 	public Vector3 swipeRightPos;
-	private PlayerMovement.PlayerDirection lastValidDirection = PlayerMovement.PlayerDirection.Forward;
 	private float directionalRotation = 0;
 	public float rotationAgressiveness = .1f;
+	public SwordReturn returnTo = SwordReturn.DontReturn;
+	public bool flip;
 
 	void Start()
 	{
@@ -50,26 +52,39 @@ public class PlayerMelee: MonoBehaviour
 
 	void Tick()
 	{
-		float shortest_angle = ( ( ( ( GetRawRotation() - directionalRotation ) % 360 ) + 540 ) % 360 ) - 180;
-
-		directionalRotation = NormalizeRotation( directionalRotation + shortest_angle * rotationAgressiveness );
 	}
 
 	void Update()
 	{
-		if ( player.playerMovement.playerDir != PlayerMovement.PlayerDirection.None )
-		{
-			lastValidDirection = player.playerMovement.playerDir;
-		}
 
+		float shortest_angle = ( ( ( ( GetRawRotation() - directionalRotation ) % 360 ) + 540 ) % 360 ) - 180;
+
+		directionalRotation = NormalizeRotation( directionalRotation + shortest_angle * Time.deltaTime * rotationAgressiveness );
 		float validRotation = 0;
 
-
-		if ( ( Input.GetButtonDown( "Fire1" ) || Input.GetKeyDown( KeyCode.LeftControl ) ) && player.playerMovement.movementState != PlayerMovement.PlayerMovementState.Fixed )// && !isMeleeing )
+		if ( InputHandler.current.GetWithName( "Melee" ).GetButtonDown() && player.playerMovement.movementState != PlayerMovement.PlayerMovementState.Fixed )// && !isMeleeing )
 		{
-			meleeTimeLeft += meleeTime;
-			player.playerMovement.TriggerFixed( meleeTime );
-			lastSwipe = InvertSwipe( lastSwipe );
+			TriggerSwipe();
+		}
+		else
+		{
+			switch ( returnTo )
+			{
+				default:
+					break;
+				case SwordReturn.ReturnLeft:
+					if ( !isMeleeing && lastSwipe == MeleeSwipe.LeftToRight && player.playerMovement.movementState != PlayerMovement.PlayerMovementState.Fixed )
+					{
+						TriggerSwipe();
+					}
+					break;
+				case SwordReturn.ReturnRight:
+					if ( !isMeleeing && lastSwipe == MeleeSwipe.RightToLeft && player.playerMovement.movementState != PlayerMovement.PlayerMovementState.Fixed )
+					{
+						TriggerSwipe();
+					}
+					break;
+			}
 		}
 		if ( meleeTimeLeft > 0f )
 		{
@@ -77,7 +92,7 @@ public class PlayerMelee: MonoBehaviour
 			if ( meleeTimeLeft < 0 )
 			{
 				meleeTimeLeft = 0f;
-				meleeSprite.flipX = !meleeSprite.flipX;
+				meleeSprite.flipX = lastSwipe == MeleeSwipe.LeftToRight ^ flip;
 			}
 			else if ( meleeTimeLeft > 0f )
 			{
@@ -155,16 +170,29 @@ public class PlayerMelee: MonoBehaviour
 		meleeTransform.localEulerAngles = new Vector3( meleeTransform.localEulerAngles.x, meleeTransform.localEulerAngles.y, NormalizeRotation( validRotation + directionalRotation ) );
 		Vector2 _1 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, NormalizeRotation( validRotation + directionalRotation ) );
 		Vector2 _2 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, directionalRotation );
+		Vector2 _3 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, GetRawRotation() );
 		Debug.DrawLine(
 		transform.position,
-		transform.position + new Vector3(_1.x, _1.y),
-		Color.green
-		);
+		transform.position + new Vector3( _1.x, _1.y ),
+				Color.green
+				);
 		Debug.DrawLine(
 		transform.position,
 		transform.position + new Vector3( _2.x, _2.y ),
 		Color.cyan
 		);
+		Debug.DrawLine(
+		transform.position,
+		transform.position + new Vector3( _3.x, _3.y ),
+		Color.red
+		);
+	}
+
+	private void TriggerSwipe()
+	{
+		meleeTimeLeft += meleeTime - meleeTimeLeft;
+		player.playerMovement.TriggerFixed( meleeTimeLeft * pausePercent );
+		lastSwipe = InvertSwipe( lastSwipe );
 	}
 
 	private float NormalizeRotation( float rot )
@@ -192,7 +220,7 @@ public class PlayerMelee: MonoBehaviour
 
 	public float GetRawRotation()
 	{
-		switch ( lastValidDirection )
+		switch ( PlayerBaseClass.current.playerMovement.lastValidDirection )
 		{
 			case PlayerMovement.PlayerDirection.ForwardRight:
 				return 315f;
@@ -214,6 +242,12 @@ public class PlayerMelee: MonoBehaviour
 	}
 }
 
+public enum SwordReturn
+{
+	DontReturn,
+	ReturnLeft,
+	ReturnRight
+}
 
 public enum MeleeSwipe
 {
