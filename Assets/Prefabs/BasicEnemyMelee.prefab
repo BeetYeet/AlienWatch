@@ -10,9 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1957006824425745133}
   - component: {fileID: 2038071258568177382}
+  - component: {fileID: 1690422171}
+  - component: {fileID: 1690422169}
+  - component: {fileID: 1690422165}
+  - component: {fileID: 1690422168}
+  - component: {fileID: 1690422170}
   m_Layer: 0
   m_Name: BasicEnemyMelee
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,3 +84,90 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &1690422171
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7061004337864496177}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &1690422169
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7061004337864496177}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.041137934, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.9398382
+--- !u!114 &1690422165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7061004337864496177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea81f6eac2c73c46abac142a32b400e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  range: 1
+  agro: 0
+  alive: 1
+  attack: 0
+--- !u!114 &1690422168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7061004337864496177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c585bc15ab154a42a8befb2569c6f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+  currentHP: 0
+  maxHP: 10
+  timeBetweenAttacks: 2
+--- !u!114 &1690422170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7061004337864496177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c6894dc34908f47834238f7ed9d40c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropChanceToDivideOneWith: 1
+  ManaPickup: {fileID: 3021350009739329520, guid: 6cbed5821dbc1be4badb396a217ab6f3,
+    type: 3}
+  Halthpickup: {fileID: 3021350009739329520, guid: 6cbed5821dbc1be4badb396a217ab6f3,
+    type: 3}
