@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ShopInventory : MonoBehaviour
 {
-    [SerializeField] List<SwordObject> Items;
-    [SerializeField] List<GranadeObject> Item;
+    public List<Item> Items;
     [SerializeField] Transform ItemParent;
     [SerializeField] ItemSlot[] ItemSlots;
 
@@ -19,16 +18,16 @@ public class ShopInventory : MonoBehaviour
     void RefreshUI()
     {
         int i = 0;
-        for (;i < Items.Count && i < ItemSlots.Length; i++)
+        for (; i < Items.Count && i < ItemSlots.Length; i++)
         {
             ItemSlots[i].Sword = Items[i];
-            ItemSlots[i].Granade = Item[i];
+
         }
 
         for (; i < ItemSlots.Length; i++)
         {
             ItemSlots[i].Sword = null;
-            ItemSlots[i].Granade = null;
+
         }
     }
 }
