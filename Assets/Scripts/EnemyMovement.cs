@@ -4,38 +4,78 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public Transform player;
-    public float moveSpeed = 4;
-    public int maxDist = 10;
-    public int minDist = 5;
-    public Sprite EnemySprite;
+    //public Transform target;
+    //public float speed = 3f;
+    //public float minDist;
+    //public bool agro = false;
+    //private Rigidbody2D rbody;
+    //public bool alive = true;
+    //public bool attack = false;
 
 
 
+    //void Start()
+    //{
+    //    rbody = GetComponent<Rigidbody2D>();
+    //}
+
+    //void Update()
+    //{
+
+
+    //    //move towards the player
+    //    if (agro == true && alive == true)
+    //    {
+    //        transform.LookAt(target.position);
+    //        transform.Rotate(new Vector3(0, -90, 0), Space.Self);
+
+    //        if (Vector3.Distance(transform.position, target.position) > minDist)
+    //        {
+    //            //transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+    //            rbody.velocity = (PlayerBaseClass.current.transform.position - transform.position).normalized * speed;
+    //            attack = false;
+
+    //        }
+    //        else
+    //        {
+    //            rbody.velocity = new Vector3(0, 0, 0);
+    //            attack = true;
+    //        }
+    //    }
+
+    //}
+
+    private Transform target;
+    public float speed;
+    public float range;
+    public bool agro = false;
+    private Rigidbody2D rb;
+    public bool alive = true;
+    public bool attack = false;
 
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     void Update()
     {
-        transform.LookAt((player));
-
-       if (Vector3.Distance(transform.position, player.position) >= minDist)
+       if (agro == true && alive == true)
         {
+            transform.LookAt(target.position);
+            transform.Rotate(new Vector3(0, -90, 0), Space.Self);
 
-            transform.position += transform.forward * moveSpeed * Time.deltaTime;
-            //transform.position = Vector2.MoveTowards(transform.position, (Vector2)player.position, moveSpeed);
-
-
-            if (Vector3.Distance(transform.position, player.position) <= maxDist)
+            if(Vector3.Distance(transform.position, target.position) > range)
             {
-                //Here Call any function U want Like Shoot at here or something
+                rb.velocity = (PlayerBaseClass.current.transform.position - transform.position).normalized * speed;
+                attack = false;
             }
-
+            else
+            {
+                rb.velocity = new Vector3(0, 0, 0);
+                attack = true;
+            }
         }
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = EnemySprite;
     }
 }
