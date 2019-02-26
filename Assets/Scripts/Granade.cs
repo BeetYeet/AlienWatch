@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet: MonoBehaviour
+public class Grenade: MonoBehaviour
 {
 	public GameObject explotionPrefab;
 	public float timeToExplode = 2f;
