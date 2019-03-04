@@ -57,12 +57,13 @@ public class PlayerMelee: MonoBehaviour
 	void Update()
 	{
 
+		meleeSprite.flipX = lastSwipe == MeleeSwipe.LeftToRight ^ flip ^ isMeleeing;
 		float shortest_angle = ( ( ( ( GetRawRotation() - directionalRotation ) % 360 ) + 540 ) % 360 ) - 180;
 
 		directionalRotation = NormalizeRotation( directionalRotation + shortest_angle * Time.deltaTime * rotationAgressiveness );
 		float validRotation = 0;
 
-		if ( InputHandler.current.GetWithName( "Melee" ).GetButtonDown() && player.playerMovement.movementState != PlayerMovement.PlayerMovementState.Fixed )// && !isMeleeing )
+		if ( InputHandler.current.GetWithName( "Melee" ).GetButtonDown() )// && !isMeleeing )
 		{
 			TriggerSwipe();
 		}
@@ -73,13 +74,13 @@ public class PlayerMelee: MonoBehaviour
 				default:
 					break;
 				case SwordReturn.ReturnLeft:
-					if ( !isMeleeing && lastSwipe == MeleeSwipe.LeftToRight && player.playerMovement.movementState != PlayerMovement.PlayerMovementState.Fixed )
+					if ( !isMeleeing && lastSwipe == MeleeSwipe.LeftToRight )
 					{
 						TriggerSwipe();
 					}
 					break;
 				case SwordReturn.ReturnRight:
-					if ( !isMeleeing && lastSwipe == MeleeSwipe.RightToLeft && player.playerMovement.movementState != PlayerMovement.PlayerMovementState.Fixed )
+					if ( !isMeleeing && lastSwipe == MeleeSwipe.RightToLeft )
 					{
 						TriggerSwipe();
 					}
@@ -92,7 +93,6 @@ public class PlayerMelee: MonoBehaviour
 			if ( meleeTimeLeft < 0 )
 			{
 				meleeTimeLeft = 0f;
-				meleeSprite.flipX = lastSwipe == MeleeSwipe.LeftToRight ^ flip;
 			}
 			else if ( meleeTimeLeft > 0f )
 			{
@@ -190,7 +190,7 @@ public class PlayerMelee: MonoBehaviour
 
 	private void TriggerSwipe()
 	{
-		meleeTimeLeft += meleeTime - meleeTimeLeft;
+		meleeTimeLeft = meleeTime - meleeTimeLeft;
 		player.playerMovement.TriggerFixed( meleeTimeLeft * pausePercent );
 		lastSwipe = InvertSwipe( lastSwipe );
 	}

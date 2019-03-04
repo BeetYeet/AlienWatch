@@ -13,13 +13,10 @@ public class Grenade: MonoBehaviour
 	{
 		bulletRB = GetComponent<Rigidbody2D>();
 		Vector2 v;
-		if ( PlayerBaseClass.current.playerMovement.playerDir != PlayerMovement.PlayerDirection.None )
+		v = new Vector2( Input.GetAxis( "Horizontal" ), Input.GetAxis( "Vertical" ) );
+		if ( PlayerBaseClass.current.playerMovement.playerDir == PlayerMovement.PlayerDirection.None )
 		{
-			v = PlayerMovement.GetVectorDirection( PlayerBaseClass.current.playerMovement.playerDir );
-		}
-		else
-		{
-			v = PlayerMovement.GetVectorDirection( PlayerBaseClass.current.playerMovement.lastValidDirection )/5f;
+			v = PlayerMovement.GetVectorDirection( PlayerBaseClass.current.playerMovement.lastValidDirection ) / 3f;
 		}
 		bulletRB.velocity = v * speed;
 		//transform.up * speed;
