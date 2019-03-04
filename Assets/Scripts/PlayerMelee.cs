@@ -65,7 +65,7 @@ public class PlayerMelee: MonoBehaviour
 
 		if ( InputHandler.current.GetWithName( "Melee" ).GetButtonDown() )// && !isMeleeing )
 		{
-			TriggerSwipe();
+			StartSwipe();
 		}
 		else
 		{
@@ -76,41 +76,20 @@ public class PlayerMelee: MonoBehaviour
 				case SwordReturn.ReturnLeft:
 					if ( !isMeleeing && lastSwipe == MeleeSwipe.LeftToRight )
 					{
-						TriggerSwipe();
+						StartSwipe();
 					}
 					break;
 				case SwordReturn.ReturnRight:
 					if ( !isMeleeing && lastSwipe == MeleeSwipe.RightToLeft )
 					{
-						TriggerSwipe();
+						StartSwipe();
 					}
 					break;
 			}
 		}
 		if ( meleeTimeLeft > 0f )
 		{
-			meleeTimeLeft -= Time.deltaTime;
-			if ( meleeTimeLeft < 0 )
-			{
-				meleeTimeLeft = 0f;
-			}
-			else if ( meleeTimeLeft > 0f )
-			{
-				DoMeleeDamage();
-
-				float totalRot = 0f;
-				if ( lastSwipe == MeleeSwipe.LeftToRight )
-				{
-					totalRot = rotMin + ( rotMax - rotMin ) * meleeAnimPart;
-				}
-				else
-				{
-					totalRot = rotMax - ( rotMax - rotMin ) * meleeAnimPart;
-				}
-
-				validRotation += totalRot;
-			}
-
+			validRotation = GetValidRot( validRotation );
 		}
 		if ( !isMeleeing )
 		{
@@ -126,45 +105,7 @@ public class PlayerMelee: MonoBehaviour
 		}
 		else
 		{
-			if ( lastSwipe == MeleeSwipe.LeftToRight )
-			{
-				float _ = meleeAnimPart;
-				if ( _ < .2f )
-				{
-					_ *= 5f;
-					meleeTransform.localPosition = Vector3.Lerp( defaultPos, swipeRightPos, _ );
-				}
-				else if ( _ >= .2f && _ < .6 )
-				{
-					_ = ( _ * 5 - 1f ) / 2f;
-					meleeTransform.localPosition = Vector3.Lerp( swipeRightPos, forwardPos, _ );
-				}
-				else
-				{
-					_ = ( _ * 5 - 3f ) / 2f;
-					meleeTransform.localPosition = Vector3.Lerp( forwardPos, defaultPos, _ );
-				}
-			}
-			else
-			{
-				float _ = meleeAnimPart;
-				if ( _ < .2f )
-				{
-					_ *= 5f;
-					meleeTransform.localPosition = Vector3.Lerp( defaultPos, swipeLeftPos, _ );
-				}
-				else if ( _ >= .2f && _ < .6 )
-				{
-					_ = ( _ * 5 - 1f ) / 2f;
-					meleeTransform.localPosition = Vector3.Lerp( swipeLeftPos, forwardPos, _ );
-				}
-				else
-				{
-					_ = ( _ * 5 - 3f ) / 2f;
-					meleeTransform.localPosition = Vector3.Lerp( forwardPos, defaultPos, _ );
-				}
-			}
-			meleeTransform.position = HelperClass.RotateAroundAxis( new Vector2( meleeTransform.position.x, meleeTransform.position.y ), transform.position, GetRotationFromDirection() );
+			DoPosition();
 		}
 
 		meleeTransform.localEulerAngles = new Vector3( meleeTransform.localEulerAngles.x, meleeTransform.localEulerAngles.y, NormalizeRotation( validRotation + directionalRotation ) );
@@ -188,7 +129,77 @@ public class PlayerMelee: MonoBehaviour
 		);
 	}
 
-	private void TriggerSwipe()
+	private void DoPosition()
+	{
+		if ( lastSwipe == MeleeSwipe.LeftToRight )
+		{
+			float _ = meleeAnimPart;
+			if ( _ < .2f )
+			{
+				_ *= 5f;
+				meleeTransform.localPosition = Vector3.Lerp( defaultPos, swipeRightPos, _ );
+			}
+			else if ( _ >= .2f && _ < .6 )
+			{
+				_ = ( _ * 5 - 1f ) / 2f;
+				meleeTransform.localPosition = Vector3.Lerp( swipeRightPos, forwardPos, _ );
+			}
+			else
+			{
+				_ = ( _ * 5 - 3f ) / 2f;
+				meleeTransform.localPosition = Vector3.Lerp( forwardPos, defaultPos, _ );
+			}
+		}
+		else
+		{
+			float _ = meleeAnimPart;
+			if ( _ < .2f )
+			{
+				_ *= 5f;
+				meleeTransform.localPosition = Vector3.Lerp( defaultPos, swipeLeftPos, _ );
+			}
+			else if ( _ >= .2f && _ < .6 )
+			{
+				_ = ( _ * 5 - 1f ) / 2f;
+				meleeTransform.localPosition = Vector3.Lerp( swipeLeftPos, forwardPos, _ );
+			}
+			else
+			{
+				_ = ( _ * 5 - 3f ) / 2f;
+				meleeTransform.localPosition = Vector3.Lerp( forwardPos, defaultPos, _ );
+			}
+		}
+		meleeTransform.position = HelperClass.RotateAroundAxis( new Vector2( meleeTransform.position.x, meleeTransform.position.y ), transform.position, GetRotationFromDirection() );
+	}
+
+	private float GetValidRot( float validRotation )
+	{
+		meleeTimeLeft -= Time.deltaTime;
+		if ( meleeTimeLeft < 0 )
+		{
+			meleeTimeLeft = 0f;
+		}
+		else if ( meleeTimeLeft > 0f )
+		{
+			DoMeleeDamage();
+
+			float totalRot = 0f;
+			if ( lastSwipe == MeleeSwipe.LeftToRight )
+			{
+				totalRot = rotMin + ( rotMax - rotMin ) * meleeAnimPart;
+			}
+			else
+			{
+				totalRot = rotMax - ( rotMax - rotMin ) * meleeAnimPart;
+			}
+
+			validRotation += totalRot;
+		}
+
+		return validRotation;
+	}
+
+	private void StartSwipe()
 	{
 		meleeTimeLeft = meleeTime - meleeTimeLeft;
 		player.playerMovement.TriggerFixed( meleeTimeLeft * pausePercent );

@@ -47,6 +47,11 @@ public struct DamageInfo
 {
 	public Faction faction;
 	public int damage;
+	public DamageInfo( Faction faction, int damage )
+	{
+		this.faction = faction;
+		this.damage = damage;
+	}
 }
 public enum Faction
 {
