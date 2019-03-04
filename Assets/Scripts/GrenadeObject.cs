@@ -2,7 +2,7 @@
 
 [CreateAssetMenu(menuName = "Items/Granade", fileName = "new Granade")]
 [System.Serializable]
-public class GranadeObject : Item
+public class GrenadeObject : Item
 {
     
     [Header("Floats")]

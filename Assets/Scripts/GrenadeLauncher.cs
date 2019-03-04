@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class wepon : MonoBehaviour
+public class GrenadeLauncher : MonoBehaviour
 {
     
     public Transform FirePoint;
@@ -10,7 +10,7 @@ public class wepon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (InputHandler.current.GetWithName("Grenade").GetButtonDown())
         {
             Shoot();
         }

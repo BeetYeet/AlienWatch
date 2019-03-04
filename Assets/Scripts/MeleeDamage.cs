@@ -2,16 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeDamage : MonoBehaviour
+public class MeleeDamage: MonoBehaviour
 {
-	public Faction faction;
 	public int damage;
+	private bool active;
 
 	private void OnTriggerEnter2D( Collider2D collision )
 	{
-		DamageInfo di = new DamageInfo();
-		di.damage = damage;
-		di.faction = faction;
-		collision.SendMessageUpwards("DoDamage", di, SendMessageOptions.DontRequireReceiver);
+		if ( !active )
+			return;
+		DamageInfo damageInfo = new DamageInfo(Faction.Player, damage );
+		collision.gameObject.GetComponent<Damageble>().DoDamage( damageInfo );
+	}
+
+	public void StartSwing()
+	{
+		active = true;
+	}
+
+	public void EndSwing()
+	{
+		active = false;
 	}
 }

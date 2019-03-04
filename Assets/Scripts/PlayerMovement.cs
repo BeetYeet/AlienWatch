@@ -8,7 +8,7 @@ public class PlayerMovement: MonoBehaviour
 	PlayerBaseClass player;
 	[SerializeField]
 	public PlayerDirection playerDir; // which direction is the player moving, or none?
-	public PlayerDirection lastValidDirection = PlayerMovement.PlayerDirection.Forward;
+	public PlayerDirection lastValidDirection = PlayerDirection.Forward;
 	[SerializeField]
 	public PlayerMovementState movementState; // what is the player doing now movement-wise
 	bool canMove // can the player move or dash?
@@ -52,7 +52,7 @@ public class PlayerMovement: MonoBehaviour
 		{
 			return;
 		}
-		if ( movementState != PlayerMovementState.Dashing && Input.GetKeyDown( KeyCode.Space ) )
+		if ( movementState != PlayerMovementState.Dashing && InputHandler.current.GetWithName( "Dash" ).GetButtonDown() )
 		{
 			if ( player.playerMana.mana >= manaForDash && playerDir != PlayerDirection.None )
 			{
@@ -168,7 +168,7 @@ public class PlayerMovement: MonoBehaviour
 
 	private PlayerDirection GetDirection()
 	{
-		Vector2 stick = new Vector2( Input.GetAxis( "Horizontal" ), Input.GetAxis( "Vertical" ) );
+		Vector2 stick = new Vector2( Input.GetAxisRaw( "Horizontal" ), Input.GetAxisRaw( "Vertical" ) );
 		if ( stick.SqrMagnitude() <= .175f ) // is it in the middle-ish
 		{
 			return PlayerDirection.None;
