@@ -70,7 +70,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db589e27bdc196842ac817deac14325d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faction: 0
   damage: 10
 --- !u!1 &3870523785368705248
 GameObject:
@@ -279,7 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0a240d7636b3bf43891069500e8888a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 100
   healthMax: 100
 --- !u!114 &3870523785509128845
 MonoBehaviour:
