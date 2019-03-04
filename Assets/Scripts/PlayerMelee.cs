@@ -7,6 +7,7 @@ public class PlayerMelee: MonoBehaviour
 {
 	public float pausePercent = .5f;
 	PlayerBaseClass player;
+	public int damage;
 	public float meleeTime = .2f;
 	public float meleeTimeLeft = 0f;
 	public bool isMeleeing
@@ -21,7 +22,7 @@ public class PlayerMelee: MonoBehaviour
 		get;
 		private set;
 	}
-	public Collider2D meleeCollider;
+	public MeleeDamage ColliderHandler;
 	public Transform meleeTransform;
 	public SpriteRenderer meleeSprite;
 	public float meleeAnimPart
@@ -52,6 +53,7 @@ public class PlayerMelee: MonoBehaviour
 
 	void Tick()
 	{
+
 	}
 
 	void Update()
@@ -109,6 +111,11 @@ public class PlayerMelee: MonoBehaviour
 		}
 
 		meleeTransform.localEulerAngles = new Vector3( meleeTransform.localEulerAngles.x, meleeTransform.localEulerAngles.y, NormalizeRotation( validRotation + directionalRotation ) );
+		DrawDebug( validRotation );
+	}
+
+	private void DrawDebug( float validRotation )
+	{
 		Vector2 _1 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, NormalizeRotation( validRotation + directionalRotation ) );
 		Vector2 _2 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, directionalRotation );
 		Vector2 _3 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, GetRawRotation() );
@@ -178,11 +185,10 @@ public class PlayerMelee: MonoBehaviour
 		if ( meleeTimeLeft < 0 )
 		{
 			meleeTimeLeft = 0f;
+			ColliderHandler.StartSwing();
 		}
 		else if ( meleeTimeLeft > 0f )
 		{
-			DoMeleeDamage();
-
 			float totalRot = 0f;
 			if ( lastSwipe == MeleeSwipe.LeftToRight )
 			{
@@ -204,6 +210,7 @@ public class PlayerMelee: MonoBehaviour
 		meleeTimeLeft = meleeTime - meleeTimeLeft;
 		player.playerMovement.TriggerFixed( meleeTimeLeft * pausePercent );
 		lastSwipe = InvertSwipe( lastSwipe );
+		ColliderHandler.StartSwing();
 	}
 
 	private float NormalizeRotation( float rot )
@@ -220,10 +227,6 @@ public class PlayerMelee: MonoBehaviour
 		return MeleeSwipe.LeftToRight;
 	}
 
-	private void DoMeleeDamage()
-	{
-		//TODO: melee damage
-	}
 	public float GetRotationFromDirection()
 	{
 		return directionalRotation;

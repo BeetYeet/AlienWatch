@@ -70,7 +70,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db589e27bdc196842ac817deac14325d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
 --- !u!1 &3870523785368705248
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,9 +292,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePercent: 0.5
+  damage: 10
   meleeTime: 0.18
   meleeTimeLeft: 0
-  meleeCollider: {fileID: 3870523784770505303}
+  ColliderHandler: {fileID: 3870523784770505302}
   meleeTransform: {fileID: 3870523786164063342}
   meleeSprite: {fileID: 2065542259060641771}
   rotMin: -120

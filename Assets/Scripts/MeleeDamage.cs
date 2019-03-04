@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class MeleeDamage: MonoBehaviour
 {
-	public int damage;
 	private bool active;
 
 	private void OnTriggerEnter2D( Collider2D collision )
 	{
 		if ( !active )
 			return;
-		DamageInfo damageInfo = new DamageInfo(Faction.Player, damage );
-		collision.gameObject.GetComponent<Damageble>().DoDamage( damageInfo );
+		Damageble damageble = collision.gameObject.GetComponent<Damageble>();
+		if ( damageble == null ) {
+			return;
+		}
+		DamageInfo damageInfo = new DamageInfo(Faction.Player, PlayerBaseClass.current.playerMelee.damage );
+		damageble.DoDamage( damageInfo );
 	}
 
 	public void StartSwing()
