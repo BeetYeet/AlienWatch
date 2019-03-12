@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Viktor_MainMeny.unity
     guid: 69441baf2855bd14382316346c8ac2ce
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PrototypeScene Nikas.unity
     guid: b2561f76a4c7b464d90dc04acff02f6d
+  - enabled: 1
+    path: Assets/Scenes/PrototypeScene_1.1.unity
+    guid: 7e7c5ab0265a42545ac3a533f71f97ef
   m_configObjects: {}
