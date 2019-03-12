@@ -25,10 +25,16 @@ public class EnemyHealth: Damageble
 	{
 		if ( info.faction == Faction.Player )
 		{
+			bool canDie = health > 0;
 			health -= info.damage;
-			if ( health < 0 )
+
+			if ( health <= 0 )
 			{
 				health = 0;
+				if ( canDie )
+				{
+					OnDeath();
+				}
 			}
 		}
 	}

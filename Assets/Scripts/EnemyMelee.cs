@@ -82,14 +82,13 @@ public class EnemyMelee : MonoBehaviour
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHeath>();
         GameController.curr.Tick += DoDamage;
         currentHP = maxHP;
+
     }
     private void Update()
     {
          if (currentHP <= 0)
         {
-            enemyMovement.alive = false;
             enemyMovement.attack = false;
-
         }
     }
 

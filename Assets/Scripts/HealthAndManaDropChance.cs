@@ -86,12 +86,12 @@ public class HealthAndManaDropChance : MonoBehaviour
 
     void Update()
     {
-        if (manaDrop == 1 && enemyMovement.alive == false && willSpawn == true)
+        if (manaDrop == 1 && enemyMovement.Alive == false && willSpawn == true)
         {
             Instantiate(ManaPickup, thisEnemy.position, thisEnemy.rotation);
             willSpawn = false;
         }
-        else if(manaDrop == 2 && enemyMovement.alive == false && willSpawn == true)
+        else if(manaDrop == 2 && enemyMovement.Alive == false && willSpawn == true)
         {
             Instantiate(ManaPickup, thisEnemy.position, thisEnemy.rotation);
             willSpawn = false;
