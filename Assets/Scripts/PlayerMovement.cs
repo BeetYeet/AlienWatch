@@ -169,7 +169,7 @@ public class PlayerMovement: MonoBehaviour
 	private PlayerDirection GetDirection()
 	{
 		Vector2 stick = new Vector2( Input.GetAxisRaw( "Horizontal" ), Input.GetAxisRaw( "Vertical" ) );
-		if ( stick.SqrMagnitude() <= .175f ) // is it in the middle-ish
+		if ( stick.SqrMagnitude() <= .005f ) // is it in the middle-ish
 		{
 			return PlayerDirection.None;
 		}

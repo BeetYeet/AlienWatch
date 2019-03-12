@@ -254,8 +254,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxMana: 50
   mana: 50
-  ticksPerMana: 10
-  ticksLeft: 10
+  ticksPerMana: 5
+  ticksLeft: 5
 --- !u!114 &3870523785509128843
 MonoBehaviour:
   m_ObjectHideFlags: 0
