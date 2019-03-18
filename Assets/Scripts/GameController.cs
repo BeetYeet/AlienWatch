@@ -20,11 +20,11 @@ public class GameController: MonoBehaviour
 		}
 	}
 	private float nextTick;
-    private void OnValidate()
-    {
-        ticksPerMinute = 240;
-    }
-    void Awake() // Awake() går innan Start()
+	private void OnValidate()
+	{
+		ticksPerMinute = 480;
+	}
+	void Awake() // Awake() går innan Start()
 	{
 		if ( curr != null )
 			throw new System.Exception( "Too many instances of GameController, should only be one" );

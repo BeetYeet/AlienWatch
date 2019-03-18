@@ -14,7 +14,7 @@ public class EnemyDeathAnimation: MonoBehaviour
 
 	void OnDeath()
 	{
-		GetComponent<SpriteRenderer>().color = new Color( .5f, .2f, .2f, .3f );
+		GetComponent<SpriteRenderer>().color = new Color( .5f, .2f, .2f, .7f );
 		GetComponent<Collider2D>().enabled = false;
 	}
 }
