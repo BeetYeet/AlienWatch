@@ -6,12 +6,12 @@ public class MaxPickup : MonoBehaviour
 {
     PlayerHeath playerHealth;
 
-    PlayerMana playerMana;
+    Manascript playerMana;
 
     private void Awake()
     {
         playerHealth = FindObjectOfType<PlayerHeath>();
-        playerMana = FindObjectOfType<PlayerMana>();
+        playerMana = FindObjectOfType<Manascript>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,7 +20,7 @@ public class MaxPickup : MonoBehaviour
         {
             Destroy(gameObject);
             playerHealth.PlayerHP = playerHealth.PlayerHPMax;
-            playerMana.mana = playerMana.maxMana;
+            playerMana.Mana = playerMana.MaxMana;
         }
     }
 }
