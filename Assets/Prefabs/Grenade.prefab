@@ -133,5 +133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explotionPrefab: {fileID: 2710466766399856621, guid: 2529235acc83080428c47a5c5e7783ea,
     type: 3}
+  light: {fileID: 8826420651609197677, guid: 705bfc4ce5aceb94a8cb6e11465c260e, type: 3}
   timeToExplode: 1.8
   speed: 20

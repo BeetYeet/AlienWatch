@@ -5,6 +5,7 @@ using UnityEngine;
 public class Grenade: MonoBehaviour
 {
 	public GameObject explotionPrefab;
+    public new GameObject light; 
 	public float timeToExplode = 2f;
 	public float speed = 20f;
 	private Rigidbody2D bulletRB;
@@ -29,7 +30,8 @@ public class Grenade: MonoBehaviour
 		if ( timeToExplode <= 0f )
 		{
 			Destroy( gameObject );
-			Instantiate( explotionPrefab, transform.position, Quaternion.identity );
+            Instantiate(explotionPrefab, transform.position, Quaternion.identity);
+            Instantiate(light, transform.position, Quaternion.identity);
 		}
 	}
 }
