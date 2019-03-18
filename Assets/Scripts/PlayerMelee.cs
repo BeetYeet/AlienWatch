@@ -211,6 +211,7 @@ public class PlayerMelee: MonoBehaviour
 		player.playerMovement.TriggerFixed( meleeTimeLeft * pausePercent );
 		lastSwipe = InvertSwipe( lastSwipe );
 		ColliderHandler.StartSwing();
+        SoundManager.PlaySound("swordSwipe");
 	}
 
 	private float NormalizeRotation( float rot )
