@@ -29,6 +29,8 @@ public class PlayerMovement: MonoBehaviour
 	[SerializeField]
 	public PlayerDirection dashDirection; // which direction did the player dash
 
+    public Manascript mana;
+
 	void Start()
 	{
 		player = PlayerBaseClass.current;
