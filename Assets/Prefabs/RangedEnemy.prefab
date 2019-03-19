@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5706844242996764466}
   - component: {fileID: 5706844242996764470}
   - component: {fileID: 5706844242996764473}
+  - component: {fileID: 323183357}
   m_Layer: 0
   m_Name: RangedEnemy
   m_TagString: EnemyRanged
@@ -96,11 +97,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea81f6eac2c73c46abac142a32b400e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pathfinderType: 0
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 0
+  ticksPerPath: 2
   speed: 3
+  speedVariance: 0
   range: 5
   agro: 0
-  alive: 1
+  agroDistance: 5
   attack: 0
+  knockBackVelocity: {x: 0, y: 0}
+  knockBackDecay: 1.1
+  knockbackWeight: 1
+  rb: {fileID: 0}
 --- !u!114 &5706844242996764466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,8 +166,19 @@ MonoBehaviour:
     type: 3}
   shotpoint: {fileID: 5706844243150271971}
   timeBetweenShots: 2
-  maxHP: 100
-  currentHP: 0
+--- !u!114 &323183357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5706844242996764467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7087f9aa18469c4086194867a48b7e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &5706844243150271968
 GameObject:
   m_ObjectHideFlags: 0
