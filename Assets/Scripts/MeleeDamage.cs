@@ -11,11 +11,18 @@ public class MeleeDamage: MonoBehaviour
 		if ( !active )
 			return;
 		Damageble damageble = collision.gameObject.GetComponent<Damageble>();
-		if ( damageble == null ) {
+		if ( damageble == null )
+		{
 			return;
 		}
-		DamageInfo damageInfo = new DamageInfo(Faction.Player, PlayerBaseClass.current.playerMelee.damage );
+		DamageInfo damageInfo = new DamageInfo( Faction.Player, PlayerBaseClass.current.playerMelee.damage );
 		damageble.DoDamage( damageInfo );
+
+		EnemyMovement movement = collision.gameObject.GetComponent<EnemyMovement>();
+		if ( movement != null )
+		{
+			movement.DoKnockback( HelperClass.V3toV2( collision.transform.position - PlayerBaseClass.current.transform.position ).normalized * PlayerBaseClass.current.playerMelee.strength );
+		}
 	}
 
 	public void StartSwing()

@@ -25,11 +25,21 @@ public class PlayerBaseClass: MonoBehaviour
 	{
 		get; private set;
 	}
-    public PlayerHeath playerHealth
-    {
-        get; private set;
-    }
-    void Awake()
+	public PlayerHeath playerHealth
+	{
+		get; private set;
+	}
+	public GrenadeLauncher playerGrenades
+	{
+		get; private set;
+	}
+	public PlayerSpriteChanger playerSpriteChanger
+	{
+		get; private set;
+	}
+
+
+	void Awake()
 	{
 		RegisterCurrentPlayer();
 		GetPlayerScripts();
@@ -41,8 +51,10 @@ public class PlayerBaseClass: MonoBehaviour
 		rigidbody = GetComponent<Rigidbody2D>();
 		playerMelee = GetComponent<PlayerMelee>();
 		playerMana = GetComponent<PlayerMana>();
-        playerHealth = GetComponent<PlayerHeath>();
-    }
+		playerHealth = GetComponent<PlayerHeath>();
+		playerGrenades = GetComponent<GrenadeLauncher>();
+		playerSpriteChanger = GetComponent<PlayerSpriteChanger>();
+	}
 
 	private void RegisterCurrentPlayer()
 	{

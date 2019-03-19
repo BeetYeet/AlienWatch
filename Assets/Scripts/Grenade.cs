@@ -28,6 +28,7 @@ public class Grenade: MonoBehaviour
 
 		if ( timeToExplode <= 0f )
 		{
+			HelperClass.DoAOEDamage( HelperClass.V3toV2( transform.position ), 5f, 20, Faction.Player, 20f );
 			Destroy( gameObject );
 			Instantiate( explotionPrefab, transform.position, Quaternion.identity );
 		}

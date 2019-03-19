@@ -14,6 +14,7 @@ public class EnemyMovement: MonoBehaviour
 	public float speedVariance;
 	public float range;
 	public bool agro = false;
+	public float agroDistance = 5f;
 	public bool Alive
 	{
 		get
@@ -22,11 +23,17 @@ public class EnemyMovement: MonoBehaviour
 		}
 	}
 	public bool attack = false;
+	public Vector2 knockBackVelocity = Vector2.zero;
+	public float knockBackDecay = 1.1f;
+	public float knockbackWeight = 1f;
+	public Rigidbody2D rb;
 
 	void Start()
 	{
+		rb = GetComponent<Rigidbody2D>();
 		health = GetComponent<EnemyHealth>();
 		target = PlayerBaseClass.current.transform;
+		speed += Random.Range( -speedVariance * speed, speedVariance * speed );
 		if ( pathfinderType == Pathing.PathfinderType.Straight )
 		{
 			pathfinder = new Pathing.Straight( transform, target, ticksPerPath );
@@ -36,11 +43,23 @@ public class EnemyMovement: MonoBehaviour
 		{
 			pathfinder = new Pathing.RayStretcher( transform, target, ticksPerPath, wallMask, 30f, 0, 90f );
 		}
-		speed += Random.Range( -speedVariance * speed, speedVariance * speed );
+	}
+
+	private void FixedUpdate()
+	{
+		knockBackVelocity /= knockBackDecay;
+	}
+
+	public void DoKnockback( Vector2 vector )
+	{
+		knockBackVelocity += vector / knockbackWeight;
 	}
 
 	void Update()
 	{
+		if ( ( PlayerBaseClass.current.transform.position - transform.position ).sqrMagnitude < agroDistance * agroDistance )
+			agro = true;
+		rb.velocity = knockBackVelocity;
 		if ( agro == true && Alive == true )
 		{
 			transform.LookAt( target.position );
@@ -48,8 +67,7 @@ public class EnemyMovement: MonoBehaviour
 
 			if ( Vector3.Distance( transform.position, target.position ) > range )
 			{
-				Vector2 nextPos = pathfinder.GetNextPosition( speed * Time.deltaTime );
-				transform.position = new Vector3( nextPos.x, nextPos.y, 0f );
+				rb.velocity += pathfinder.GetMovementVector( speed * Time.deltaTime );
 				attack = false;
 			}
 			else

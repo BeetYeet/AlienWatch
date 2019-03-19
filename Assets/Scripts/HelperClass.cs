@@ -17,9 +17,27 @@ public static class HelperClass
 	{
 		return new Vector2( v.x, v.y );
 	}
-
 	public static Vector3 V2toV3( Vector2 v )
 	{
 		return new Vector3( v.x, v.y, 0f );
+	}
+	public static void DoAOEDamage( Vector2 position, float radius, int damage, Faction faction, float knockbackStrength )
+	{
+		Collider2D[] objectsInRange = Physics2D.OverlapCircleAll( position, radius );
+		foreach ( Collider2D col in objectsInRange )
+		{
+			EnemyHealth enemy = col.GetComponent<EnemyHealth>();
+			if ( enemy != null )
+			{
+				// linear falloff of effect
+				float proximity = ( position - V3toV2( enemy.transform.position ) ).magnitude;
+				float effect = 1 - ( proximity / radius );
+				DamageInfo info = new DamageInfo( faction, (int) ( damage * effect ) );
+				enemy.DoDamage( info );
+				EnemyMovement move = col.GetComponent<EnemyMovement>();
+				if ( move != null )
+					move.DoKnockback( ( V3toV2( col.transform.position ) - position ).normalized * knockbackStrength * effect );
+			}
+		}
 	}
 }

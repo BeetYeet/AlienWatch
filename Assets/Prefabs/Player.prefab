@@ -184,7 +184,7 @@ SpriteRenderer:
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: c769d7e608876b24aa6a847f9879e7eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -310,6 +310,7 @@ MonoBehaviour:
   rotationAgressiveness: 7
   returnTo: 0
   flip: 0
+  strength: 5
 --- !u!114 &3870523785509128846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,10 +327,10 @@ MonoBehaviour:
   lastValidDirection: 1
   movementState: 0
   fixedTimeLeft: 0
-  movementSpeed: 4
+  movementSpeed: 7
   dashTimeLeft: 0
-  dashTime: 0.5
-  dashSpeed: 12
+  dashTime: 0.3
+  dashSpeed: 15
   manaForDash: 8
   dashDirection: 1
 --- !u!114 &1477799395

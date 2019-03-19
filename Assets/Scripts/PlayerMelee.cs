@@ -44,6 +44,7 @@ public class PlayerMelee: MonoBehaviour
 	public float rotationAgressiveness = .1f;
 	public SwordReturn returnTo = SwordReturn.DontReturn;
 	public bool flip;
+	public float strength = 5f;
 
 	void Start()
 	{
@@ -184,8 +185,7 @@ public class PlayerMelee: MonoBehaviour
 		meleeTimeLeft -= Time.deltaTime;
 		if ( meleeTimeLeft < 0 )
 		{
-			meleeTimeLeft = 0f;
-			ColliderHandler.StartSwing();
+			EndSwipe();
 		}
 		else if ( meleeTimeLeft > 0f )
 		{
@@ -211,6 +211,12 @@ public class PlayerMelee: MonoBehaviour
 		player.playerMovement.TriggerFixed( meleeTimeLeft * pausePercent );
 		lastSwipe = InvertSwipe( lastSwipe );
 		ColliderHandler.StartSwing();
+	}
+
+	private void EndSwipe()
+	{
+		meleeTimeLeft = 0f;
+		ColliderHandler.EndSwing();
 	}
 
 	private float NormalizeRotation( float rot )

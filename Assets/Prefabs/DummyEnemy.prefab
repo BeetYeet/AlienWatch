@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 325783301}
   - component: {fileID: 6292463863436276502}
   - component: {fileID: 1869030204}
+  - component: {fileID: 1807842872}
   m_Layer: 0
   m_Name: DummyEnemy
   m_TagString: Enemy
@@ -140,11 +141,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   ticksPerPath: 1
-  speed: 1.5
+  speed: 50
   speedVariance: 0.38
   range: 1
-  agro: 1
+  agro: 0
+  agroDistance: 5
   attack: 0
+  knockBackVelocity: {x: 0, y: 0}
+  knockBackDecay: 1.1
+  knockbackWeight: 1
+  rb: {fileID: 0}
 --- !u!114 &6292463863436276502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,3 +184,24 @@ MonoBehaviour:
   minSplats: 5
   maxSplats: 15
   posDeviation: 0.5
+--- !u!50 &1807842872
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2706178882919730164}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1000
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 2
+  m_SleepingMode: 0
+  m_CollisionDetection: 0
+  m_Constraints: 4

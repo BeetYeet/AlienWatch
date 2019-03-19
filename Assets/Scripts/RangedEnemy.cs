@@ -50,24 +50,16 @@ public class RangedEnemy: MonoBehaviour
 	public float timeBetweenShots;
 	private float shotTime;
 	private EnemyMovement enemyMovement;
-
-	public int maxHP;
-	public int currentHP;
+	
 
 	private void Start()
 	{
 		enemyMovement = GetComponent<EnemyMovement>();
 		GameController.curr.Tick += EnemyShoot;
-		currentHP = maxHP;
-
 	}
 
 	private void Update()
 	{
-		if ( currentHP <= 0 )
-		{
-			enemyMovement.attack = false;
-		}
 
 
 	}

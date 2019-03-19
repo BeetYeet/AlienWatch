@@ -83,7 +83,7 @@ namespace Pathing
 
 		internal abstract void GenerateNewPath();
 
-		public Vector2 GetNextPosition( float travelDistance )
+		public Vector2 GetMovementVector( float travelDistance )
 		{
 
 			Vector2 orig = origin.position;
@@ -115,7 +115,7 @@ namespace Pathing
 					travelDistance = 0f;
 				}
 			}
-			return currpos;
+			return currpos - orig;
 		}
 	}
 	public enum PathfinderType
