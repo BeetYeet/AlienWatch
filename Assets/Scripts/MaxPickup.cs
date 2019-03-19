@@ -16,10 +16,10 @@ public class MaxPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (playerHealth.PlayerHP < playerHealth.PlayerHPMax)
+        if (playerHealth.health < playerHealth.healthMax)
         {
             Destroy(gameObject);
-            playerHealth.PlayerHP = playerHealth.PlayerHPMax;
+            playerHealth.health = playerHealth.healthMax;
             playerMana.Mana = playerMana.MaxMana;
         }
     }

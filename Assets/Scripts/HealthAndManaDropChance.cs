@@ -60,7 +60,7 @@ public class HealthAndManaDropChance : MonoBehaviour
     private bool willSpawn;
     private int manaDrop = 0;
     public GameObject ManaPickup;
-    public GameObject Halthpickup;
+    public GameObject HealthPickup;
     private Transform thisEnemy;
     private EnemyMovement enemyMovement;
 
@@ -93,8 +93,12 @@ public class HealthAndManaDropChance : MonoBehaviour
         }
         else if(manaDrop == 2 && enemyMovement.Alive == false && willSpawn == true)
         {
-            Instantiate(ManaPickup, thisEnemy.position, thisEnemy.rotation);
+            Instantiate(HealthPickup, thisEnemy.position, thisEnemy.rotation);
             willSpawn = false;
+        }
+        if (thisEnemy == null)
+        {
+            Debug.Log("Transform is null");
         }
 
         thisEnemy = GetComponent<Transform>();
