@@ -278,11 +278,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f208ea9bac4b74cb990666070f86fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pausePercent: 0.5
+  pausePercent: 0.7
   damage: 20
-  preMeleeCooldown: 0.1
-  postMeleeCooldown: 0.2
-  meleeTime: 0.3
+  preMeleeCooldown: 0.05
+  postMeleeCooldown: 0.3
+  meleeTime: 0.1
   meleeTimeLeft: 0
   ColliderHandler: {fileID: 3870523784770505302}
   meleeTransform: {fileID: 3870523786164063342}
@@ -341,6 +341,7 @@ MonoBehaviour:
   FirePoint: {fileID: 5719161995769849015}
   grenadePrefab: {fileID: 4095438133341051057, guid: 5a219dcca1e144944b59d18f521e96d3,
     type: 3}
+  manaPerGrenade: 10
 --- !u!95 &2769516976782080152
 Animator:
   serializedVersion: 3
