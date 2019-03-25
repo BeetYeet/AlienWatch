@@ -9,7 +9,11 @@ public class EventScript: MonoBehaviour
 	public static bool GameIsPaused = false;
 	public GameObject onDeath;
 	public GameObject PauseMenuUI;
+    public EventSystem system;
 
+
+    public GameObject DeathButton;
+    public GameObject PauseButton;
 
 	private void Start()
 	{
@@ -32,8 +36,22 @@ public class EventScript: MonoBehaviour
 		}
 	}
 
-	public void OnDeath()
+    private void FixedUpdate()
+    {
+        if(onDeath.activeInHierarchy == true)
+        {
+            system.firstSelectedGameObject = DeathButton;
+        }
+
+        if(PauseMenuUI.activeInHierarchy == true)
+        {
+            system.firstSelectedGameObject = PauseButton;
+        }
+    }
+
+    public void OnDeath()
 	{
+        system.firstSelectedGameObject = DeathButton;
 		onDeath.SetActive( true );
 	}
 	public void ReturnToMainMenu()
@@ -49,6 +67,7 @@ public class EventScript: MonoBehaviour
 
 	public void PauseGame()
 	{
+        system.firstSelectedGameObject = PauseButton;
 		if ( onDeath.activeInHierarchy == true )
 		{
 			Time.timeScale = 0f;
@@ -69,4 +88,5 @@ public class EventScript: MonoBehaviour
 		GameIsPaused = true;
 	}
 
+    
 }
