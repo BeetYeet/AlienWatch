@@ -189,7 +189,7 @@ MonoBehaviour:
   maxSplats: 5
   posDeviation: 0.25
   velDeviation: 1
-  ticksPerNextSplat: 1
+  ticksPerNextSplat: 5
   ticksSoFar: 0
   increaseFactor: 1.2
   velocityBloodFactor: 3
