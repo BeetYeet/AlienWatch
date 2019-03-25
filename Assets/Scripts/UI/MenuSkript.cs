@@ -5,11 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MenuSkript : MonoBehaviour
 {
-  
-    
+
+
     public GameObject main;
-    
+    public GameObject Options;
     public GameObject credd;
+    public float targetTimeScale;
+    public float NotMainTimeScale;
+    public float changeFactor = .2f;
 
     private void Start()
     {
@@ -17,9 +20,17 @@ public class MenuSkript : MonoBehaviour
         credd.SetActive(false);
     }
 
+    private void Update()
+    {
+        Time.timeScale = FloatLerp(Time.timeScale, targetTimeScale, changeFactor);
+        if (credd.activeInHierarchy == false)
+            targetTimeScale = 1;
+    }
+
     public void Quit()
     {
         Application.Quit();
+        Debug.LogError("fuck you, Mate!");
     }
     //-------------------------------------------
     public void restartScene()
@@ -29,13 +40,43 @@ public class MenuSkript : MonoBehaviour
 
     public void Credits()
     {
+        // ACTIVATES MAINMENU
         main.SetActive(false);
+        // ACTIVATES CREDDITS
         credd.SetActive(true);
+        targetTimeScale = NotMainTimeScale;
+
+    }
+
+    float FloatLerp(float a, float b, float v)
+    {
+        float diff = b - a;
+        return a + diff * v;
     }
 
     public void BackCred()
     {
         main.SetActive(true);
+        targetTimeScale = 1f;
         credd.SetActive(false);
+    }
+
+    public void BackMain()
+    {
+        main.SetActive(true);
+        targetTimeScale = 1f;
+        credd.SetActive(false);
+        Options.SetActive(false);
+    }
+
+    public void Option()
+    {
+        // ACTIVATES MAINMENU
+        main.SetActive(false);
+        // ACTIVATES CREDDITS
+        credd.SetActive(false);
+        Options.SetActive(true);
+        targetTimeScale = NotMainTimeScale;
+
     }
 }
