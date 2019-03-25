@@ -8,6 +8,11 @@ public class PlayerMelee: MonoBehaviour
 	public float pausePercent = .5f;
 	PlayerBaseClass player;
 	public int damage;
+	public float preMeleeCooldown = .1f;
+	public float postMeleeCooldown = .1f;
+	float currPreMeleeCooldown = 0f;
+	float currPostMeleeCooldown = 0f;
+
 	public float meleeTime = .2f;
 	public float meleeTimeLeft = 0f;
 	public bool isMeleeing
@@ -66,9 +71,33 @@ public class PlayerMelee: MonoBehaviour
 		directionalRotation = NormalizeRotation( directionalRotation + shortest_angle * Time.deltaTime * rotationAgressiveness );
 		float validRotation = 0;
 
+		if ( currPostMeleeCooldown != 0f )
+		{
+			currPostMeleeCooldown -= Time.deltaTime;
+			if ( currPostMeleeCooldown < 0f )
+			{
+				currPostMeleeCooldown = 0f;
+			}
+		}
+		if ( currPreMeleeCooldown != 0f )
+		{
+			currPreMeleeCooldown -= Time.deltaTime;
+			if ( currPreMeleeCooldown < 0f )
+			{
+				currPreMeleeCooldown = 0f;
+				StartSwipe();
+			}
+		}
 		if ( InputHandler.current.GetWithName( "Melee" ).GetButtonDown() )// && !isMeleeing )
 		{
-			StartSwipe();
+			if ( preMeleeCooldown == 0f )
+			{
+				StartSwipe();
+			}
+			else
+			{
+				currPreMeleeCooldown += preMeleeCooldown;
+			}
 		}
 		else
 		{
@@ -211,12 +240,13 @@ public class PlayerMelee: MonoBehaviour
 		player.playerMovement.TriggerFixed( meleeTimeLeft * pausePercent );
 		lastSwipe = InvertSwipe( lastSwipe );
 		ColliderHandler.StartSwing();
-        SoundManager.PlaySound("swordSwipe");
+		SoundManager.PlaySound( "swordSwipe" );
 	}
 
 	private void EndSwipe()
 	{
 		meleeTimeLeft = 0f;
+		currPostMeleeCooldown += postMeleeCooldown;
 		ColliderHandler.EndSwing();
 	}
 

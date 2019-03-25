@@ -2,25 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManaPickup : MonoBehaviour
+public class ManaPickup: MonoBehaviour
 {
-    Manascript playerMana;
+	PlayerMana playerMana;
+	public int manaIncrease = 20;
 
-    public int ManaBonus = 20;
+	private void Start()
+	{
+		playerMana = PlayerBaseClass.current.playerMana;
+	}
 
-    private void Awake()
-    {
-        playerMana = FindObjectOfType<Manascript>();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (playerMana.Mana < playerMana.MaxMana)
-        {
-            Destroy(gameObject);
-            playerMana.Mana = playerMana.Mana + ManaBonus;
-        }
-    }
+	private void OnTriggerEnter2D( Collider2D collision )
+	{
+		if ( collision.tag != "Player" )
+			return;
+		if ( playerMana.mana == playerMana.maxMana )
+			return;
+		playerMana.mana += manaIncrease;
+		if ( playerMana.mana > playerMana.maxMana )
+			playerMana.mana = playerMana.maxMana;
+		Destroy( gameObject );
+	}
 
 
 

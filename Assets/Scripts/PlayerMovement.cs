@@ -29,7 +29,7 @@ public class PlayerMovement: MovementBaseClass
 	[SerializeField]
 	public PlayerDirection dashDirection; // which direction did the player dash
 
-    public Manascript mana;
+	public PlayerMana mana;
 
 	void Start()
 	{

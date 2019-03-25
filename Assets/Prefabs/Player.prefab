@@ -112,7 +112,6 @@ GameObject:
   - component: {fileID: 3870523785509128855}
   - component: {fileID: 3870523785509128840}
   - component: {fileID: 3870523785509128841}
-  - component: {fileID: 3870523785509128842}
   - component: {fileID: 3870523785509128843}
   - component: {fileID: 3870523785509128844}
   - component: {fileID: 3870523785509128845}
@@ -121,6 +120,7 @@ GameObject:
   - component: {fileID: 2769516976782080152}
   - component: {fileID: 2769516976782080153}
   - component: {fileID: 6613914574291546717}
+  - component: {fileID: 4386313108270945010}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -240,22 +240,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.80402964, y: 1.5623405}
   m_EdgeRadius: 0
---- !u!114 &3870523785509128842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3870523785509128847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b70627784e12ab8459ea4649e0e2fa4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxMana: 50
-  mana: 50
-  ticksPerMana: 5
-  ticksLeft: 5
 --- !u!114 &3870523785509128843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,8 +279,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePercent: 0.5
-  damage: 10
-  meleeTime: 0.18
+  damage: 20
+  preMeleeCooldown: 0.1
+  postMeleeCooldown: 0.2
+  meleeTime: 0.3
   meleeTimeLeft: 0
   ColliderHandler: {fileID: 3870523784770505302}
   meleeTransform: {fileID: 3870523786164063342}
@@ -310,7 +296,7 @@ MonoBehaviour:
   rotationAgressiveness: 7
   returnTo: 0
   flip: 0
-  strength: 5
+  strength: 80
 --- !u!114 &3870523785509128846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +309,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c39380556ed3c44a39304c77b00514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockBackVelocity: {x: 0, y: 0}
+  movementVelocity: {x: 0, y: 0}
+  knockBackDecay: 1.1
+  knockbackWeight: 1
+  rb: {fileID: 0}
+  velocityAgressiveness: 0.5
   playerDir: 0
   lastValidDirection: 1
   movementState: 0
@@ -333,6 +325,7 @@ MonoBehaviour:
   dashSpeed: 15
   manaForDash: 8
   dashDirection: 1
+  mana: {fileID: 0}
 --- !u!114 &1477799395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,6 +388,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.66}
   serializedVersion: 2
   m_Radius: 0.39535022
+--- !u!114 &4386313108270945010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3870523785509128847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c363d5bcc8496db408d09c92413dd172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMana: 40
+  mana: 40
+  ticksPerMana: 4
+  ticksLeft: 4
 --- !u!1 &3870523785530505019
 GameObject:
   m_ObjectHideFlags: 0
