@@ -1633,6 +1633,7 @@ GameObject:
   - component: {fileID: 1322269950}
   - component: {fileID: 1322269949}
   - component: {fileID: 1322269948}
+  - component: {fileID: 1748059143717232265}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1737,8 +1738,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ReturnToMainMenu
+      - m_Target: {fileID: 1748059143717232265}
+        m_MethodName: Trigger
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1750,6 +1751,19 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1748059143717232265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322269946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c52d4ad3c5bc74e8f8658c15d142a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: 0
 --- !u!1 &1407513655
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,6 +2146,7 @@ MonoBehaviour:
   HealthBar: {fileID: 3135577081021535357}
   originMana: {x: 3.88, y: 4.6}
   originHealth: {x: 3.88, y: 4.75}
+  Size: 0
 --- !u!1 &1947018425
 GameObject:
   m_ObjectHideFlags: 0
