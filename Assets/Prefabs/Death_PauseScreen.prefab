@@ -473,7 +473,7 @@ RectTransform:
   - {fileID: 544301831}
   - {fileID: 15425487}
   m_Father: {fileID: 322851925}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -567,8 +567,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1585097420}
-  - {fileID: 451429028}
   - {fileID: 293442307}
+  - {fileID: 451429028}
   m_Father: {fileID: 854903601}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -669,7 +669,7 @@ RectTransform:
   m_Children:
   - {fileID: 809659413}
   m_Father: {fileID: 322851925}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2572,7 +2572,6 @@ GameObject:
   - component: {fileID: 8458454259696758174}
   - component: {fileID: 1887652373}
   - component: {fileID: 1887652375}
-  - component: {fileID: 67872336}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -2640,19 +2639,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 167c22c69a72d02458e84d1c4ec8a83f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ondeath: {fileID: 451429027}
-  PauseMenuUI: {fileID: 293442306}
---- !u!114 &67872336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5909946437276503155}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 167c22c69a72d02458e84d1c4ec8a83f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Ondeath: {fileID: 451429027}
+  onDeath: {fileID: 451429027}
   PauseMenuUI: {fileID: 293442306}

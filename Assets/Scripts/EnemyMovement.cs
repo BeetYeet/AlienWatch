@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement: MonoBehaviour
+public class EnemyMovement: MovementBaseClass
 {
 	private Pathing.Pathfinder pathfinder;
 	public Pathing.PathfinderType pathfinderType = Pathing.PathfinderType.Straight;
@@ -23,10 +23,6 @@ public class EnemyMovement: MonoBehaviour
 		}
 	}
 	public bool attack = false;
-	public Vector2 knockBackVelocity = Vector2.zero;
-	public float knockBackDecay = 1.1f;
-	public float knockbackWeight = 1f;
-	public Rigidbody2D rb;
 
 	void Start()
 	{
@@ -45,21 +41,13 @@ public class EnemyMovement: MonoBehaviour
 		}
 	}
 
-	private void FixedUpdate()
-	{
-		knockBackVelocity /= knockBackDecay;
-	}
 
-	public void DoKnockback( Vector2 vector )
-	{
-		knockBackVelocity += vector / knockbackWeight;
-	}
 
 	void Update()
 	{
+		movementVelocity = Vector2.zero;
 		if ( ( PlayerBaseClass.current.transform.position - transform.position ).sqrMagnitude < agroDistance * agroDistance )
 			agro = true;
-		rb.velocity = knockBackVelocity;
 		if ( agro == true && Alive == true )
 		{
 			transform.LookAt( target.position );
@@ -67,7 +55,7 @@ public class EnemyMovement: MonoBehaviour
 
 			if ( Vector3.Distance( transform.position, target.position ) > range )
 			{
-				rb.velocity += pathfinder.GetMovementVector( speed * Time.deltaTime );
+				movementVelocity = pathfinder.GetMovementVector( speed * Time.deltaTime ).normalized * speed;
 				attack = false;
 			}
 			else

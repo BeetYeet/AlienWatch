@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement: MonoBehaviour
+public class PlayerMovement: MovementBaseClass
 {
 	PlayerBaseClass player;
 	[SerializeField]
@@ -32,6 +32,7 @@ public class PlayerMovement: MonoBehaviour
 	void Start()
 	{
 		player = PlayerBaseClass.current;
+		rb = player.rigidbody;
 	}
 
 	// Update is called once per frame
@@ -71,7 +72,8 @@ public class PlayerMovement: MonoBehaviour
 			if ( dashTimeLeft > 0f )
 			{
 				movementState = PlayerMovementState.Dashing;
-				player.rigidbody.velocity = dashSpeed * GetVectorDirection( dashDirection );
+				knockBackVelocity = Vector2.zero;
+				movementVelocity = dashSpeed * GetVectorDirection( dashDirection );
 				//TODO: Dash damage
 				return;
 			}
@@ -107,18 +109,18 @@ public class PlayerMovement: MonoBehaviour
 
 	private void MovePlayer()
 	{
+		movementVelocity = Vector2.zero;
 		Vector2 input = new Vector2( Input.GetAxis( "Horizontal" ), Input.GetAxis( "Vertical" ) );
 		if ( input == Vector2.zero )
 		{
 			movementState = PlayerMovementState.Still;
-			player.rigidbody.velocity = Vector2.zero;
 			return;
 		}
-		Vector2 dir = input.normalized;
-		dir = new Vector2( Mathf.Abs( dir.x ), Mathf.Abs( dir.y ) );
+		Vector2 dirFactor = input.normalized;
+		dirFactor = new Vector2( Mathf.Abs( dirFactor.x ), Mathf.Abs( dirFactor.y ) );
 		// account for the distance in a circle so that moving to the topleft is the same speed as to the left by
 		//		multiplying by a normalized version
-		player.rigidbody.velocity = input * dir * movementSpeed;
+		movementVelocity = input * dirFactor * movementSpeed;
 		movementState = PlayerMovementState.Moving;
 	}
 

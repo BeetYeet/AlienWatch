@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6292463863436276502}
   - component: {fileID: 1869030204}
   - component: {fileID: 1807842872}
+  - component: {fileID: 4143792380325055394}
   m_Layer: 0
   m_Name: DummyEnemy
   m_TagString: Enemy
@@ -136,21 +137,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea81f6eac2c73c46abac142a32b400e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockBackVelocity: {x: 0, y: 0}
+  movementVelocity: {x: 0, y: 0}
+  knockBackDecay: 1.2
+  knockbackWeight: 1
+  rb: {fileID: 0}
+  velocityAgressiveness: 0.5
   pathfinderType: 0
   wallMask:
     serializedVersion: 2
     m_Bits: 1536
   ticksPerPath: 1
-  speed: 50
-  speedVariance: 0.38
+  speed: 3
+  speedVariance: 0.5
   range: 1
   agro: 0
   agroDistance: 5
   attack: 0
-  knockBackVelocity: {x: 0, y: 0}
-  knockBackDecay: 1.1
-  knockbackWeight: 1
-  rb: {fileID: 0}
 --- !u!114 &6292463863436276502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,9 +184,13 @@ MonoBehaviour:
   - {fileID: 4704811504037563125, guid: 45f3aab1307b7ec4e8715b5e9984a5f2, type: 3}
   bloodSplatInstances: []
   delayedSplats: 0
-  minSplats: 5
-  maxSplats: 15
-  posDeviation: 0.5
+  minSplats: 2
+  maxSplats: 5
+  posDeviation: 0.25
+  velDeviation: 1
+  ticksPerNextSplat: 1
+  ticksSoFar: 0
+  increaseFactor: 1.2
 --- !u!50 &1807842872
 Rigidbody2D:
   serializedVersion: 4
@@ -192,7 +199,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2706178882919730164}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -205,3 +212,17 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &4143792380325055394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2706178882919730164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c585bc15ab154a42a8befb2569c6f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  timeBetweenAttacks: 1

@@ -4,57 +4,68 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-public class EventScript : MonoBehaviour
+public class EventScript: MonoBehaviour
 {
-    public static bool GameIsPaused = false;
-    public GameObject Ondeath;
-    public GameObject PauseMenuUI;
+	public static bool GameIsPaused = false;
+	public GameObject onDeath;
+	public GameObject PauseMenuUI;
 
-    void Update()
-    {
-        PauseGame();
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
-    }
-    public void ReturnToMainMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
 
-    public void QuitGame()
-    {
-        Application.Quit();
-        Debug.Log("Quited the Game");
-    }
+	private void Start()
+	{
+		GameController.curr.OnPlayerDeath += OnDeath;
+	}
 
-    public void PauseGame()
-    {
-        if(Ondeath.activeInHierarchy == true)
-        {
-            Time.timeScale = 0f;
-        }
-    }
+	void Update()
+	{
+		PauseGame();
+		if ( Input.GetKeyDown( KeyCode.Escape ) )
+		{
+			if ( GameIsPaused )
+			{
+				Resume();
+			}
+			else
+			{
+				Pause();
+			}
+		}
+	}
 
-    public void Resume()
-    {
-        PauseMenuUI.SetActive(false);
-        Time.timeScale = 1.0f;
-        GameIsPaused = false;
-    }
+	public void OnDeath()
+	{
+		onDeath.SetActive( true );
+	}
+	public void ReturnToMainMenu()
+	{
+		SceneManager.LoadScene( 0 );
+	}
 
-    public void Pause()
-    {
-        PauseMenuUI.SetActive(true);
-        Time.timeScale = 0.0f;
-        GameIsPaused = true;
-    }
+	public void QuitGame()
+	{
+		Application.Quit();
+		Debug.Log( "Quited the Game" );
+	}
+
+	public void PauseGame()
+	{
+		if ( onDeath.activeInHierarchy == true )
+		{
+			Time.timeScale = 0f;
+		}
+	}
+
+	public void Resume()
+	{
+		PauseMenuUI.SetActive( false );
+		Time.timeScale = 1.0f;
+		GameIsPaused = false;
+	}
+
+	public void Pause()
+	{
+		PauseMenuUI.SetActive( true );
+		Time.timeScale = 0.0f;
+		GameIsPaused = true;
+	}
 }

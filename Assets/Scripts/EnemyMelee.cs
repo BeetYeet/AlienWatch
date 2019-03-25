@@ -71,6 +71,7 @@ public class EnemyMelee: MonoBehaviour
 	public float timeBetweenAttacks;
 	private float lastAttack = 0f;
 	EnemyMovement enemyMovement;
+	private float strength = 1f;
 
 	void Start()
 	{
@@ -85,12 +86,20 @@ public class EnemyMelee: MonoBehaviour
 
 	public void DoDamage()
 	{
-		if ( Time.time > lastAttack && enemyMovement.attack == true )
+		if ( enemyMovement.attack && enemyMovement.Alive )
 		{
-			DamageInfo di = new DamageInfo( Faction.Alien, damage );
-			PlayerBaseClass.current.playerHealth.DoDamage( di );
-			lastAttack = Time.time + timeBetweenAttacks;
+			if ( Time.time > lastAttack + timeBetweenAttacks )
+			{
+				DamageInfo di = new DamageInfo( Faction.Alien, damage );
+				PlayerBaseClass.current.playerHealth.DoDamage( di );
+				lastAttack = Time.time;
+				Vector2 dir = HelperClass.V3toV2( PlayerBaseClass.current.transform.position ) - HelperClass.V3toV2( transform.position );
+				PlayerBaseClass.current.playerMovement.DoKnockback( dir.normalized * strength );
+			}
 		}
-
+		else
+		{
+			lastAttack = Time.time;
+		}
 	}
 }

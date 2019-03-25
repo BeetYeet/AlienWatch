@@ -14,7 +14,7 @@ public class EnemyHealth: Damageble
 
 	private void EnemyHealth_OnDeath()
 	{
-		Debug.Log( "Enemy Died!" );
+		//Debug.Log( "Enemy Died!" );
 	}
 
 	void Update()

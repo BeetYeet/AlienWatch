@@ -11,6 +11,8 @@ public class GameController: MonoBehaviour
 		private set;
 	}
 	public event System.Action Tick;
+	private bool playerHasDied;
+	public event System.Action OnPlayerDeath;
 	public int ticksPerMinute = 600;
 	private float TickTime
 	{
@@ -55,5 +57,10 @@ public class GameController: MonoBehaviour
 	{
 		while ( CheckTick() )
 			;
+		if ( PlayerBaseClass.current.playerHealth.dead && !playerHasDied )
+		{
+			playerHasDied = true;
+			OnPlayerDeath.Invoke();
+		}
 	}
 }
