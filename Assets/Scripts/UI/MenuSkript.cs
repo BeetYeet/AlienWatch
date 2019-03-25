@@ -8,7 +8,7 @@ public class MenuSkript : MonoBehaviour
 
 
     public GameObject main;
-    public GameObject Pannel;
+    public GameObject Options;
     public GameObject credd;
     public float targetTimeScale;
     public float NotMainTimeScale;
@@ -16,13 +16,13 @@ public class MenuSkript : MonoBehaviour
 
     private void Start()
     {
-       // main.SetActive(true);
+        main.SetActive(true);
         credd.SetActive(false);
     }
 
     private void Update()
     {
-       Time.timeScale = FloatLerp(Time.timeScale, targetTimeScale, changeFactor);
+        Time.timeScale = FloatLerp(Time.timeScale, targetTimeScale, changeFactor);
         if (credd.activeInHierarchy == false)
             targetTimeScale = 1;
     }
@@ -30,6 +30,7 @@ public class MenuSkript : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+        Debug.LogError("fuck you, Mate!");
     }
     //-------------------------------------------
     public void restartScene()
@@ -58,5 +59,24 @@ public class MenuSkript : MonoBehaviour
         main.SetActive(true);
         targetTimeScale = 1f;
         credd.SetActive(false);
+    }
+
+    public void BackMain()
+    {
+        main.SetActive(true);
+        targetTimeScale = 1f;
+        credd.SetActive(false);
+        Options.SetActive(false);
+    }
+
+    public void Option()
+    {
+        // ACTIVATES MAINMENU
+        main.SetActive(false);
+        // ACTIVATES CREDDITS
+        credd.SetActive(false);
+        Options.SetActive(true);
+        targetTimeScale = NotMainTimeScale;
+
     }
 }
