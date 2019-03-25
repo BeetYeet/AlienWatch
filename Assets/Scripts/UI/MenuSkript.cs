@@ -10,6 +10,7 @@ public class MenuSkript : MonoBehaviour
     public GameObject main;
     public GameObject Options;
     public GameObject credd;
+    public GameObject howToPlay;
     public float targetTimeScale;
     public float NotMainTimeScale;
     public float changeFactor = .2f;
@@ -59,6 +60,8 @@ public class MenuSkript : MonoBehaviour
         main.SetActive(true);
         targetTimeScale = 1f;
         credd.SetActive(false);
+        howToPlay.SetActive(false);
+
     }
 
     public void BackMain()
@@ -67,6 +70,8 @@ public class MenuSkript : MonoBehaviour
         targetTimeScale = 1f;
         credd.SetActive(false);
         Options.SetActive(false);
+        howToPlay.SetActive(false);
+
     }
 
     public void Option()
@@ -76,7 +81,18 @@ public class MenuSkript : MonoBehaviour
         // ACTIVATES CREDDITS
         credd.SetActive(false);
         Options.SetActive(true);
+        howToPlay.SetActive(false);
+
         targetTimeScale = NotMainTimeScale;
 
+    }
+
+    public void EnableHowToPlay()
+    {
+        main.SetActive(false);
+        // ACTIVATES CREDDITS
+        credd.SetActive(false);
+        Options.SetActive(false);
+        howToPlay.SetActive(true);
     }
 }
