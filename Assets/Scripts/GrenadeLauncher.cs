@@ -13,8 +13,10 @@ public class GrenadeLauncher: MonoBehaviour
 		if ( InputHandler.current.GetWithName( "Grenade" ).GetButtonDown() )
 		{
 			if ( PlayerBaseClass.current.playerMana.mana >= manaPerGrenade )
+			{
 				Shoot();
-			PlayerBaseClass.current.playerMana.mana -= manaPerGrenade;
+				PlayerBaseClass.current.playerMana.mana -= manaPerGrenade;
+			}
 		}
 	}
 

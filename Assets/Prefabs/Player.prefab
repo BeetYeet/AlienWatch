@@ -280,9 +280,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausePercent: 0.7
   damage: 20
-  preMeleeCooldown: 0.05
+  preMeleeCooldown: 0.1
   postMeleeCooldown: 0.3
-  meleeTime: 0.1
+  meleeTime: 0.16
   meleeTimeLeft: 0
   ColliderHandler: {fileID: 3870523784770505302}
   meleeTransform: {fileID: 3870523786164063342}
@@ -293,7 +293,7 @@ MonoBehaviour:
   forwardPos: {x: 0, y: 0.5, z: 0}
   swipeLeftPos: {x: -0.3, y: 0.2, z: 0}
   swipeRightPos: {x: 0.3, y: 0.2, z: 0}
-  rotationAgressiveness: 7
+  rotationAgressiveness: 5
   returnTo: 0
   flip: 0
   strength: 80

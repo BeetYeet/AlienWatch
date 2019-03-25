@@ -192,6 +192,7 @@ MonoBehaviour:
   ticksPerNextSplat: 1
   ticksSoFar: 0
   increaseFactor: 1.2
+  velocityBloodFactor: 3
 --- !u!50 &1807842872
 Rigidbody2D:
   serializedVersion: 4
