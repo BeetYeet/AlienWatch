@@ -99,7 +99,7 @@ public class EnemyMelee: MonoBehaviour
 		}
 		else
 		{
-			lastAttack = Time.time;
+			lastAttack = Time.time - timeBetweenAttacks * 3 / 4;
 		}
 	}
 }

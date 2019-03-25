@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1869030204}
   - component: {fileID: 1807842872}
   - component: {fileID: 4143792380325055394}
+  - component: {fileID: 6795997067513943965}
   m_Layer: 0
   m_Name: DummyEnemy
   m_TagString: Enemy
@@ -140,7 +141,7 @@ MonoBehaviour:
   knockBackVelocity: {x: 0, y: 0}
   movementVelocity: {x: 0, y: 0}
   knockBackDecay: 1.2
-  knockbackWeight: 1
+  knockbackWeight: 3
   rb: {fileID: 0}
   velocityAgressiveness: 0.5
   pathfinderType: 0
@@ -148,7 +149,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   ticksPerPath: 1
-  speed: 3
+  speed: 3.5
   speedVariance: 0.5
   range: 1
   agro: 0
@@ -225,4 +226,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  timeBetweenAttacks: 1
+  timeBetweenAttacks: 0.7
+--- !u!114 &6795997067513943965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2706178882919730164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c6894dc34908f47834238f7ed9d40c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropChanceToDivideOneWith: 15
+  ManaPickup: {fileID: 8938533482753142132, guid: 1c814d8dbe2dae94cac62102ca5aae82,
+    type: 3}
+  HealthPickup: {fileID: 6632447747382527078, guid: 637c294bcba090a43b0a098a1eeb2692,
+    type: 3}
