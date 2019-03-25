@@ -68,4 +68,5 @@ public class EventScript: MonoBehaviour
 		Time.timeScale = 0.0f;
 		GameIsPaused = true;
 	}
+
 }
