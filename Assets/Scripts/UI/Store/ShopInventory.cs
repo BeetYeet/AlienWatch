@@ -1,12 +1,12 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopInventory : MonoBehaviour
 {
     public List<Item> Items;
-    [SerializeField] Transform ItemParent;
-    [SerializeField] ItemSlot[] ItemSlots;
+    public Transform ItemParent = null;
+    public ItemSlot[] ItemSlots;
 
     private void OnValidate()
     {
