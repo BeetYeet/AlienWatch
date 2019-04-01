@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,7 +28,7 @@ public class BuyTheItem : MonoBehaviour
 
         }
     }
-    public void onBuy(bool Active)
+    public void OnBuy(bool Active)
     {
         if (item.ShopStock > 0)
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShopInventory : MonoBehaviour
 {
     public List<Item> Items;
-    public Transform ItemParent = null;
+    public Transform ItemParent;
     public ItemSlot[] ItemSlots;
 
     private void OnValidate()
