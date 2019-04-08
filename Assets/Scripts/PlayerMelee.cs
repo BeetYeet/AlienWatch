@@ -68,7 +68,7 @@ public class PlayerMelee: MonoBehaviour
 		meleeSprite.flipX = lastSwipe == MeleeSwipe.LeftToRight ^ flip ^ isMeleeing;
 		float shortest_angle = ( ( ( ( GetRawRotation() - directionalRotation ) % 360 ) + 540 ) % 360 ) - 180;
 
-		directionalRotation = NormalizeRotation( directionalRotation + shortest_angle * Time.deltaTime * rotationAgressiveness );
+		directionalRotation = directionalRotation + shortest_angle * Time.deltaTime * rotationAgressiveness;
 		float validRotation = 0;
 
 		if ( currPostMeleeCooldown != 0f )
@@ -140,13 +140,13 @@ public class PlayerMelee: MonoBehaviour
 			DoPosition();
 		}
 
-		meleeTransform.localEulerAngles = new Vector3( meleeTransform.localEulerAngles.x, meleeTransform.localEulerAngles.y, NormalizeRotation( validRotation + directionalRotation ) );
+		meleeTransform.localEulerAngles = new Vector3( meleeTransform.localEulerAngles.x, meleeTransform.localEulerAngles.y, NormalizeRotation( validRotation, directionalRotation ) );
 		DrawDebug( validRotation );
 	}
 
 	private void DrawDebug( float validRotation )
 	{
-		Vector2 _1 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, NormalizeRotation( validRotation + directionalRotation ) );
+		Vector2 _1 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, NormalizeRotation( validRotation, directionalRotation ) );
 		Vector2 _2 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, directionalRotation );
 		Vector2 _3 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, GetRawRotation() );
 		Debug.DrawLine(
@@ -164,6 +164,11 @@ public class PlayerMelee: MonoBehaviour
 		transform.position + new Vector3( _3.x, _3.y ),
 		Color.red
 		);
+	}
+
+	private float NormalizeRotation( float a, float b )
+	{
+		return ( ( ( ( a - b ) % 360 ) + 540 ) % 360 ) - 180;
 	}
 
 	private void DoPosition()
@@ -250,11 +255,6 @@ public class PlayerMelee: MonoBehaviour
 		ColliderHandler.EndSwing();
 	}
 
-	private float NormalizeRotation( float rot )
-	{
-		return ( ( rot + 180f ) % 360f ) - 180f;
-	}
-
 	public MeleeSwipe InvertSwipe( MeleeSwipe swipe )
 	{
 		if ( swipe == MeleeSwipe.LeftToRight )
@@ -269,7 +269,7 @@ public class PlayerMelee: MonoBehaviour
 		return directionalRotation;
 	}
 
-	public float GetRawRotation()
+	public static float GetRawRotation()
 	{
 		switch ( PlayerBaseClass.current.playerMovement.lastValidDirection )
 		{
