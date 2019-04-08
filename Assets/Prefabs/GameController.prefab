@@ -70,4 +70,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b355db1e588884e972e7530baf4d5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clips: []
+  Clips:
+  - denomenator: RunSound
+    behavior: 0
+    clips:
+    - {fileID: 8300000, guid: d03da9e2c83195a48af7a9830e441b3a, type: 3}
