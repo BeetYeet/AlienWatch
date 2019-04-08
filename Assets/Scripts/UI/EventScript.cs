@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class EventScript: MonoBehaviour
 {
@@ -12,8 +13,8 @@ public class EventScript: MonoBehaviour
     public EventSystem system;
 
 
-    public GameObject DeathButton;
-    public GameObject PauseButton;
+    public Button DeathButton;
+    public Button PauseButton;
 
 	private void Start()
 	{
@@ -38,22 +39,17 @@ public class EventScript: MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(onDeath.activeInHierarchy == true)
-        {
-            system.firstSelectedGameObject = DeathButton;
-        }
 
-        if(PauseMenuUI.activeInHierarchy == true)
-        {
-            system.firstSelectedGameObject = PauseButton;
-        }
     }
 
     public void OnDeath()
-	{
-        system.firstSelectedGameObject = DeathButton;
+	{       
 		onDeath.SetActive( true );
-	}
+        if (onDeath.activeInHierarchy == true)
+        {
+            DeathButton.Select();
+        }
+    }
 	public void ReturnToMainMenu()
 	{
 		SceneManager.LoadScene( 0 );
@@ -67,7 +63,6 @@ public class EventScript: MonoBehaviour
 
 	public void PauseGame()
 	{
-        system.firstSelectedGameObject = PauseButton;
 		if ( onDeath.activeInHierarchy == true )
 		{
 			Time.timeScale = 0f;
@@ -84,7 +79,11 @@ public class EventScript: MonoBehaviour
 	public void Pause()
 	{
 		PauseMenuUI.SetActive( true );
-		Time.timeScale = 0.0f;
+        if(PauseMenuUI.activeInHierarchy == true)
+        {
+            PauseButton.Select();
+        }
+        Time.timeScale = 0.0f;
 		GameIsPaused = true;
 	}
 

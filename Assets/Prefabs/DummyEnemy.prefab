@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7087f9aa18469c4086194867a48b7e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  health: 20
 --- !u!114 &325783301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
   knockBackVelocity: {x: 0, y: 0}
   movementVelocity: {x: 0, y: 0}
   knockBackDecay: 1.2
-  knockbackWeight: 3
+  knockbackWeight: 1
   rb: {fileID: 0}
   velocityAgressiveness: 0.5
   pathfinderType: 0
@@ -149,9 +149,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   ticksPerPath: 1
-  speed: 3.5
-  speedVariance: 0.5
-  range: 1
+  speed: 5
+  speedVariance: 0.7
+  range: 2
   agro: 0
   agroDistance: 5
   attack: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
   ticksPerNextSplat: 5
   ticksSoFar: 0
   increaseFactor: 1.2
-  velocityBloodFactor: 3
+  velocityBloodFactor: 1
 --- !u!50 &1807842872
 Rigidbody2D:
   serializedVersion: 4
