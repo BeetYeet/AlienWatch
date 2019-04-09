@@ -9,7 +9,7 @@ public class GameAssets : MonoBehaviour
 	#region Static
 	public static GameAssets curr;
 
-    void Awake() // Awake() går innan Start()
+    void Awake()
     {
 		
         if (curr != null)
