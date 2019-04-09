@@ -29,12 +29,42 @@ public class PlayerMovement: MovementBaseClass
 	[SerializeField]
 	public PlayerDirection dashDirection; // which direction did the player dash
 
-	public PlayerMana mana;
+	public DashHandler dashHandler;
+
+	public event Action DashStart;
+	public event Action DashEnd;
+	public event Action FixedStart;
+	public event Action FixedEnd;
+
+	public LayerMask notDash;
+	public LayerMask dash;
 
 	void Start()
 	{
+
 		player = PlayerBaseClass.current;
 		rb = player.rigidbody;
+		DashStart += () =>
+		{
+			dashHandler.enabled = true;
+			//GetComponent<Collider2D>().enabled = false;
+			gameObject.layer = LayerMask.NameToLayer( "PlayerDashing" );
+		};
+		DashEnd += () =>
+		{
+			dashHandler.enabled = false;
+			//GetComponent<Collider2D>().enabled = true;
+			gameObject.layer = LayerMask.NameToLayer( "Player" );
+		;
+		};
+		FixedStart += () =>
+		{
+			Debug.Log( "Get yooted" );
+		};
+		FixedEnd += () =>
+		{
+			Debug.Log( "Get yooted" );
+		};
 	}
 
 	// Update is called once per frame
@@ -62,6 +92,7 @@ public class PlayerMovement: MovementBaseClass
 				player.playerMana.mana -= manaForDash;
 				dashTimeLeft += dashTime;
 				dashDirection = playerDir;
+				DashStart();
 			}
 		}
 	}
@@ -83,6 +114,7 @@ public class PlayerMovement: MovementBaseClass
 			{
 				dashTimeLeft = 0f;
 				movementState = PlayerMovementState.Still;
+				DashEnd();
 			}
 		}
 		if ( fixedTimeLeft > 0f )
@@ -95,11 +127,9 @@ public class PlayerMovement: MovementBaseClass
 			}
 			else
 			{
-				if ( fixedTimeLeft < 0f )
-				{
-					fixedTimeLeft = 0f;
-					movementState = PlayerMovementState.Still;
-				}
+				fixedTimeLeft = 0f;
+				movementState = PlayerMovementState.Still;
+				FixedEnd();
 			}
 
 		}
@@ -121,7 +151,7 @@ public class PlayerMovement: MovementBaseClass
 		Vector2 dirFactor = input.normalized;
 		dirFactor = new Vector2( Mathf.Abs( dirFactor.x ), Mathf.Abs( dirFactor.y ) );
 		// account for the distance in a circle so that moving to the topleft is the same speed as to the left by
-		//		multiplying by a normalized version
+		//		multiplying by a normalized absolute version
 		movementVelocity = input * dirFactor * movementSpeed;
 		movementState = PlayerMovementState.Moving;
 	}
@@ -135,11 +165,14 @@ public class PlayerMovement: MovementBaseClass
 		}
 		else
 		{
+			bool wasFixed = movementState == PlayerMovementState.Fixed;
 			//he wasn't dashing, fix him
 			fixedTimeLeft += duration;
 			if ( !canMove )
 			{
 				movementState = PlayerMovementState.Fixed;
+				if ( !wasFixed )
+					FixedStart();
 			}
 		}
 

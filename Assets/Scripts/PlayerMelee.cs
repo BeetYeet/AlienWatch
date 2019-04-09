@@ -51,10 +51,19 @@ public class PlayerMelee: MonoBehaviour
 	public bool flip;
 	public float strength = 5f;
 
+	public event Action SwingTrigger; // Player wants to swing
+	public event Action SwingRecover; // The sword cooldown is over
+	public event Action SwingStart; // The sword starts moving
+	public event Action SwingEnd; // The sword stops moving
+
 	void Start()
 	{
 		player = PlayerBaseClass.current;
 		GameController.curr.Tick += Tick;
+		SwingTrigger += () => { Debug.Log( "SwingTrigger" ); };
+		SwingRecover += () => { Debug.Log( "SwingRecover" ); };
+		SwingStart += () => { Debug.Log( "SwingStart" ); };
+		SwingEnd += () => { Debug.Log( "SwingEnd" ); };
 	}
 
 	void Tick()
@@ -66,7 +75,7 @@ public class PlayerMelee: MonoBehaviour
 	{
 
 		meleeSprite.flipX = lastSwipe == MeleeSwipe.LeftToRight ^ flip ^ isMeleeing;
-		float shortest_angle = ( ( ( ( GetRawRotation() - directionalRotation ) % 360 ) + 540 ) % 360 ) - 180;
+		float shortest_angle = NormalizeRotation( GetRawRotation( PlayerBaseClass.current.playerMovement.lastValidDirection ), directionalRotation );
 
 		directionalRotation = directionalRotation + shortest_angle * Time.deltaTime * rotationAgressiveness;
 		float validRotation = 0;
@@ -77,6 +86,7 @@ public class PlayerMelee: MonoBehaviour
 			if ( currPostMeleeCooldown < 0f )
 			{
 				currPostMeleeCooldown = 0f;
+				SwingRecover();
 			}
 		}
 		if ( currPreMeleeCooldown != 0f )
@@ -93,10 +103,12 @@ public class PlayerMelee: MonoBehaviour
 			if ( preMeleeCooldown == 0f )
 			{
 				StartSwipe();
+				SwingTrigger();
 			}
 			else
 			{
 				currPreMeleeCooldown += preMeleeCooldown;
+				SwingTrigger();
 			}
 		}
 		else
@@ -140,15 +152,15 @@ public class PlayerMelee: MonoBehaviour
 			DoPosition();
 		}
 
-		meleeTransform.localEulerAngles = new Vector3( meleeTransform.localEulerAngles.x, meleeTransform.localEulerAngles.y, NormalizeRotation( validRotation, directionalRotation ) );
+		meleeTransform.localEulerAngles = new Vector3( meleeTransform.localEulerAngles.x, meleeTransform.localEulerAngles.y, NormalizeRotation( directionalRotation, validRotation ) );
 		DrawDebug( validRotation );
 	}
 
 	private void DrawDebug( float validRotation )
 	{
-		Vector2 _1 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, NormalizeRotation( validRotation, directionalRotation ) );
+		Vector2 _1 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, NormalizeRotation( directionalRotation, validRotation ) );
 		Vector2 _2 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, directionalRotation );
-		Vector2 _3 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, GetRawRotation() );
+		Vector2 _3 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, GetRawRotation( PlayerBaseClass.current.playerMovement.lastValidDirection) );
 		Debug.DrawLine(
 		transform.position,
 		transform.position + new Vector3( _1.x, _1.y ),
@@ -246,6 +258,7 @@ public class PlayerMelee: MonoBehaviour
 		lastSwipe = InvertSwipe( lastSwipe );
 		ColliderHandler.StartSwing();
 		SoundManager.PlaySound( "swordSwipe" );
+		SwingStart();
 	}
 
 	private void EndSwipe()
@@ -253,6 +266,7 @@ public class PlayerMelee: MonoBehaviour
 		meleeTimeLeft = 0f;
 		currPostMeleeCooldown += postMeleeCooldown;
 		ColliderHandler.EndSwing();
+		SwingEnd();
 	}
 
 	public MeleeSwipe InvertSwipe( MeleeSwipe swipe )
@@ -269,9 +283,9 @@ public class PlayerMelee: MonoBehaviour
 		return directionalRotation;
 	}
 
-	public static float GetRawRotation()
+	public static float GetRawRotation( PlayerMovement.PlayerDirection dir )
 	{
-		switch ( PlayerBaseClass.current.playerMovement.lastValidDirection )
+		switch ( dir )
 		{
 			case PlayerMovement.PlayerDirection.ForwardRight:
 				return 315f;
