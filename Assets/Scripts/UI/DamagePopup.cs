@@ -8,11 +8,11 @@ public class DamagePopup : MonoBehaviour
 	TextMeshPro textMesh;
 
 
-	public static DamagePopup Create(Vector3 Position, int damageAmount, Color color)
+	public static DamagePopup Create(Vector3 Position, int damageAmount,float FontSize, Color color)
 	{
 		Transform damagePopupTransform = Instantiate(GameAssets.curr.pfDamagePopup, Position, Quaternion.identity);
 		DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
-		damagePopup.Setup(damageAmount, color);
+		damagePopup.Setup(damageAmount, color, FontSize);
 
 		return damagePopup;
 	}
@@ -32,10 +32,11 @@ public class DamagePopup : MonoBehaviour
 		textcolorAlpha = textMesh.color.a;
 	}
 
-	public void Setup(int damageAmount, Color color)
+	public void Setup(int damageAmount, Color color, float FontSize)
 	{
 		textMesh.SetText(damageAmount.ToString());
 		textMesh.color = color;
+		textMesh.fontSize = FontSize;
 		disappearTimer = Disappear_max_timer;
 	}
 

@@ -24,7 +24,7 @@ public class EnemyHealth: Damageble
 	public override void DoDamage( DamageInfo info )
 	{
 		base.DoDamage(info);
-		if ( info.faction == Faction.Player )
+		if ( info.faction == Faction.ToEnemy )
 		{
 			bool canDie = health > 0;
 			health -= info.damage;

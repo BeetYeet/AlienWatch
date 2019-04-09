@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -90,7 +90,7 @@ public class EnemyMelee: MonoBehaviour
 		{
 			if ( Time.time > lastAttack + timeBetweenAttacks )
 			{
-				DamageInfo di = new DamageInfo( Faction.Alien, damage );
+				DamageInfo di = new DamageInfo( Faction.ToPlayer, damage );
 				PlayerBaseClass.current.playerHealth.DoDamage( di );
 				lastAttack = Time.time;
 				Vector2 dir = HelperClass.V3toV2( PlayerBaseClass.current.transform.position ) - HelperClass.V3toV2( transform.position );
