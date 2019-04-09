@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -6,27 +6,20 @@ using UnityEngine;
 
 public class GameAssets : MonoBehaviour
 {
-    static GameAssets _Sound;
-
-    public static GameAssets Sound
-    {
-        get
-        {
-            if (_Sound == null)
-                _Sound = Instantiate(Resources.Load<GameAssets>("GameAssets"));
-            return _Sound;
-        }
-    }
-    public List<ClipType> Clips;
-    public static GameAssets curr;
+	#region Static
+	public static GameAssets curr;
 
     void Awake() // Awake() går innan Start()
     {
+		
         if (curr != null)
             throw new System.Exception("Too many instances of GameController, should only be one");
         curr = this;
     }
+	#endregion
 
+	#region Sound
+	public List<ClipType> Clips;
 
     [System.Serializable]
     public class ClipType
@@ -55,4 +48,15 @@ public class GameAssets : MonoBehaviour
         }
         return clip;
     }
+	#endregion
+
+	#region PopUpColor
+	public Color hpDownColor;
+	public Color hpUpColor;
+	public Color ManaDownColor;
+	public Color ManaUpColor;
+	#endregion
+
+
+	public Transform pfDamagePopup;
 }

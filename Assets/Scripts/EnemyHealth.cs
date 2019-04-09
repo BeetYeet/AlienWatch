@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +23,7 @@ public class EnemyHealth: Damageble
 	}
 	public override void DoDamage( DamageInfo info )
 	{
+		base.DoDamage(info);
 		if ( info.faction == Faction.Player )
 		{
 			bool canDie = health > 0;

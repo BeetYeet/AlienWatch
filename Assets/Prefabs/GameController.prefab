@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2189874848703802819}
   - component: {fileID: 2189874848703802817}
   - component: {fileID: 6913160705440337176}
+  - component: {fileID: 516532508}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -72,6 +73,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Clips:
   - denomenator: RunSound
-    behavior: 0
+    behavior: 1
     clips:
     - {fileID: 8300000, guid: d03da9e2c83195a48af7a9830e441b3a, type: 3}
+  pfDamagePopup: {fileID: 881453363158734276, guid: 30d5b049e2647264f8c24128be3242be,
+    type: 3}
+--- !u!114 &516532508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2189874848703802818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4802b3cd82079144ad8a099349b0e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
