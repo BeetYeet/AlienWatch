@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,7 +33,7 @@ public class DashHandler: MonoBehaviour
 			Damageble _ = collision.GetComponent<Damageble>();
 			if ( _ != null )
 			{
-				_.DoDamage( new DamageInfo( Faction.Player, DashDamage ) );
+				_.DoDamage( new DamageInfo( Faction.ToEnemy, DashDamage ) );
 			}
 		}
 	}

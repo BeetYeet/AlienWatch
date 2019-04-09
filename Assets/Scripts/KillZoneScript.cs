@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +18,7 @@ public class KillZoneScript : MonoBehaviour
     {
         DamageInfo _ = new DamageInfo();
         _.damage = DamageToDo;
-        _.faction = Faction.Alien;
+        _.faction = Faction.ToPlayer;
         collision.GetComponent<Damageble>().DoDamage(_);
     }
 

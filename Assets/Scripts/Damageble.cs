@@ -7,6 +7,20 @@ public abstract class Damageble : MonoBehaviour
 	public int health;
 	public virtual void DoDamage(DamageInfo info)
 	{
-		DamagePopup.Create(transform.position, info.damage, GameAssets.curr.hpDownColor);
+		bool toPlayer = info.faction == Faction.ToPlayer;
+		bool heal = info.damage < 0;
+		if (heal)
+		{
+			DamagePopup.Create(transform.position, info.damage, 3.41f, GameAssets.curr.hpUpColor);
+		}
+		else
+		{
+			if (toPlayer)
+				DamagePopup.Create(transform.position, info.damage, 3f, GameAssets.curr.hpDownPlayerColor);
+			else
+				DamagePopup.Create(transform.position, info.damage, 3.41f, GameAssets.curr.hpDownColor);
+		}
+
+
 	}
 }

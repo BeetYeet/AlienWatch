@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +15,7 @@ public class MeleeDamage: MonoBehaviour
 		{
 			return;
 		}
-		DamageInfo damageInfo = new DamageInfo( Faction.Player, PlayerBaseClass.current.playerMelee.damage );
+		DamageInfo damageInfo = new DamageInfo( Faction.ToEnemy, PlayerBaseClass.current.playerMelee.damage );
 		damageble.DoDamage( damageInfo );
 
 		EnemyMovement movement = collision.gameObject.GetComponent<EnemyMovement>();

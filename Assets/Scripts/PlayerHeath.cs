@@ -33,7 +33,7 @@ public class PlayerHeath: Damageble
 	public override void DoDamage( DamageInfo info )
 	{
 		base.DoDamage(info);
-		if ( info.faction == Faction.Alien )
+		if ( info.faction == Faction.ToPlayer )
 		{
 			health -= info.damage;
 			if ( health < 0 )
@@ -56,6 +56,6 @@ public struct DamageInfo
 }
 public enum Faction
 {
-	Player,
-	Alien
+	ToEnemy,
+	ToPlayer
 }

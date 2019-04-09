@@ -51,7 +51,9 @@ public class GameAssets : MonoBehaviour
 	#endregion
 
 	#region PopUpColor
+	
 	public Color hpDownColor;
+	public Color hpDownPlayerColor;
 	public Color hpUpColor;
 	public Color ManaDownColor;
 	public Color ManaUpColor;
