@@ -73,10 +73,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Clips:
   - denomenator: RunSound
-    behavior: 1
+    behavior: 0
     clips:
     - {fileID: 8300000, guid: d03da9e2c83195a48af7a9830e441b3a, type: 3}
   hpDownColor: {r: 0.8113208, g: 0.14159843, b: 0.2943422, a: 1}
+  hpDownPlayerColor: {r: 0.990566, g: 0.3504361, b: 0.3504361, a: 1}
   hpUpColor: {r: 0.1509434, g: 0.6037736, b: 0.21657094, a: 1}
   ManaDownColor: {r: 0.6132076, g: 0.51551604, b: 0.1475169, a: 1}
   ManaUpColor: {r: 0.03137255, g: 0.45882356, b: 0.45098042, a: 1}

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +9,7 @@ public static class SoundManager
     public static void Initalize()
     {
         soundTimerDictionary = new Dictionary<string, float>();
-        soundTimerDictionary["footstep"] = 0;
+        soundTimerDictionary["RunSound"] = 3;
     }
     public static void PlaySound(string soundName)
     {

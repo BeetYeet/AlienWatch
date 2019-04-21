@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -83,32 +83,7 @@ public class PlayerSpriteChanger : MonoBehaviour
             Anim.SetFloat("Verticle", 0f);
         }
 
-        //if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.ForwardLeft && playerMovement.movementState == PlayerMovement.PlayerMovementState.Moving)
-        //{
-        //    Anim.SetFloat("Horizontal", 1f);
-
-        //    Anim.SetFloat("Verticle", 1f);
-        //}
-
-        //if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.ForwardRight && playerMovement.movementState == PlayerMovement.PlayerMovementState.Moving)
-        //{
-        //    Anim.SetFloat("Horizontal", -1f);
-
-        //    Anim.SetFloat("Verticle", 1f);
-        //}
-
-        //if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.BackwardRight && playerMovement.movementState == PlayerMovement.PlayerMovementState.Moving)
-        //{
-        //    Anim.SetFloat("Horizontal", -1f);
-
-        //    Anim.SetFloat("Verticle", -1f);
-        //}
-
-        //if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.BackwardLeft && playerMovement.movementState == PlayerMovement.PlayerMovementState.Moving)
-        //{
-        //    Anim.SetFloat("Horizontal", 1f);
-
-        //    Anim.SetFloat("Verticle", -1f);
-        //}
+		if (playerMovement.movementState == PlayerMovement.PlayerMovementState.Moving)
+			SoundManager.PlaySound("RunSound");
     }
 }
