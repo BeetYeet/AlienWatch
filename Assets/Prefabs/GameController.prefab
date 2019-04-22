@@ -47,6 +47,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ticksPerMinute: 480
+  mapGrid: {fileID: 0}
+  pathGrid:
+    width: 0
+    height: 0
+  exampleCell:
+    enheritedPos: {x: 0, y: 0}
+    globalPos: {x: 0, y: 0}
+    traversable: 0
 --- !u!114 &2189874848703802817
 MonoBehaviour:
   m_ObjectHideFlags: 0

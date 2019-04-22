@@ -39,6 +39,10 @@ public class EnemyMovement: MovementBaseClass
 		{
 			pathfinder = new Pathing.RayStretcher( transform, target, ticksPerPath, wallMask, 30f, 0, 90f );
 		}
+		if ( pathfinderType == Pathing.PathfinderType.AStar )
+		{
+			pathfinder = new Pathing.AStar( transform, target, ticksPerPath);
+		}
 	}
 
 

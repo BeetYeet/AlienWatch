@@ -50,7 +50,7 @@ namespace Pathing
 	public abstract class Pathfinder
 	{
 		public int ticksPerPath;
-		public int ticksSincePath = 0;
+		public int ticksSincePath;
 		internal Transform origin;
 		internal Transform target;
 		public bool pathActive;
@@ -66,6 +66,7 @@ namespace Pathing
 			this.origin = origin;
 			this.target = target;
 			this.ticksPerPath = ticksPerPath;
+			ticksSincePath = Random.Range( 0, ticksPerPath );
 			GameController.curr.Tick += Tick;
 			Queue<Vector2> _ = new Queue<Vector2>();
 			path = new Path( _, Time.time, Time.time );
@@ -121,6 +122,7 @@ namespace Pathing
 	public enum PathfinderType
 	{
 		Straight,
-		RayStretcher
+		RayStretcher,
+		AStar
 	}
 }

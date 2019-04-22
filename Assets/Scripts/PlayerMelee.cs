@@ -60,10 +60,22 @@ public class PlayerMelee: MonoBehaviour
 	{
 		player = PlayerBaseClass.current;
 		GameController.curr.Tick += Tick;
-		SwingTrigger += () => { Debug.Log( "SwingTrigger" ); };
-		SwingRecover += () => { Debug.Log( "SwingRecover" ); };
-		SwingStart += () => { Debug.Log( "SwingStart" ); };
-		SwingEnd += () => { Debug.Log( "SwingEnd" ); };
+		SwingTrigger += () =>
+		{
+			//Debug.Log( "SwingTrigger" ); 
+		};
+		SwingRecover += () =>
+		{
+			//Debug.Log( "SwingRecover" ); 
+		};
+		SwingStart += () =>
+		{
+			//Debug.Log( "SwingStart" ); 
+		};
+		SwingEnd += () =>
+		{
+			//Debug.Log( "SwingEnd" );
+		};
 	}
 
 	void Tick()
@@ -160,7 +172,7 @@ public class PlayerMelee: MonoBehaviour
 	{
 		Vector2 _1 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, NormalizeRotation( directionalRotation, validRotation ) );
 		Vector2 _2 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, directionalRotation );
-		Vector2 _3 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, GetRawRotation( PlayerBaseClass.current.playerMovement.lastValidDirection) );
+		Vector2 _3 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, GetRawRotation( PlayerBaseClass.current.playerMovement.lastValidDirection ) );
 		Debug.DrawLine(
 		transform.position,
 		transform.position + new Vector3( _1.x, _1.y ),

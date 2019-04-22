@@ -59,11 +59,11 @@ public class PlayerMovement: MovementBaseClass
 		};
 		FixedStart += () =>
 		{
-			Debug.Log( "Get yooted" );
+			//Debug.Log( "Get yooted" );
 		};
 		FixedEnd += () =>
 		{
-			Debug.Log( "Get yooted" );
+			//Debug.Log( "Get yooted" );
 		};
 	}
 

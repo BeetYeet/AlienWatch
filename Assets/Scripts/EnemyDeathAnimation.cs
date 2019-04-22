@@ -15,6 +15,6 @@ public class EnemyDeathAnimation: MonoBehaviour
 	void OnDeath()
 	{
 		GetComponent<SpriteRenderer>().color = new Color( .5f, .2f, .2f, .7f );
-		GetComponent<Collider2D>().enabled = false;
+		gameObject.layer = LayerMask.NameToLayer( "PlayerDashing" );
 	}
 }
