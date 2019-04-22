@@ -78,14 +78,25 @@ public class GameController: MonoBehaviour
 	public Color traverseColor = Color.green;
 	public Color noTraverseColor = Color.red;
 
-	public List<Vector2> PathfindAstar( Vector2 start, Vector2 end )
+	public List<Vector2> PathfindAstar( Vector2 start, Vector2 end, out double time )
 	{
-		return null;
+		System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
+		timer.Start();
+		List<Vector2Int> gridPath = PathContext.FindPath( ClampToGrid( start ), ClampToGrid( end ) );
+		timer.Stop();
+		Debug.Log( string.Format( "Path found after {0} milliseconds with {1} nodes", timer.Elapsed.TotalMilliseconds, gridPath.Count ) );
+		List<Vector2> path = new List<Vector2>();
+		foreach ( Vector2Int intPos in gridPath )
+		{
+			path.Add( pathGrid.cells[intPos.x, intPos.y].globalPos );
+		}
+		time = timer.Elapsed.TotalMilliseconds;
+		return path;
 	}
 
-	public Vector2Int ClampToGrid( Vector3 pos )
+	public static Vector2Int ClampToGrid( Vector3 pos )
 	{
-		Vector3Int _ = Walls.WorldToCell( pos ) - new Vector3Int( Walls.cellBounds.xMin, Walls.cellBounds.yMin, 0 );
+		Vector3Int _ = GameController.curr.Walls.WorldToCell( pos ) - new Vector3Int( GameController.curr.Walls.cellBounds.xMin, GameController.curr.Walls.cellBounds.yMin, 0 );
 		return new Vector2Int( _.x, _.y );
 	}
 
@@ -214,7 +225,7 @@ public class GameController: MonoBehaviour
 			ActiveCell c = new ActiveCell( curr.pathGrid.cells[start.x, start.y] );
 
 			c.gCost = 0;
-			c.hCost = context.GetHCost( c.gridPos );
+			c.hCost = context.Distance( c.gridPos, end );
 			context.Open.Add( c );
 
 			while ( context.Open.Count != 0 )
@@ -223,22 +234,26 @@ public class GameController: MonoBehaviour
 				ActiveCell current = context.Open[0];
 				for ( int i = 1; i < context.Open.Count - 1; i++ )
 				{
-					if ( context.Open[i].fCost < current.fCost )
+					if ( context.Open[i].fCost < current.fCost || ( context.Open[i].fCost == current.fCost && context.Open[i].hCost < current.hCost ) )
 					{
 						current = context.Open[i];
 					}
 				}
+				context.Open.Remove( current );
+				context.Closed.Add( current );
 				if ( current.gridPos == end )
 				{
+					Debug.Log( string.Format( "Path from {0},{1} to {2},{3} complete", start.x, start.y, end.x, end.y ) );
+					Debug.Log( "Path finished after " + context.Closed.Count + " finished cells and " + context.Open.Count + " started cells" );
 					//thats the path
 					current.PathTrain( ref context.Closed, ref path );
 					return path;
 				}
 
 				context.GetNeighbors( current );
-
 			}
-			throw new Exception( "Impossible Path" );
+			//throw new Exception( "Impossible Path" );
+			return new List<Vector2Int>() { ClampToGrid( PlayerBaseClass.current.transform.position ) };
 		}
 
 		private void GetNeighbors( ActiveCell from )
@@ -302,7 +317,7 @@ public class GameController: MonoBehaviour
 				//its valid, lets make it!
 
 				ActiveCell a = new ActiveCell( c );
-				a.hCost = GetHCost( a.gridPos );
+				a.hCost = Distance( a.gridPos, target );
 				a.gCost = uint.MaxValue;
 				fin.Add( a );
 			}
@@ -324,15 +339,20 @@ public class GameController: MonoBehaviour
 			return;
 		}
 
-		private uint GetHCost( Vector2Int enheritedPos )
+		private uint Distance( Vector2Int from, Vector2Int to )
 		{
-			throw new NotImplementedException();
-		}
-
-
-		public bool Next()
-		{
-			return false;
+			Vector2Int diff = from - to;
+			diff.x = Math.Abs( diff.x );
+			diff.y = Math.Abs( diff.y );
+			bool xLowest = diff.x < diff.y;
+			if ( xLowest )
+			{
+				return (uint) ( diff.x * 14 + ( diff.y - diff.x ) * 10 );
+			}
+			else
+			{
+				return (uint) ( diff.y * 14 + ( diff.x - diff.y ) * 10 );
+			}
 		}
 
 		public PathContext( PathGrid parent, Vector2Int target )
@@ -374,6 +394,10 @@ public class GameController: MonoBehaviour
 
 			internal void PathTrain( ref List<ActiveCell> cells, ref List<Vector2Int> path )
 			{
+				if ( bestFrom == gridPos )
+				{
+					return;
+				}
 				foreach ( ActiveCell cell in cells )
 				{
 					if ( cell.gridPos == bestFrom )

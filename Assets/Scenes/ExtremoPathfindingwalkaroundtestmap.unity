@@ -4396,24 +4396,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2189874848703802819, guid: afd098447954c11438b9a5c2839d6702,
         type: 3}
-      propertyPath: mapGrid
-      value: 
-      objectReference: {fileID: 1144320605}
-    - target: {fileID: 2189874848703802819, guid: afd098447954c11438b9a5c2839d6702,
-        type: 3}
       propertyPath: Walls
       value: 
       objectReference: {fileID: 1144320605}
-    - target: {fileID: 2189874848703802819, guid: afd098447954c11438b9a5c2839d6702,
-        type: 3}
-      propertyPath: traverseColor.a
-      value: 0.3137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 2189874848703802819, guid: afd098447954c11438b9a5c2839d6702,
-        type: 3}
-      propertyPath: noTraverseColor.a
-      value: 0.54901963
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afd098447954c11438b9a5c2839d6702, type: 3}
 --- !u!1001 &1050384797

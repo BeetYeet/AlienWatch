@@ -8,8 +8,9 @@ public class EnemyMovement: MovementBaseClass
 	public Pathing.PathfinderType pathfinderType = Pathing.PathfinderType.Straight;
 	public LayerMask wallMask;
 	public int ticksPerPath = 2;
-	private Transform target;
+	public Transform target;
 	private EnemyHealth health;
+	public float pathFindRaduis = 1f;
 	public float speed;
 	public float speedVariance;
 	public float range;
@@ -38,14 +39,25 @@ public class EnemyMovement: MovementBaseClass
 		if ( pathfinderType == Pathing.PathfinderType.RayStretcher )
 		{
 			pathfinder = new Pathing.RayStretcher( transform, target, ticksPerPath, wallMask, 30f, 0, 90f );
-		}
+		}else
 		if ( pathfinderType == Pathing.PathfinderType.AStar )
 		{
-			pathfinder = new Pathing.AStar( transform, target, ticksPerPath);
+			pathfinder = new Pathing.AStar( transform, target, ticksPerPath );
 		}
 	}
 
-
+	private void OnDrawGizmosSelected()
+	{
+		if ( pathfinder == null || pathfinder.path == null || pathfinder.path.nodes == null || pathfinder.path.nodes.Count == 0 )
+			return;
+		Gizmos.color = Color.yellow;
+		Vector2 prev = transform.position;
+		foreach ( Vector2 pos in pathfinder.path.nodes )
+		{
+			Gizmos.DrawLine( prev, pos );
+			prev = pos;
+		}
+	}
 
 	void Update()
 	{
@@ -59,7 +71,7 @@ public class EnemyMovement: MovementBaseClass
 
 			if ( Vector3.Distance( transform.position, target.position ) > range )
 			{
-				movementVelocity = pathfinder.GetMovementVector( speed * Time.deltaTime ).normalized * speed;
+				movementVelocity = pathfinder.GetMovementVector( pathFindRaduis ).normalized * speed;
 				attack = false;
 			}
 			else

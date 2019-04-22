@@ -86,10 +86,12 @@ namespace Pathing
 
 		public Vector2 GetMovementVector( float travelDistance )
 		{
-
 			Vector2 orig = origin.position;
 			if ( path.nodes.Count == 0 )
+			{
+				//Debug.Log( "No Path" );
 				return orig;
+			}
 
 
 			if ( path.nodes.Peek() == orig )
