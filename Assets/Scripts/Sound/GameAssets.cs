@@ -26,7 +26,7 @@ public class GameAssets : MonoBehaviour
     {
         public string denomenator;
         public ClipBehavior behavior;
-
+		public float loopTime;
         public List<AudioClip> clips;
 
     }

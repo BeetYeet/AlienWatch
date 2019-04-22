@@ -30,6 +30,7 @@ public class GameController: MonoBehaviour
 		if ( curr != null )
 			throw new System.Exception( "Too many instances of GameController, should only be one" );
 		curr = this;
+		SoundManager.Initalize();
 	}
 
 	private void DoTick()
