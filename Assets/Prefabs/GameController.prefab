@@ -76,6 +76,10 @@ MonoBehaviour:
     behavior: 0
     clips:
     - {fileID: 8300000, guid: d03da9e2c83195a48af7a9830e441b3a, type: 3}
+  - denomenator: swing
+    behavior: 1
+    clips:
+    - {fileID: 8300000, guid: ff6a9b3a6d6d69d4a927e797afe4d620, type: 3}
   hpDownColor: {r: 0.8113208, g: 0.14159843, b: 0.2943422, a: 1}
   hpDownPlayerColor: {r: 0.990566, g: 0.3504361, b: 0.3504361, a: 1}
   hpUpColor: {r: 0.1509434, g: 0.6037736, b: 0.21657094, a: 1}
