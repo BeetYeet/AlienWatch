@@ -64,6 +64,7 @@ public class EnemyMovement: MovementBaseClass
 		movementVelocity = Vector2.zero;
 		if ( ( PlayerBaseClass.current.transform.position - transform.position ).sqrMagnitude < agroDistance * agroDistance )
 			agro = true;
+		pathfinder.active = agro && Alive;
 		if ( agro == true && Alive == true )
 		{
 			transform.LookAt( target.position );
@@ -71,7 +72,7 @@ public class EnemyMovement: MovementBaseClass
 
 			if ( Vector3.Distance( transform.position, target.position ) > range )
 			{
-				movementVelocity = pathfinder.GetMovementVector( pathFindRaduis ).normalized * speed;
+				transform.position = pathfinder.GetMovementVector( speed*Time.deltaTime );
 				attack = false;
 			}
 			else

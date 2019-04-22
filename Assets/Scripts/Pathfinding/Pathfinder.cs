@@ -54,6 +54,7 @@ namespace Pathing
 		internal Transform origin;
 		internal Transform target;
 		public bool pathActive;
+		public bool active;
 
 		public Path path
 		{
@@ -74,6 +75,10 @@ namespace Pathing
 
 		public void Tick()
 		{
+			if ( !active )
+			{
+				return;
+			}
 			ticksSincePath++;
 			if ( ticksSincePath >= ticksPerPath )
 			{
@@ -118,7 +123,7 @@ namespace Pathing
 					travelDistance = 0f;
 				}
 			}
-			return currpos - orig;
+			return currpos;
 		}
 	}
 	public enum PathfinderType
