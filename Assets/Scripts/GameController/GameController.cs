@@ -77,6 +77,7 @@ public class GameController: MonoBehaviour
 
 	public Color traverseColor = Color.green;
 	public Color noTraverseColor = Color.red;
+	public bool debugPaths = false;
 
 	public List<Vector2> PathfindAstar( Vector2 start, Vector2 end, out double time )
 	{
@@ -93,13 +94,14 @@ public class GameController: MonoBehaviour
 		timer.Start();
 		List<Vector2Int> gridPath = PathContext.FindPath( startpos, endpos );
 		timer.Stop();
-		//Debug.Log( string.Format( "Path found after {0} milliseconds with {1} nodes", timer.Elapsed.TotalMilliseconds, gridPath.Count ) );
+		if ( curr.debugPaths )
+			Debug.Log( string.Format( "Path found after {0} milliseconds with {1} nodes", timer.Elapsed.TotalMilliseconds, gridPath.Count ) );
 		List<Vector2> path = new List<Vector2>();
 		Vector2 direction = Vector2.zero;
-		for ( int i = 1; i < gridPath.Count; i++ )
+		for ( int i = 0; i < gridPath.Count - 1; i++ )
 		{
 			Vector2Int intPos = gridPath[i];
-			Vector2Int intPosPrev = gridPath[i - 1];
+			Vector2Int intPosPrev = gridPath[i + 1];
 			Vector2 newDirection = pathGrid.cells[intPosPrev.x, intPosPrev.y].globalPos - pathGrid.cells[intPos.x, intPos.y].globalPos;
 			if ( direction != newDirection )
 			{
@@ -107,6 +109,7 @@ public class GameController: MonoBehaviour
 				path.Add( pathGrid.cells[intPos.x, intPos.y].globalPos );
 			}
 		}
+		path.Add( pathGrid.cells[gridPath[gridPath.Count - 1].x, gridPath[gridPath.Count - 1].y].globalPos );
 		time = timer.Elapsed.TotalMilliseconds;
 		return path;
 	}
@@ -175,7 +178,8 @@ public class GameController: MonoBehaviour
 			}
 		}
 		timer.Stop();
-		Debug.Log( string.Format(
+		if ( curr.debugPaths )
+			Debug.Log( string.Format(
 			"Regenerated Pathing Grid\n" +
 			"Took {0} ms\n" +
 			"Grid size is now {1} by {2} cells ({3} cells total)",
@@ -263,8 +267,11 @@ public class GameController: MonoBehaviour
 				context.Closed.Add( current );
 				if ( current.gridPos == end )
 				{
-					//Debug.Log( string.Format( "Path from {0},{1} to {2},{3} complete", start.x, start.y, end.x, end.y ) );
-					Debug.Log( "Path finished after " + context.Closed.Count + " finished cells and " + context.Open.Count + " started cells" );
+					if ( curr.debugPaths )
+					{
+						Debug.Log( string.Format( "Path from {0},{1} to {2},{3} complete", start.x, start.y, end.x, end.y ) );
+						Debug.Log( "Path finished after " + context.Closed.Count + " finished cells and " + context.Open.Count + " started cells" );
+					}
 					//thats the path
 					current.PathTrain( ref context.Closed, ref path );
 					return path;
@@ -290,7 +297,11 @@ public class GameController: MonoBehaviour
 					int tryY = gridPos.y + y;
 					if ( tryX > 0 && tryX < cells.GetLength( 0 ) && tryY > 0 && tryY < cells.GetLength( 1 ) )
 					{
-						neighbors.Add( cells[tryX, tryY] );
+						//the cell exists
+						if ( cells[from.gridPos.x, tryY].traversable && cells[tryX, from.gridPos.y].traversable )
+						{
+							neighbors.Add( cells[tryX, tryY] );
+						}
 					}
 				}
 			}
@@ -305,24 +316,27 @@ public class GameController: MonoBehaviour
 					if ( c.gridPos == act.gridPos )
 					{
 						found = true;
-						continue;
+						break;
 					}
 				}
 				if ( found )
 				{
 					continue;
 				}
+				foreach ( ActiveCell act in Open.items )
 				{
-					foreach ( ActiveCell act in Open.items )
+					if ( act == null )
 					{
-						if ( c.gridPos == act.gridPos )
-						{
-							fin.Add( act );
-							found = true;
-							continue;
-						}
+						break;
+					}
+					if ( c.gridPos == act.gridPos )
+					{
+						fin.Add( act );
+						found = true;
+						break;
 					}
 				}
+
 				if ( found )
 				{
 					continue;
@@ -382,7 +396,7 @@ public class GameController: MonoBehaviour
 			cells = parent.cells;
 			this.target = target;
 
-			Open = new Heap<ActiveCell>(width*height);
+			Open = new Heap<ActiveCell>( width * height );
 			Closed = new List<ActiveCell>();
 		}
 		[System.Serializable]
