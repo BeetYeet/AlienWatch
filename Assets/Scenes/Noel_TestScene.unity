@@ -580,7 +580,7 @@ MonoBehaviour:
   knockBackVelocity: {x: 0, y: 0}
   movementVelocity: {x: 0, y: 0}
   knockBackDecay: 1.2
-  knockbackWeight: 1
+  knockbackWeight: 50
   rb: {fileID: 73628429}
   velocityAgressiveness: 2
   pathfinderType: 2
@@ -591,10 +591,10 @@ MonoBehaviour:
   target: {fileID: 0}
   pathFindRaduis: 0.5
   speed: 3
-  speedVariance: 0.7
-  range: 2
+  speedVariance: 0
+  range: 3
   agro: 0
-  agroDistance: 5
+  agroDistance: 7
   attack: 0
 --- !u!58 &73628427
 CircleCollider2D:
@@ -772,7 +772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd30484defc78d49ab2b7f93947e59e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyHealth: {fileID: 0}
+  EnemyHealth: {fileID: 73628432}
   yellowBossDead: 0
 --- !u!1001 &76144466
 PrefabInstance:
@@ -2247,6 +2247,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GateKeeper
       objectReference: {fileID: 0}
+    - target: {fileID: 3794464269907999409, guid: d94e6a689917a234f87972603609de60,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794464269907999409, guid: d94e6a689917a234f87972603609de60,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3794464270598000746, guid: d94e6a689917a234f87972603609de60,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2306,16 +2316,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3794464269907999409, guid: d94e6a689917a234f87972603609de60,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3794464269907999409, guid: d94e6a689917a234f87972603609de60,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d94e6a689917a234f87972603609de60, type: 3}
@@ -4603,7 +4603,7 @@ MonoBehaviour:
   knockBackVelocity: {x: 0, y: 0}
   movementVelocity: {x: 0, y: 0}
   knockBackDecay: 1.2
-  knockbackWeight: 1
+  knockbackWeight: 50
   rb: {fileID: 1159337938}
   velocityAgressiveness: 2
   pathfinderType: 2
@@ -4614,10 +4614,10 @@ MonoBehaviour:
   target: {fileID: 0}
   pathFindRaduis: 0.5
   speed: 3
-  speedVariance: 0.7
-  range: 2
+  speedVariance: 0
+  range: 3
   agro: 0
-  agroDistance: 5
+  agroDistance: 7
   attack: 0
 --- !u!58 &1159337936
 CircleCollider2D:
@@ -9268,7 +9268,7 @@ MonoBehaviour:
   knockBackVelocity: {x: 0, y: 0}
   movementVelocity: {x: 0, y: 0}
   knockBackDecay: 1.2
-  knockbackWeight: 1
+  knockbackWeight: 50
   rb: {fileID: 3923622365096257685}
   velocityAgressiveness: 2
   pathfinderType: 2
@@ -9279,10 +9279,10 @@ MonoBehaviour:
   target: {fileID: 0}
   pathFindRaduis: 0.5
   speed: 3
-  speedVariance: 0.7
-  range: 2
+  speedVariance: 0
+  range: 3
   agro: 0
-  agroDistance: 5
+  agroDistance: 7
   attack: 0
 --- !u!4 &1440525828953627997
 Transform:
