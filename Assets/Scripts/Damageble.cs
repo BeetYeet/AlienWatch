@@ -16,7 +16,10 @@ public abstract class Damageble : MonoBehaviour
 		else
 		{
 			if (toPlayer)
+			{
 				DamagePopup.Create(transform.position, info.damage, 3f, GameAssets.curr.hpDownPlayerColor);
+				SoundManager.PlaySound("PlayerHit");
+			}
 			else
 			{
 				DamagePopup.Create(transform.position, info.damage, 3.41f, GameAssets.curr.hpDownColor);

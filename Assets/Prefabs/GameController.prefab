@@ -89,7 +89,7 @@ MonoBehaviour:
     loopTime: 0
     AudioMixer: 0
     clips:
-    - {fileID: 8300000, guid: a8c6c2087d893a542be4b59a0de03a05, type: 3}
+    - {fileID: 8300000, guid: e8e153596c8d02a49b518c747e9e131d, type: 3}
   - denomenator: EnemyHit
     behavior: 1
     loopTime: 0
