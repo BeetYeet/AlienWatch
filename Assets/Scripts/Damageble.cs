@@ -9,6 +9,10 @@ public abstract class Damageble : MonoBehaviour
 	{
 		bool toPlayer = info.faction == Faction.ToPlayer;
 		bool heal = info.damage < 0;
+		if(health == 0)
+		{
+			return;
+		}
 		if (heal)
 		{
 			DamagePopup.Create(transform.position, info.damage, 3.41f, GameAssets.curr.hpUpColor);

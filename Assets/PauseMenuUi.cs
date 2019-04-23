@@ -18,4 +18,9 @@ public class PauseMenuUi : MonoBehaviour
 		pauseMenu.SetActive(true);
 		OptionMenu.SetActive(false);
 	}
+
+	public void FullscreenToggle()
+	{
+		Screen.fullScreen = !Screen.fullScreen;
+	}
 }
