@@ -17,12 +17,8 @@ namespace Pathing
 			double time;
 			List<Vector2> nodes = GameController.curr.PathfindAstar( origin.position, target.position, out time );
 			Queue<Vector2> fin = new Queue<Vector2>();
-			nodes.ForEach( ( x ) =>
-			{
-				Debug.Log( "+1 node" );
-				fin.Enqueue( x );
-			} );
-			Path newPath = new Path( fin, Time.time + (float)time / 1000f, Time.time );
+			nodes.ForEach( ( x ) =>{fin.Enqueue( x );} );
+			Path newPath = new Path( fin, Time.time + (float) time / 1000f, Time.time );
 			path = newPath;
 		}
 	}
