@@ -146,7 +146,7 @@ public class GameController: MonoBehaviour
 		timer.Start();
 		wallMask = LayerMask.NameToLayer( "Walls" );
 		Walls.CompressBounds();
-		Vector3Int dimensions = Walls.editorPreviewSize;
+		Vector3Int dimensions = Walls.cellBounds.size;
 
 		PathGrid newPathGrid = new PathGrid( dimensions.x, dimensions.y );
 
