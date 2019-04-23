@@ -87,7 +87,7 @@ public class GameController: MonoBehaviour
 
 		if ( !pathGrid.cells[startpos.x, startpos.y].traversable || !pathGrid.cells[endpos.x, endpos.y].traversable )
 		{
-			Debug.LogWarning( "Start or end is invalid" );
+			//Debug.LogWarning( "Start or end is invalid" );
 			time = 0.001d;
 			return new List<Vector2>() { end };
 		}
