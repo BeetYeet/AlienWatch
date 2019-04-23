@@ -147,7 +147,7 @@ MonoBehaviour:
   pathfinderType: 2
   wallMask:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 5632
   ticksPerPath: 3
   target: {fileID: 0}
   pathFindRaduis: 0.5

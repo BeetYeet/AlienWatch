@@ -42,7 +42,7 @@ public class EnemyMovement: MovementBaseClass
 		}else
 		if ( pathfinderType == Pathing.PathfinderType.AStar )
 		{
-			pathfinder = new Pathing.AStar( transform, target, ticksPerPath );
+			pathfinder = new Pathing.AStar( transform, target, ticksPerPath, wallMask );
 		}
 	}
 
