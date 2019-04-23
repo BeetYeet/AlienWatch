@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2189874848703802817}
   - component: {fileID: 6913160705440337176}
   - component: {fileID: 516532508}
+  - component: {fileID: 114998989}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -53,6 +54,7 @@ MonoBehaviour:
     height: 0
   traverseColor: {r: 0, g: 1, b: 0, a: 0.3137255}
   noTraverseColor: {r: 1, g: 0, b: 0, a: 0.54901963}
+  debugPaths: 0
 --- !u!114 &2189874848703802817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,6 +98,12 @@ MonoBehaviour:
     AudioMixer: 0
     clips:
     - {fileID: 8300000, guid: 961d297e8f174d94f8df55a9d5d562d5, type: 3}
+  - denomenator: PlayerHit
+    behavior: 1
+    loopTime: 0
+    AudioMixer: 0
+    clips:
+    - {fileID: 8300000, guid: 7a441fd84bed9aa4186078ff942fce16, type: 3}
   hpDownColor: {r: 0.8113208, g: 0.14159843, b: 0.2943422, a: 1}
   hpDownPlayerColor: {r: 0.990566, g: 0.3504361, b: 0.3504361, a: 1}
   hpUpColor: {r: 0.1509434, g: 0.6037736, b: 0.21657094, a: 1}
@@ -115,3 +123,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4802b3cd82079144ad8a099349b0e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114998989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2189874848703802818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 200b877fada42a5499a95ab025aa772e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueText: {fileID: 0}
