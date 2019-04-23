@@ -5,6 +5,7 @@ using UnityEngine;
 public class Grenade: MonoBehaviour
 {
 	public GameObject explotionPrefab;
+    public GameObject explotionSmokePrefab; 
     public new GameObject light; 
 	public float timeToExplode = 2f;
 	public float speed = 20f;
@@ -32,7 +33,8 @@ public class Grenade: MonoBehaviour
 			Destroy( gameObject );
             Instantiate(explotionPrefab, transform.position, Quaternion.identity);
             Instantiate(light, transform.position, Quaternion.identity);
-		}
+            Instantiate(explotionSmokePrefab, transform.position, Quaternion.identity);
+        }
 	}
 }
 //rigidbody.velocity = PlayerMovement.GetVectorDirection(PlayerBaseClass.current.playerMovement.playerDir) * grenadeVelocity;
