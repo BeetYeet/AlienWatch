@@ -81,14 +81,31 @@ public class GameController: MonoBehaviour
 	public List<Vector2> PathfindAstar( Vector2 start, Vector2 end, out double time )
 	{
 		System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
+		Vector2Int startpos = ClampToGrid( start );
+		Vector2Int endpos = ClampToGrid( end );
+
+		if ( !pathGrid.cells[startpos.x, startpos.y].traversable || !pathGrid.cells[endpos.x, endpos.y].traversable )
+		{
+			Debug.LogWarning( "Start or end is invalid" );
+			time = 0.001d;
+			return new List<Vector2>() { end };
+		}
 		timer.Start();
-		List<Vector2Int> gridPath = PathContext.FindPath( ClampToGrid( start ), ClampToGrid( end ) );
+		List<Vector2Int> gridPath = PathContext.FindPath( startpos, endpos );
 		timer.Stop();
 		//Debug.Log( string.Format( "Path found after {0} milliseconds with {1} nodes", timer.Elapsed.TotalMilliseconds, gridPath.Count ) );
 		List<Vector2> path = new List<Vector2>();
-		foreach ( Vector2Int intPos in gridPath )
+		Vector2 direction = Vector2.zero;
+		for ( int i = 1; i < gridPath.Count; i++ )
 		{
-			path.Add( pathGrid.cells[intPos.x, intPos.y].globalPos );
+			Vector2Int intPos = gridPath[i];
+			Vector2Int intPosPrev = gridPath[i - 1];
+			Vector2 newDirection = pathGrid.cells[intPosPrev.x, intPosPrev.y].globalPos - pathGrid.cells[intPos.x, intPos.y].globalPos;
+			if ( direction != newDirection )
+			{
+				direction = newDirection;
+				path.Add( pathGrid.cells[intPos.x, intPos.y].globalPos );
+			}
 		}
 		time = timer.Elapsed.TotalMilliseconds;
 		return path;
@@ -193,6 +210,12 @@ public class GameController: MonoBehaviour
 			[SerializeField]
 			public bool traversable;
 
+			public int HeapIndex
+			{
+				get;
+				set;
+			}
+
 			public Cell( Vector2Int gridPos, Vector2 globalPos, bool traversable )
 			{
 				this.gridPos = gridPos;
@@ -204,6 +227,11 @@ public class GameController: MonoBehaviour
 			{
 
 			}
+
+			public int CompareTo( Cell other )
+			{
+				throw new NotImplementedException();
+			}
 		}
 	}
 
@@ -213,7 +241,7 @@ public class GameController: MonoBehaviour
 		public PathGrid.Cell[,] cells;
 		[SerializeField]
 		public int width, height;
-		public List<ActiveCell> Open;
+		public Heap<ActiveCell> Open;
 		public List<ActiveCell> Closed;
 		public Vector2Int target;
 
@@ -231,15 +259,7 @@ public class GameController: MonoBehaviour
 			while ( context.Open.Count != 0 )
 			{
 				// find lowest f-cost
-				ActiveCell current = context.Open[0];
-				for ( int i = 1; i < context.Open.Count - 1; i++ )
-				{
-					if ( context.Open[i].fCost < current.fCost || ( context.Open[i].fCost == current.fCost && context.Open[i].hCost < current.hCost ) )
-					{
-						current = context.Open[i];
-					}
-				}
-				context.Open.Remove( current );
+				ActiveCell current = context.Open.RemoveFirst();
 				context.Closed.Add( current );
 				if ( current.gridPos == end )
 				{
@@ -293,7 +313,7 @@ public class GameController: MonoBehaviour
 					continue;
 				}
 				{
-					foreach ( ActiveCell act in Open )
+					foreach ( ActiveCell act in Open.items )
 					{
 						if ( c.gridPos == act.gridPos )
 						{
@@ -362,11 +382,11 @@ public class GameController: MonoBehaviour
 			cells = parent.cells;
 			this.target = target;
 
-			Open = new List<ActiveCell>();
+			Open = new Heap<ActiveCell>(width*height);
 			Closed = new List<ActiveCell>();
 		}
 		[System.Serializable]
-		public class ActiveCell: PathGrid.Cell
+		public class ActiveCell: PathGrid.Cell, IHeapItem<ActiveCell>
 		{
 			public uint gCost, hCost = 0;
 			public uint fCost
@@ -408,6 +428,25 @@ public class GameController: MonoBehaviour
 					}
 				}
 			}
+
+			public int CompareTo( ActiveCell compareTo )
+			{
+				int compare = fCost.CompareTo( compareTo.fCost );
+				if ( compare == 0 )
+				{
+					compare = hCost.CompareTo( compareTo.hCost );
+				}
+				return -compare;
+			}
+			/*public int CompareTo( Node nodeToCompare )
+			{
+				int compare = fCost.CompareTo( nodeToCompare.fCost );
+				if ( compare == 0 )
+				{
+					compare = hCost.CompareTo( nodeToCompare.hCost );
+				}
+				return -compare;
+			}*/
 		}
 	}
 	#endregion
