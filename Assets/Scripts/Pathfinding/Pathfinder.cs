@@ -94,7 +94,8 @@ namespace Pathing
 			Vector2 orig = origin.position;
 			if ( path.nodes.Count == 0 )
 			{
-				//Debug.Log( "No Path" );
+				if ( GameController.curr.debugPaths )
+					Debug.Log( "No Path" );
 				return orig;
 			}
 
@@ -106,6 +107,11 @@ namespace Pathing
 				return orig;
 
 			Vector2 currpos = orig;
+			if ( ( path.nodes.Peek() - currpos ).sqrMagnitude < .125f )
+			{
+				//node is very close
+				path.nodes.Dequeue();
+			}
 			while ( travelDistance > 0f && path.nodes.Count != 0 )
 			{
 				Vector2 nextPos = path.nodes.Peek();

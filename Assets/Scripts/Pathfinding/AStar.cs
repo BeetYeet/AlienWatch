@@ -8,7 +8,7 @@ namespace Pathing
 	public class AStar: Pathfinder
 	{
 		LayerMask wallMask;
-
+		float pathWidth = .7f;
 
 		public AStar( Transform origin, Transform target, int ticksPerPath, LayerMask wallMask ) : base( origin, target, ticksPerPath )
 		{
@@ -21,17 +21,26 @@ namespace Pathing
 			double time = 0.001d;
 
 			Vector2 diff = target.position - origin.position;
-			RaycastHit2D hit = Physics2D.Raycast( origin.position, diff, diff.magnitude, wallMask );
-			if ( hit == true )
+			Vector2 normDiff = diff.normalized;
+
+			Vector2 side = new Vector2( normDiff.y, -1 * normDiff.x ) * pathWidth;
+
+			RaycastHit2D hitCenter = Physics2D.Raycast( origin.position, diff, diff.magnitude, wallMask );
+			RaycastHit2D hitSide1 = Physics2D.Raycast( HelperClass.V3toV2( origin.position ) + side / 2, diff, diff.magnitude, wallMask );
+			RaycastHit2D hitSide2 = Physics2D.Raycast( HelperClass.V3toV2( origin.position ) - side / 2, diff, diff.magnitude, wallMask );
+			if ( hitCenter )
 			{
-				Debug.Log( "Found quicker path" );
-				fin.Enqueue( target.position );
+				if ( GameController.curr.debugPaths )
+					Debug.Log( "No quick path found, using A*" );
+				List<Vector2> nodes = GameController.curr.PathfindAstar( origin.position, target.position, out time );
+				nodes.ForEach( ( x ) => { fin.Enqueue( x ); } );
 			}
 			else
 			{
-				Debug.Log( "No quick path found, using A*" );
-				List<Vector2> nodes = GameController.curr.PathfindAstar( origin.position, target.position, out time );
-				nodes.ForEach( ( x ) => { fin.Enqueue( x ); } );
+				if ( GameController.curr.debugPaths )
+					Debug.Log( "Found quicker path" );
+				fin.Enqueue( target.position );
+				ticksSincePath += (int) Mathf.Ceil( ticksPerPath * 3f / 4f );
 			}
 
 
