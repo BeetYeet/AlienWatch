@@ -43,7 +43,7 @@ public class PlayerMovement: MovementBaseClass
 	{
 
 		player = PlayerBaseClass.current;
-		rb = player.rigidbody;
+		rb = player.manualRigidBody;
 		DashStart += () =>
 		{
 			dashHandler.active = true;
@@ -123,7 +123,7 @@ public class PlayerMovement: MovementBaseClass
 			if ( fixedTimeLeft > 0 )
 			{
 				movementState = PlayerMovementState.Fixed;
-				player.rigidbody.velocity = Vector2.zero;
+				player.manualRigidBody.velocity = Vector2.zero;
 			}
 			else
 			{

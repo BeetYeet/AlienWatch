@@ -21,7 +21,7 @@ public class PlayerBaseClass: MonoBehaviour
 	{
 		get; private set;
 	}
-	public new Rigidbody2D rigidbody
+	public Rigidbody2D manualRigidBody
 	{
 		get; private set;
 	}
@@ -48,7 +48,7 @@ public class PlayerBaseClass: MonoBehaviour
 	private void GetPlayerScripts()
 	{
 		playerMovement = GetComponent<PlayerMovement>();
-		rigidbody = GetComponent<Rigidbody2D>();
+		manualRigidBody = GetComponent<Rigidbody2D>();
 		playerMelee = GetComponent<PlayerMelee>();
 		playerMana = GetComponent<PlayerMana>();
 		playerHealth = GetComponent<PlayerHeath>();
