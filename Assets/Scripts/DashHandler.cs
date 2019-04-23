@@ -5,7 +5,7 @@ using UnityEngine;
 public class DashHandler: MonoBehaviour
 {
 	public int DashDamage = 10;
-	public bool enabled;
+	public bool active;
 
 	// Start is called before the first frame update
 	void Start()
@@ -16,7 +16,7 @@ public class DashHandler: MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if ( enabled )
+		if ( active )
 		{
 			transform.localEulerAngles = new Vector3( 0f, 0f, PlayerMelee.GetRawRotation( PlayerBaseClass.current.playerMovement.dashDirection ) );
 		}
@@ -28,7 +28,7 @@ public class DashHandler: MonoBehaviour
 
 	private void OnTriggerEnter2D( Collider2D collision )
 	{
-		if ( enabled )
+		if ( active )
 		{
 			Damageble _ = collision.GetComponent<Damageble>();
 			if ( _ != null )

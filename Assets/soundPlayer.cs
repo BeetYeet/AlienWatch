@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class soundPlayer : MonoBehaviour
 {
-	
- 
 
-    // Update is called once per frame
-    void Update()
-    {
-		PlayerBaseClass.current.playerMelee.SwingStart += () => 
+
+	private void Start()
+	{
+		PlayerBaseClass.current.playerMelee.SwingStart += () =>
 		{
 			SoundManager.PlaySound("swing");
 		};
-    }
+	}
+	
 }

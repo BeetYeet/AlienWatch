@@ -27,6 +27,7 @@ public class GameAssets : MonoBehaviour
         public string denomenator;
         public ClipBehavior behavior;
 		public float loopTime;
+		public AudioMixer AudioMixer;
         public List<AudioClip> clips;
 
     }
@@ -35,6 +36,12 @@ public class GameAssets : MonoBehaviour
         Loop,
         PlaySingle
     }
+	public enum AudioMixer
+	{
+		sfx,
+		music,
+		ambient
+	}
 
     public ClipType GetClip(string sound)
     {

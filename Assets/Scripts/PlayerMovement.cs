@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,13 +46,13 @@ public class PlayerMovement: MovementBaseClass
 		rb = player.rigidbody;
 		DashStart += () =>
 		{
-			dashHandler.enabled = true;
+			dashHandler.active = true;
 			//GetComponent<Collider2D>().enabled = false;
 			gameObject.layer = LayerMask.NameToLayer( "PlayerDashing" );
 		};
 		DashEnd += () =>
 		{
-			dashHandler.enabled = false;
+			dashHandler.active = false;
 			//GetComponent<Collider2D>().enabled = true;
 			gameObject.layer = LayerMask.NameToLayer( "Player" );
 		;

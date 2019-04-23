@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -67,8 +67,6 @@ public class EnemyMovement: MovementBaseClass
 		pathfinder.active = agro && Alive;
 		if ( agro == true && Alive == true )
 		{
-			transform.LookAt( target.position );
-			transform.Rotate( new Vector3( 0, -90, 0 ), Space.Self );
 
 			if ( Vector3.Distance( transform.position, target.position ) > range )
 			{
