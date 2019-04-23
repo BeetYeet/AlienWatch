@@ -18,7 +18,11 @@ public abstract class Damageble : MonoBehaviour
 			if (toPlayer)
 				DamagePopup.Create(transform.position, info.damage, 3f, GameAssets.curr.hpDownPlayerColor);
 			else
+			{
 				DamagePopup.Create(transform.position, info.damage, 3.41f, GameAssets.curr.hpDownColor);
+				SoundManager.PlaySound("EnemyHit");
+			}
+
 		}
 
 

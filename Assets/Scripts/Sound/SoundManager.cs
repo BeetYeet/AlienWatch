@@ -16,6 +16,9 @@ public static class SoundManager
 		if ( CanPlaySound( soundName ) )
 		{
 			GameObject soundGameObject = new GameObject( "Sound" );
+			soundGameObject.transform.parent = GameController.curr.transform;
+			DestroyAfter da = (DestroyAfter) soundGameObject.AddComponent(typeof(DestroyAfter));
+			da.timer = 1f;
 			AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
 			audioSource.PlayOneShot( GetAudioClip( soundName ) );
 		}
