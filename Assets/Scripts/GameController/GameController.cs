@@ -84,7 +84,7 @@ public class GameController: MonoBehaviour
 		timer.Start();
 		List<Vector2Int> gridPath = PathContext.FindPath( ClampToGrid( start ), ClampToGrid( end ) );
 		timer.Stop();
-		Debug.Log( string.Format( "Path found after {0} milliseconds with {1} nodes", timer.Elapsed.TotalMilliseconds, gridPath.Count ) );
+		//Debug.Log( string.Format( "Path found after {0} milliseconds with {1} nodes", timer.Elapsed.TotalMilliseconds, gridPath.Count ) );
 		List<Vector2> path = new List<Vector2>();
 		foreach ( Vector2Int intPos in gridPath )
 		{
@@ -243,7 +243,7 @@ public class GameController: MonoBehaviour
 				context.Closed.Add( current );
 				if ( current.gridPos == end )
 				{
-					Debug.Log( string.Format( "Path from {0},{1} to {2},{3} complete", start.x, start.y, end.x, end.y ) );
+					//Debug.Log( string.Format( "Path from {0},{1} to {2},{3} complete", start.x, start.y, end.x, end.y ) );
 					Debug.Log( "Path finished after " + context.Closed.Count + " finished cells and " + context.Open.Count + " started cells" );
 					//thats the path
 					current.PathTrain( ref context.Closed, ref path );
