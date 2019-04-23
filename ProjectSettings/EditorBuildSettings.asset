@@ -20,7 +20,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/FirstLookSceen.unity
     guid: e84d7891ca5e98b4ba8b745bc9c43840
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ExtremoPathfindingwalkaroundtestmap.unity
     guid: bcf5542e72031114f9c1a24dd46cad7a
+  - enabled: 1
+    path: Assets/Scenes/Noel_TestScene.unity
+    guid: 111f54dab6043e44481e641ecc298a8e
   m_configObjects: {}

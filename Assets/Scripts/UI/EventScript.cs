@@ -10,11 +10,11 @@ public class EventScript: MonoBehaviour
 	public static bool GameIsPaused = false;
 	public GameObject onDeath;
 	public GameObject PauseMenuUI;
-    public EventSystem system;
+	public EventSystem system;
 
 
-    public Button DeathButton;
-    public Button PauseButton;
+	public Button DeathButton;
+	public Button PauseButton;
 
 	private void Start()
 	{
@@ -24,7 +24,7 @@ public class EventScript: MonoBehaviour
 	void Update()
 	{
 		PauseGame();
-		if ( Input.GetKeyDown( KeyCode.Escape ) )
+		if ( Input.GetButtonDown( "Menu" ) )
 		{
 			if ( GameIsPaused )
 			{
@@ -37,14 +37,14 @@ public class EventScript: MonoBehaviour
 		}
 	}
 
-    public void OnDeath()
-	{       
+	public void OnDeath()
+	{
 		onDeath.SetActive( true );
-        if (onDeath.activeInHierarchy == true)
-        {
-            DeathButton.Select();
-        }
-    }
+		if ( onDeath.activeInHierarchy == true )
+		{
+			DeathButton.Select();
+		}
+	}
 	public void ReturnToMainMenu()
 	{
 		SceneManager.LoadScene( 0 );
@@ -74,13 +74,13 @@ public class EventScript: MonoBehaviour
 	public void Pause()
 	{
 		PauseMenuUI.SetActive( true );
-        if(PauseMenuUI.activeInHierarchy == true)
-        {
-            PauseButton.Select();
-        }
-        Time.timeScale = 0.0f;
+		if ( PauseMenuUI.activeInHierarchy == true )
+		{
+			PauseButton.Select();
+		}
+		Time.timeScale = 0.0f;
 		GameIsPaused = true;
 	}
 
-    
+
 }
