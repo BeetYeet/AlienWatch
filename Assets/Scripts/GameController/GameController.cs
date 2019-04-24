@@ -85,9 +85,11 @@ public class GameController: MonoBehaviour
 		Vector2Int startpos = ClampToGrid( start );
 		Vector2Int endpos = ClampToGrid( end );
 
-		if ( !pathGrid.cells[startpos.x, startpos.y].traversable || !pathGrid.cells[endpos.x, endpos.y].traversable )
+		if (
+		//!pathGrid.cells[startpos.x, startpos.y].traversable || 
+		!pathGrid.cells[endpos.x, endpos.y].traversable )
 		{
-			//Debug.LogWarning( "Start or end is invalid" );
+			Debug.LogWarning( "End cell is invalid" );
 			time = 0.001d;
 			return new List<Vector2>() { end };
 		}
