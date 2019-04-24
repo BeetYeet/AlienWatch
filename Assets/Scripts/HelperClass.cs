@@ -23,15 +23,15 @@ public static class HelperClass
 	}
 	public static void DoAOEDamage( Vector2 position, float radius, int damage, Faction faction, float knockbackStrength )
 	{
-		Collider2D[] objectsInRange = Physics2D.OverlapCircleAll( position, radius, LayerMask.NameToLayer( "Enemies" ) );
+		Collider2D[] objectsInRange = Physics2D.OverlapCircleAll( position, radius );
 		foreach ( Collider2D col in objectsInRange )
 		{
 			EnemyHealth enemy = col.GetComponent<EnemyHealth>();
-			if ( enemy != null )
+			if ( enemy != null && enemy.health > 0 )
 			{
 				// linear falloff of effect
 				float proximity = ( position - V3toV2( enemy.transform.position ) ).magnitude;
-				float effect = 1 - ( proximity / radius );
+				float effect = Mathf.Clamp01( 1 - ( proximity / radius ) );
 				DamageInfo info = new DamageInfo( faction, (int) ( damage * effect ) );
 				enemy.DoDamage( info );
 				EnemyMovement move = col.GetComponent<EnemyMovement>();

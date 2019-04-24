@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Noel_TestScene.unity
     guid: 111f54dab6043e44481e641ecc298a8e
+  - enabled: 1
+    path: Assets/Scenes/ThankYouForPlaying.unity
+    guid: 2fa150fd8c965d64f8a9da776f5fd78d
   m_configObjects: {}
