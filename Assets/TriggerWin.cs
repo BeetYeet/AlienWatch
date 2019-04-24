@@ -13,6 +13,7 @@ public class TriggerWin : MonoBehaviour
 	{
 		if(collision.gameObject == PlayerBaseClass.current.gameObject && BossDie.GreenBossDead && BossDie2.redBossDead && BossDie3.yellowBossDead)
 		{
+			Time.timeScale = 0f;
 			TriggerWinScene();
 		}
 	}
