@@ -3788,10 +3788,10 @@ MonoBehaviour:
   VitalityBoss: Eye of Vitality was Defeated
   StrengthBoss: Eye of Strength was Defeated
   SpeedBoss: Eye of Speed was Defeated
-  waitToRem: 2
-  time1: 2
-  time2: 2
-  time3: 2
+  waitToRem: 8
+  time1: 8
+  time2: 8
+  time3: 8
 --- !u!1 &743518927125282832
 GameObject:
   m_ObjectHideFlags: 0
