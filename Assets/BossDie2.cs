@@ -9,8 +9,10 @@ public class BossDie2 : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (EnemyHealth.health <= 0)
-			redBossDead = true;
-
+		EnemyHealth.OnDeath +=
+		() =>
+			{
+				redBossDead = true;
+			};
 	}
 }
