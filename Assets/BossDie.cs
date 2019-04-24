@@ -5,12 +5,16 @@ using UnityEngine;
 public class BossDie : MonoBehaviour
 {
 	public EnemyHealth EnemyHealth;
-	public bool GreenBossDead;
+	public static bool GreenBossDead;
     // Update is called once per frame
     void Update()
     {
-		if (EnemyHealth.health <= 0)
+		EnemyHealth.OnDeath +=
+		() =>
+		{
 			GreenBossDead = true;
-
-    }
+			BossKilledText.curr.text.text = BossKilledText.curr.VitalityBoss;
+			BossKilledText.curr.time3 = BossKilledText.curr.waitToRem;
+		};
+	}
 }

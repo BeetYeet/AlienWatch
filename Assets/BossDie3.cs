@@ -5,12 +5,14 @@ using UnityEngine;
 public class BossDie3 : MonoBehaviour
 {
 	public EnemyHealth EnemyHealth;
-	public bool yellowBossDead;
+	public static bool yellowBossDead;
 	// Update is called once per frame
 	void Update()
 	{
-		if (EnemyHealth.health <= 0)
+		EnemyHealth.OnDeath +=
+		() =>
+		{
 			yellowBossDead = true;
-
+		};
 	}
 }
