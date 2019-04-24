@@ -39,7 +39,8 @@ public class EnemyMovement: MovementBaseClass
 		if ( pathfinderType == Pathing.PathfinderType.RayStretcher )
 		{
 			pathfinder = new Pathing.RayStretcher( transform, target, ticksPerPath, wallMask, 30f, 0, 90f );
-		}else
+		}
+		else
 		if ( pathfinderType == Pathing.PathfinderType.AStar )
 		{
 			pathfinder = new Pathing.AStar( transform, target, ticksPerPath, wallMask );
@@ -62,15 +63,16 @@ public class EnemyMovement: MovementBaseClass
 	void Update()
 	{
 		movementVelocity = Vector2.zero;
-		if ( ( PlayerBaseClass.current.transform.position - transform.position ).sqrMagnitude < agroDistance * agroDistance )
+		if ( !agro && ( PlayerBaseClass.current.transform.position - transform.position ).sqrMagnitude < agroDistance * agroDistance )
 			agro = true;
-		pathfinder.active = agro && Alive;
+		pathfinder.active = false;
 		if ( agro == true && Alive == true )
 		{
+			pathfinder.active = true;
 
-			if ( Vector3.Distance( transform.position, target.position ) > range )
+			if ( Vector3.Distance( transform.position, target.position ) > range * 3f / 4f )
 			{
-				transform.position = pathfinder.GetMovementVector( speed*Time.deltaTime );
+				transform.position = pathfinder.GetMovementVector( speed * Time.deltaTime );
 				attack = false;
 			}
 			else

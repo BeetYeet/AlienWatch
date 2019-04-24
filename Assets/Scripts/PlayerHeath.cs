@@ -32,7 +32,11 @@ public class PlayerHeath: Damageble
 	}
 	public override void DoDamage( DamageInfo info )
 	{
-		base.DoDamage(info);
+		if ( PlayerBaseClass.current.playerMovement.movementState == PlayerMovement.PlayerMovementState.Dashing )
+		{
+			return;
+		}
+		base.DoDamage( info );
 		if ( info.faction == Faction.ToPlayer )
 		{
 			health -= info.damage;

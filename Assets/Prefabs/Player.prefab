@@ -621,7 +621,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 117
   m_Sprite: {fileID: 21300000, guid: c769d7e608876b24aa6a847f9879e7eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -787,7 +787,7 @@ MonoBehaviour:
   FirePoint: {fileID: 5719161995769849015}
   grenadePrefab: {fileID: 4095438133341051057, guid: 5a219dcca1e144944b59d18f521e96d3,
     type: 3}
-  manaPerGrenade: 10
+  manaPerGrenade: 12
 --- !u!95 &2769516976782080152
 Animator:
   serializedVersion: 3

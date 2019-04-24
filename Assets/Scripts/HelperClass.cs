@@ -23,7 +23,7 @@ public static class HelperClass
 	}
 	public static void DoAOEDamage( Vector2 position, float radius, int damage, Faction faction, float knockbackStrength )
 	{
-		Collider2D[] objectsInRange = Physics2D.OverlapCircleAll( position, radius );
+		Collider2D[] objectsInRange = Physics2D.OverlapCircleAll( position, radius, LayerMask.NameToLayer( "Enemies" ) );
 		foreach ( Collider2D col in objectsInRange )
 		{
 			EnemyHealth enemy = col.GetComponent<EnemyHealth>();
