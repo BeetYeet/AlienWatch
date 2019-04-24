@@ -23,6 +23,7 @@ public class TriggerWin : MonoBehaviour
 	}
 	void Loadscene()
 	{
-
+		Time.timeScale = 1f;
+		UnityEngine.SceneManagement.SceneManager.LoadScene(2);
 	}
 }
