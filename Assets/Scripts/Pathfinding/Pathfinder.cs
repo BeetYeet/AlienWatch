@@ -107,6 +107,42 @@ namespace Pathing
 				return orig;
 
 			Vector2 currpos = orig;
+
+			Vector2Int pos = GameController.ClampToGrid( orig );
+			if ( !GameController.curr.pathGrid.cells[pos.x, pos.y].traversable )
+			{
+				// currently inside wall
+				for ( int x = -1; x <= 1; x++ )
+				{
+					for ( int y = -1; y <= 1; y++ )
+					{
+						if ( y == 0 && x == 0 )
+						{
+							continue;
+						}
+						int tryX = pos.x + x;
+						int tryY = pos.y + y;
+						GameController.PathGrid grid = GameController.curr.pathGrid;
+						if ( tryX >= 0 && tryY >= 0 && tryX < grid.width && tryY < grid.height )
+						{
+							// valid neighbor
+							GameController.PathGrid.Cell c = grid.cells[tryX, tryY];
+							if ( c.traversable )
+							{
+								float diff = ( c.globalPos - currpos ).magnitude;
+								travelDistance -= diff;
+								currpos = c.globalPos;
+								Debug.Log( "Nudged enemy" );
+							}
+							else
+							{
+								Debug.Log( "Failed to nudge enemy" );
+							}
+						}
+					}
+				}
+			}
+
 			if ( ( path.nodes.Peek() - currpos ).sqrMagnitude < .125f )
 			{
 				//node is very close
