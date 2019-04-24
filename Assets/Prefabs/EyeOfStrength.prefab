@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7087f9aa18469c4086194867a48b7e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 350
+  health: 400
 --- !u!114 &7972510362131727317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,8 +380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c585bc15ab154a42a8befb2569c6f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
-  timeBetweenAttacks: 2
+  damage: 40
+  timeBetweenAttacks: 1
   strength: 20
 --- !u!58 &7972510362131727313
 CircleCollider2D:

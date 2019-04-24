@@ -15,6 +15,10 @@ public class TriggerWin : MonoBehaviour
 		{
 			Time.timeScale = 0f;
 			TriggerWinScene();
+
+			BossDie.GreenBossDead = false;
+			BossDie2.redBossDead = false;
+			BossDie3.yellowBossDead = false;
 		}
 	}
 	void TriggerWinScene()
