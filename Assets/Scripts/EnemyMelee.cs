@@ -71,7 +71,7 @@ public class EnemyMelee: MonoBehaviour
 	public float timeBetweenAttacks;
 	private float lastAttack = 0f;
 	EnemyMovement enemyMovement;
-	private float strength = 1f;
+	public float strength = 1f;
 
 	void Start()
 	{

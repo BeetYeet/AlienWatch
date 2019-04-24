@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7087f9aa18469c4086194867a48b7e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  health: 50
 --- !u!114 &325783301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
   knockBackVelocity: {x: 0, y: 0}
   movementVelocity: {x: 0, y: 0}
   knockBackDecay: 1.2
-  knockbackWeight: 1
+  knockbackWeight: 1.5
   rb: {fileID: 0}
   velocityAgressiveness: 2
   pathfinderType: 2
@@ -152,10 +152,10 @@ MonoBehaviour:
   target: {fileID: 0}
   pathFindRaduis: 0.5
   speed: 3
-  speedVariance: 0.7
+  speedVariance: 0.5
   range: 1.7
   agro: 0
-  agroDistance: 5
+  agroDistance: 7
   attack: 0
 --- !u!114 &6292463863436276502
 MonoBehaviour:
@@ -230,6 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   timeBetweenAttacks: 0.9
+  strength: 1
 --- !u!114 &6795997067513943965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c6894dc34908f47834238f7ed9d40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropChanceToDivideOneWith: 15
+  dropChanceToDivideOneWith: 10
   ManaPickup: {fileID: 8938533482753142132, guid: 1c814d8dbe2dae94cac62102ca5aae82,
     type: 3}
   HealthPickup: {fileID: 6632447747382527078, guid: 637c294bcba090a43b0a098a1eeb2692,
