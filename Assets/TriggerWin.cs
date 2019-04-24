@@ -21,4 +21,8 @@ public class TriggerWin : MonoBehaviour
 	{
 		Animator.SetBool("Win", true);
 	}
+	void Loadscene()
+	{
+
+	}
 }

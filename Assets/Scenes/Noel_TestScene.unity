@@ -2709,16 +2709,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 3794464269907999412, guid: d94e6a689917a234f87972603609de60,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: -479422503
-      objectReference: {fileID: 0}
-    - target: {fileID: 3794464269907999412, guid: d94e6a689917a234f87972603609de60,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d94e6a689917a234f87972603609de60, type: 3}
 --- !u!1001 &475884365
@@ -13874,6 +13864,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296387408934798921, guid: 1f24a9b3881be4d42bf8dc3d80b38e0f,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 877453551
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296387408934798921, guid: 1f24a9b3881be4d42bf8dc3d80b38e0f,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f24a9b3881be4d42bf8dc3d80b38e0f, type: 3}
