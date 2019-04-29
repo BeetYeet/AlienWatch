@@ -2,28 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManaPickup: MonoBehaviour
+public class ManaPickup : MonoBehaviour
 {
-	PlayerMana playerMana;
-	public int manaIncrease = 20;
+    private string potionName = "ManaPotion";
+    
 
-	private void Start()
-	{
-		playerMana = PlayerBaseClass.current.playerMana;
-	}
+    InventoryInfo _inventoryInfo;
 
-	private void OnTriggerEnter2D( Collider2D collision )
-	{
-		if ( collision.tag != "Player" )
-			return;
-		if ( playerMana.mana == playerMana.maxMana )
-			return;
-		playerMana.mana += manaIncrease;
-		if ( playerMana.mana > playerMana.maxMana )
-			playerMana.mana = playerMana.maxMana;
-		Destroy( gameObject );
-	}
+    private void Start()
+    {
+        GameObject go = GameObject.FindGameObjectWithTag("GameController");
 
+        _inventoryInfo = go.GetComponent<InventoryInfo>();
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        _inventoryInfo.AddItem("ManaPotion", 1, (x) =>
+        {
+            if (PlayerBaseClass.current.playerMana.mana != PlayerBaseClass.current.playerMana.maxMana)
+            {
+                PlayerBaseClass.current.playerMana.mana += _inventoryInfo.manaIncrease;
+                _inventoryInfo.TryToRemoveItem();
+            }
+            else
+            {
+                //MANA ÄR FULL
+
+            }
+        });
+        Destroy(this.gameObject);
+    }
 
 }
+
+
+
+
