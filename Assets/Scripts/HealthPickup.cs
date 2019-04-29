@@ -2,27 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPickup: MonoBehaviour
+public class HealthPickup : MonoBehaviour
 {
-	PlayerHeath playerHealth;
 
-	public int healthIncrease = 10;
+    InventoryInfo _inventoryInfo;
 
-	private void Awake()
-	{
-		playerHealth = FindObjectOfType<PlayerHeath>();
-	}
+    private void Start()
+    {
+        GameObject go = GameObject.FindGameObjectWithTag("GameController");
 
-	private void OnTriggerEnter2D( Collider2D collision )
-	{
-		if ( collision.tag != "Player" )
-			return;
-		if ( playerHealth.health < playerHealth.healthMax )
-		{
-			playerHealth.health += healthIncrease;
-			if ( playerHealth.health > playerHealth.healthMax )
-				playerHealth.health = playerHealth.healthMax;
-			Destroy( gameObject );
-		}
-	}
+        _inventoryInfo = go.GetComponent<InventoryInfo>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        _inventoryInfo.AddItem("HealtPotion", 1, (x) =>
+        {
+
+            if (PlayerBaseClass.current.playerHealth.health != PlayerBaseClass.current.playerHealth.healthMax)
+            {
+                PlayerBaseClass.current.playerHealth.health += _inventoryInfo.healthIncrease;
+                _inventoryInfo.TryToRemoveItem();
+
+            }
+            else
+            {
+                //Display text ("HealthAlready full")
+            }
+        });
+        Destroy(this.gameObject);
+
+        
+    }
 }
