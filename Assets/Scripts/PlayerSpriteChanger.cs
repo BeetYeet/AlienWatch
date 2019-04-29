@@ -14,76 +14,109 @@ public class PlayerSpriteChanger : MonoBehaviour
     }
     void Update()
     {
-        if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.Forward && playerMovement.movementState != PlayerMovement.PlayerMovementState.Moving)
-        {
-            Anim.SetFloat("Horizontal", 0f);
-
-            Anim.SetFloat("Verticle", 0.1f);
-        }
-        if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.Backward && playerMovement.movementState != PlayerMovement.PlayerMovementState.Moving)
-        {
-            Anim.SetFloat("Horizontal", 0f);
-            
-            Anim.SetFloat("Verticle", -0.1f);
-        }
-        // IDLE RIGHT
-        if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.Right && playerMovement.movementState != PlayerMovement.PlayerMovementState.Moving)
-        {
-            Anim.SetFloat("Horizontal", 0.1f);
-
-            Anim.SetFloat("Verticle", 0f);
-        }
-        // Idle Left
-        if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.Left && playerMovement.movementState != PlayerMovement.PlayerMovementState.Moving)
-        {
-            Anim.SetFloat("Horizontal", -0.1f);
-
-            Anim.SetFloat("Verticle", 0f);
-        }
-        if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.BackwardLeft && playerMovement.movementState != PlayerMovement.PlayerMovementState.Moving)
-        {
-            Anim.SetFloat("Horizontal", 0f);
-
-            Anim.SetFloat("Verticle", -0.1f);
-        }
-        if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.BackwardRight && playerMovement.movementState != PlayerMovement.PlayerMovementState.Moving)
-        {
-            Anim.SetFloat("Horizontal", 0f);
-
-            Anim.SetFloat("Verticle", -0.1f);
-        }
-
-        if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.Forward && playerMovement.movementState == PlayerMovement.PlayerMovementState.Moving)
-        {
-            Anim.SetFloat("Horizontal", 0f);
-
-            Anim.SetFloat("Verticle", 1f);
-
-        }
-
-        if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.Backward && playerMovement.movementState == PlayerMovement.PlayerMovementState.Moving)
-        {
-            Anim.SetFloat("Horizontal", 0f);
-
-            Anim.SetFloat("Verticle", -1f);
-
-        }
-
-        if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.Left && playerMovement.movementState == PlayerMovement.PlayerMovementState.Moving)
-        {
-            Anim.SetFloat("Horizontal", -1f);
-
-            Anim.SetFloat("Verticle", 0f);
-        }
-
-        if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.Right && playerMovement.movementState == PlayerMovement.PlayerMovementState.Moving)
-        {
-            Anim.SetFloat("Horizontal", 1f);
-
-            Anim.SetFloat("Verticle", 0f);
-        }
-
 		if (playerMovement.movementState == PlayerMovement.PlayerMovementState.Moving)
 			SoundManager.PlaySound("RunSound");
+		// forward Idle
+		if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.Forward && playerMovement.movementState != PlayerMovement.PlayerMovementState.Moving)
+        {
+			Anim.SetBool("frontIdle", false);
+			Anim.SetBool("FrontMoving", false);
+			Anim.SetBool("SideMovingLeft", false);
+			Anim.SetBool("SideIdle", false);
+			Anim.SetBool("BackIdle", true);
+			Anim.SetBool("BackMoving", false);
+			Anim.SetBool("SideMovingRight", false);
+			Anim.SetBool("SideIdleRight", false);
+		}
+		// back Idle
+		if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.Backward && playerMovement.movementState != PlayerMovement.PlayerMovementState.Moving)
+        {
+			Anim.SetBool("frontIdle", true);
+			Anim.SetBool("FrontMoving", false);
+			Anim.SetBool("SideMovingLeft", false);
+			Anim.SetBool("SideIdle", false);
+			Anim.SetBool("BackIdle", false);
+			Anim.SetBool("BackMoving", false);
+			Anim.SetBool("SideMovingRight", false);
+			Anim.SetBool("SideIdleRight", false);
+		}
+		// IDLE RIGHT
+		if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.Right && playerMovement.movementState != PlayerMovement.PlayerMovementState.Moving)
+        {
+			Anim.SetBool("frontIdle", false);
+			Anim.SetBool("FrontMoving", false);
+			Anim.SetBool("SideMovingLeft", false);
+			Anim.SetBool("SideIdle", true);
+			Anim.SetBool("BackIdle", false);
+			Anim.SetBool("BackMoving", false);
+			Anim.SetBool("SideMovingRight", false);
+			Anim.SetBool("SideIdleRight", false);
+		}
+		// Idle Left
+		if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.Left && playerMovement.movementState != PlayerMovement.PlayerMovementState.Moving)
+        {
+			Anim.SetBool("frontIdle", false);
+			Anim.SetBool("FrontMoving", false);
+			Anim.SetBool("SideMovingLeft", false);
+			Anim.SetBool("SideIdle", false);
+			Anim.SetBool("BackIdle", false);
+			Anim.SetBool("BackMoving", false);
+			Anim.SetBool("SideMovingRight", false);
+			Anim.SetBool("SideIdleRight", true);
+		}
+
+		// forward Moving
+		if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.Forward && playerMovement.movementState == PlayerMovement.PlayerMovementState.Moving)
+        {
+			Anim.SetBool("frontIdle", false);
+			Anim.SetBool("FrontMoving", false);
+			Anim.SetBool("SideMovingLeft", false);
+			Anim.SetBool("SideIdle", false);
+			Anim.SetBool("BackIdle", false);
+			Anim.SetBool("BackMoving", true);
+			Anim.SetBool("SideMovingRight", false);
+			Anim.SetBool("SideIdleRight", false);
+
+		}
+		// back Moving
+		if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.Backward && playerMovement.movementState == PlayerMovement.PlayerMovementState.Moving)
+        {
+			Anim.SetBool("frontIdle", false);
+			Anim.SetBool("FrontMoving", true);
+			Anim.SetBool("SideMovingLeft", false);
+			Anim.SetBool("SideIdle", false);
+			Anim.SetBool("BackIdle", false);
+			Anim.SetBool("BackMoving", false);
+			Anim.SetBool("SideMovingRight", false);
+			Anim.SetBool("SideIdleRight", false);
+
+		}
+		// left Moving
+		if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.Left && playerMovement.movementState == PlayerMovement.PlayerMovementState.Moving)
+        {
+			Anim.SetBool("frontIdle", false);
+			Anim.SetBool("FrontMoving", false);
+			Anim.SetBool("SideMovingLeft", true);
+			Anim.SetBool("SideIdle", false);
+			Anim.SetBool("BackIdle", false);
+			Anim.SetBool("BackMoving", false);
+			Anim.SetBool("SideMovingRight", false);
+			Anim.SetBool("SideIdleRight", false);
+		}
+		// Right Moving
+		if (playerMovement.lastValidDirection == PlayerMovement.PlayerDirection.Right && playerMovement.movementState == PlayerMovement.PlayerMovementState.Moving)
+        {
+			Anim.SetBool("frontIdle", false);
+			Anim.SetBool("FrontMoving", false);
+			Anim.SetBool("SideMovingLeft", false);
+			Anim.SetBool("SideIdle", false);
+			Anim.SetBool("BackIdle", false);
+			Anim.SetBool("BackMoving", false);
+			Anim.SetBool("SideMovingRight", true);
+			Anim.SetBool("SideIdleRight", false);
+
+		}
+
+		
     }
 }
