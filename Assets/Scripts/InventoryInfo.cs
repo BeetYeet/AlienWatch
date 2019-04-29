@@ -110,24 +110,21 @@ public class InventoryInfo : MonoBehaviour
 
     void Update()
     {
-        
 
-        if (!Input.GetKey(KeyCode.KeypadEnter))
+
+        if (!Input.GetKey(KeyCode.Joystick1Button0))
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Joystick1Button4))
             {
-                selectedSlot = 0;
+                selectedSlot--;
             }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (Input.GetKeyDown(KeyCode.Joystick1Button5))
             {
-                selectedSlot = 1;
+                selectedSlot++;
             }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                selectedSlot = 2;
-            }
+
         }
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
             itemAmounts.ForEach(
                 (x)
@@ -141,7 +138,7 @@ public class InventoryInfo : MonoBehaviour
                 );
         }
 
-        if (Input.GetKeyUp(KeyCode.KeypadEnter))
+        if (Input.GetKeyUp(KeyCode.Joystick1Button0))
         {
             itemAmounts.ForEach(
                 (x)
