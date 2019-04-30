@@ -19,6 +19,7 @@ public class Dashdust : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         MoveS = PlayerBaseClass.current.playerMovement;
 
         GameController.curr.Tick += () =>
