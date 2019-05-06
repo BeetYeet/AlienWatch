@@ -70,7 +70,7 @@ public class EnemyMovement: MovementBaseClass
 		{
 			pathfinder.active = true;
 
-			if ( Vector3.Distance( transform.position, target.position ) > range * 3f / 4f )
+			if ( Vector2.Distance( HelperClass.V3toV2( transform.position ), HelperClass.V3toV2( target.position ) ) > range * 3f / 4f )
 			{
 				transform.position = pathfinder.GetMovementVector( speed * Time.deltaTime );
 				attack = false;
