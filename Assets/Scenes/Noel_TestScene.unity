@@ -97,7 +97,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -13111,12 +13111,12 @@ PrefabInstance:
     - target: {fileID: 5719161995769849015, guid: 2af697c23e89c604c81b43a08f6499be,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.55
+      value: 6.7
       objectReference: {fileID: 0}
     - target: {fileID: 5719161995769849015, guid: 2af697c23e89c604c81b43a08f6499be,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 37.9
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5719161995769849015, guid: 2af697c23e89c604c81b43a08f6499be,
         type: 3}
@@ -13163,12 +13163,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3870523785509128855, guid: 2af697c23e89c604c81b43a08f6499be,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -5341209596285442797, guid: e9432bb6c7148544d913fce6d589500a,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2af697c23e89c604c81b43a08f6499be, type: 3}
 --- !u!4 &1990348877 stripped
