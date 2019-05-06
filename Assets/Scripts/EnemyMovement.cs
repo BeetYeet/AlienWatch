@@ -63,7 +63,7 @@ public class EnemyMovement: MovementBaseClass
 	void Update()
 	{
 		movementVelocity = Vector2.zero;
-		if ( !agro && ( PlayerBaseClass.current.transform.position - transform.position ).sqrMagnitude < agroDistance * agroDistance )
+		if ( !agro && ( HelperClass.V3toV2( PlayerBaseClass.current.transform.position ) - HelperClass.V3toV2( transform.position ) ).sqrMagnitude < agroDistance * agroDistance )
 			agro = true;
 		pathfinder.active = false;
 		if ( agro == true && Alive == true )
