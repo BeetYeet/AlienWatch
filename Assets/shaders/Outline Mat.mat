@@ -69,7 +69,7 @@ Material:
     m_Floats:
     - Boolean_BFEBFE2C: 1
     - Vector1_805B0BAD: 1
-    - Vector1_C34AF116: 1.01
+    - Vector1_C34AF116: 0.73
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -87,7 +87,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - Color_3D627028: {r: 0.28445303, g: 0.254183, b: 0.4528302, a: 1}
+    - Color_3D627028: {r: 0.39117432, g: 1, b: 0, a: 1}
     - Color_7EBD7FF: {r: 0, g: 0.7830189, b: 0.392913, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
