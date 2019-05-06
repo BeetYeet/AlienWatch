@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.unity.package-manager-ui": "2.1.2",
-    "com.unity.render-pipelines.high-definition": "5.13.0-preview",
     "com.unity.render-pipelines.lightweight": "5.13.0",
     "com.unity.shadergraph": "5.13.0",
     "com.unity.textmeshpro": "2.0.0",

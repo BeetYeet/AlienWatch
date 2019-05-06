@@ -981,8 +981,9 @@ GameObject:
   - component: {fileID: 3870523785509128845}
   - component: {fileID: 3870523785509128846}
   - component: {fileID: 1477799395}
-  - component: {fileID: 2769516976782080153}
   - component: {fileID: 4386313108270945010}
+  - component: {fileID: 1985967965}
+  - component: {fileID: 1985967967}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -1216,40 +1217,6 @@ MonoBehaviour:
   grenadePrefab: {fileID: 4095438133341051057, guid: 5a219dcca1e144944b59d18f521e96d3,
     type: 3}
   manaPerGrenade: 12
---- !u!114 &2769516976782080153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3870523785509128847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f9c95e0955876e429745b6c83616770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationTime: 0.15
-  CurrentWait: 0
-  Up: {fileID: 5801996715052244003, guid: e9432bb6c7148544d913fce6d589500a, type: 3}
-  UpMove:
-  - {fileID: -8225385953719469307, guid: e9432bb6c7148544d913fce6d589500a, type: 3}
-  - {fileID: -5391527602426915064, guid: e9432bb6c7148544d913fce6d589500a, type: 3}
-  Down: {fileID: 9107504565476232344, guid: e9432bb6c7148544d913fce6d589500a, type: 3}
-  DownMove:
-  - {fileID: -7159406873307353385, guid: e9432bb6c7148544d913fce6d589500a, type: 3}
-  - {fileID: -5341209596285442797, guid: e9432bb6c7148544d913fce6d589500a, type: 3}
-  Left: {fileID: -7538735397198048313, guid: e9432bb6c7148544d913fce6d589500a, type: 3}
-  LeftMove:
-  - {fileID: -2902247422746666468, guid: e9432bb6c7148544d913fce6d589500a, type: 3}
-  - {fileID: -7538735397198048313, guid: e9432bb6c7148544d913fce6d589500a, type: 3}
-  - {fileID: -9082291248603447866, guid: e9432bb6c7148544d913fce6d589500a, type: 3}
-  - {fileID: -7538735397198048313, guid: e9432bb6c7148544d913fce6d589500a, type: 3}
-  Right: {fileID: 7370447500187437021, guid: e9432bb6c7148544d913fce6d589500a, type: 3}
-  RightMove:
-  - {fileID: -4692919018695937422, guid: e9432bb6c7148544d913fce6d589500a, type: 3}
-  - {fileID: 7370447500187437021, guid: e9432bb6c7148544d913fce6d589500a, type: 3}
-  - {fileID: 6868685725679776305, guid: e9432bb6c7148544d913fce6d589500a, type: 3}
-  - {fileID: 7370447500187437021, guid: e9432bb6c7148544d913fce6d589500a, type: 3}
 --- !u!114 &4386313108270945010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1266,6 +1233,38 @@ MonoBehaviour:
   mana: 40
   ticksPerMana: 4
   ticksLeft: 4
+--- !u!95 &1985967965
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3870523785509128847}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4b6026c1d26e44f46b190e8232510fa9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1985967967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3870523785509128847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b2d91132f4200546af58295a4de8b6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 1985967965}
 --- !u!1 &3870523785530505019
 GameObject:
   m_ObjectHideFlags: 0
