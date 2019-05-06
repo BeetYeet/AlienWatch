@@ -54,8 +54,15 @@ public class PlayerSpriteChanger : MonoBehaviour
 						UpMove.Add(_);
 						sprite.sprite = _;
 
-
-					}if (PlayerBaseClass.current.playerMovement.lastValidDirection ==
+						PlayerBaseClass.current.playerMelee.meleeSprite.transform.localPosition = 
+							new Vector3(PlayerBaseClass.current.playerMelee.meleeSprite.transform.localPosition.x, PlayerBaseClass.current.playerMelee.meleeSprite.transform.localPosition.y, -11);
+					}
+					else
+					{
+						PlayerBaseClass.current.playerMelee.meleeSprite.transform.localPosition =
+						new Vector3(PlayerBaseClass.current.playerMelee.meleeSprite.transform.localPosition.x, PlayerBaseClass.current.playerMelee.meleeSprite.transform.localPosition.y, -9);
+					}
+					if (PlayerBaseClass.current.playerMovement.lastValidDirection ==
 						PlayerMovement.PlayerDirection.Backward ||
 						PlayerBaseClass.current.playerMovement.lastValidDirection ==
 						PlayerMovement.PlayerDirection.BackwardLeft ||
