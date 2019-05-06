@@ -5,6 +5,8 @@ using UnityEngine;
 public class Grenade: MonoBehaviour
 {
 	public GameObject explotionPrefab;
+    public GameObject explotionSmokePrefab; 
+    public new GameObject light; 
 	public float timeToExplode = 2f;
 	public float speed = 20f;
 	private Rigidbody2D bulletRB;
@@ -30,8 +32,10 @@ public class Grenade: MonoBehaviour
 		{
 			HelperClass.DoAOEDamage( HelperClass.V3toV2( transform.position ), 5f, 50, Faction.ToEnemy, 20f );
 			Destroy( gameObject );
-			Instantiate( explotionPrefab, transform.position, Quaternion.identity );
-		}
+            Instantiate(explotionPrefab, transform.position, Quaternion.identity);
+            Instantiate(light, transform.position, Quaternion.identity);
+            Instantiate(explotionSmokePrefab, transform.position, Quaternion.identity);
+        }
 	}
 }
 //rigidbody.velocity = PlayerMovement.GetVectorDirection(PlayerBaseClass.current.playerMovement.playerDir) * grenadeVelocity;
