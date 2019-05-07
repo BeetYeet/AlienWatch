@@ -30,7 +30,8 @@ public class Sound : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-
+		if (PlayerBaseClass.current.playerMovement.movementState == PlayerMovement.PlayerMovementState.Moving)
+			SoundManager.PlaySound("RunSound");
 	}
 
 
