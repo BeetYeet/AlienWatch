@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class Sound : MonoBehaviour
 {
-	public AudioSource SfxSource;
+	public static Sound i
+	{
+		get; private set;
+	}
+	public AudioSource SfxSource, SFXsource2;
 	public AudioSource DeathSource;
 	public List<AudioClip> audios;
 	// Start is called before the first frame update
 	void Start()
 	{
+		i = this;
+
 		PlayerBaseClass.current.playerMelee.SwingStart +=
 		() =>
 		{
 			SfxSource.PlayOneShot(audios[0]);
 		};
+		
 
 		GameController.curr.OnPlayerDeath += OnDeath;
 
@@ -26,6 +33,11 @@ public class Sound : MonoBehaviour
 
 	}
 
+
+	public void DrinkSound()
+	{
+		SFXsource2.PlayOneShot(audios[2]);
+	}
 	void OnDeath()
 	{
 		DeathSource.PlayOneShot(audios[1]);
