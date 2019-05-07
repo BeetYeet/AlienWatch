@@ -21,7 +21,6 @@ public class DestroyUna : MonoBehaviour
     }
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		
 	}
 
 	public enum State
