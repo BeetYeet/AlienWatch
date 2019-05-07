@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 6913160705440337176}
   - component: {fileID: 516532508}
   - component: {fileID: 114998989}
+  - component: {fileID: 1029115239}
   m_Layer: 0
   m_Name: GameController
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,3 +137,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DialogueText: {fileID: 0}
+--- !u!114 &1029115239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2189874848703802818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2400a1c728a5342aa546ac372760d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemAmounts: []
+  healthPotionAmount: 0
+  manaPotionAmount: 0
+  consumeTime: 1
+  healthIncrease: 10
+  manaIncrease: 10
+  movementSpeedMultitplication: 2
+  DamageBoost: 30
+  damageModification: 20
