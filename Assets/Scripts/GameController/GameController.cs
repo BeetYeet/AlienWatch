@@ -14,6 +14,12 @@ public class GameController: MonoBehaviour
 	public event System.Action Tick;
 	private bool playerHasDied;
 	public event System.Action OnPlayerDeath;
+
+	public void ChangeTraversable( Vector2Int pos, bool val )
+	{
+		pathGrid.cells[pos.x, pos.y].traversable = val;
+	}
+
 	public int ticksPerMinute = 600;
 	private float TickTime
 	{

@@ -13,8 +13,7 @@ public class Destructable : Damageble
 	private void Start()
 	{
 		CurrentSprite = GetComponent<SpriteRenderer>();
-		//GameController.ClampToGrid(transform.position);
-		CurrentSprite.sprite = Una;
+		GameController.curr.ChangeTraversable( GameController.ClampToGrid(transform.position), false);
 	}
 
 	public override void DoDamage(DamageInfo info)
