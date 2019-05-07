@@ -5,13 +5,26 @@ using UnityEngine;
 
 public class Destructable : Damageble
 {
-	public override void DoDamage(DamageInfo info)
+	public GameObject UnaDestroyParticle;
+	public Sprite Una, DestroyedUna;
+
+
+	SpriteRenderer CurrentSprite;
+	private void Start()
 	{
-		TriggerDestroy();
+		CurrentSprite = GetComponent<SpriteRenderer>();
+		//GameController.ClampToGrid(transform.position);
 	}
 
-	private void TriggerDestroy()
+	public override void DoDamage(DamageInfo info)
 	{
-		
+		TriggerDestroy(UnaDestroyParticle, DestroyedUna);
+	}
+
+	private void TriggerDestroy(GameObject Particle, Sprite DestroySprite)
+	{
+		Instantiate(Particle, transform.position, Quaternion.identity);
+		CurrentSprite.sprite = DestroySprite;
+		Destroy(this);
 	}
 }
