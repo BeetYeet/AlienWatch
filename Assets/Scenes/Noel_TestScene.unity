@@ -79,14 +79,14 @@ LightmapSettings:
     m_PVRBounces: 2
     m_PVREnvironmentSampleCount: 500
     m_PVREnvironmentReferencePointCount: 2048
-    m_PVRFilterTypeDirect: 0
-    m_PVRFilterTypeIndirect: 0
-    m_PVRFilterTypeAO: 0
-    m_PVREnvironmentMIS: 0
     m_PVRFilteringMode: 2
     m_PVRDenoiserTypeDirect: 0
     m_PVRDenoiserTypeIndirect: 0
     m_PVRDenoiserTypeAO: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 0
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
@@ -5968,6 +5968,8 @@ MonoBehaviour:
   healthIncrease: 10
   manaIncrease: 10
   movementSpeedMultitplication: 2
+  DamageBoost: 30
+  damageModification: 20
 --- !u!1001 &1039333856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14805,12 +14807,12 @@ PrefabInstance:
     - target: {fileID: 1456790333338320179, guid: f28791269a86b0d4d8dbee81d1ba61ca,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.537
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1456790333338320179, guid: f28791269a86b0d4d8dbee81d1ba61ca,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.553
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1456790333338320179, guid: f28791269a86b0d4d8dbee81d1ba61ca,
         type: 3}
@@ -15037,12 +15039,12 @@ PrefabInstance:
     - target: {fileID: 1270226729500419921, guid: dcf6003c4382aac4dad55e382737d94b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.502
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1270226729500419921, guid: dcf6003c4382aac4dad55e382737d94b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.536
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1270226729500419921, guid: dcf6003c4382aac4dad55e382737d94b,
         type: 3}
@@ -15088,11 +15090,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2847595855670097672, guid: dcf6003c4382aac4dad55e382737d94b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcf6003c4382aac4dad55e382737d94b, type: 3}
