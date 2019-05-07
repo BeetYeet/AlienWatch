@@ -15,10 +15,6 @@ public class GameController: MonoBehaviour
 	private bool playerHasDied;
 	public event System.Action OnPlayerDeath;
 
-	public void ChangeTraversable( Vector2Int pos, bool val )
-	{
-		pathGrid.cells[pos.x, pos.y].traversable = val;
-	}
 
 	public int ticksPerMinute = 600;
 	private float TickTime
@@ -84,6 +80,11 @@ public class GameController: MonoBehaviour
 	public Color traverseColor = Color.green;
 	public Color noTraverseColor = Color.red;
 	public bool debugPaths = false;
+
+	public void ChangeTraversable( Vector2Int pos, bool val )
+	{
+		pathGrid.cells[pos.x, pos.y].traversable = val;
+	}
 
 	public List<Vector2> PathfindAstar( Vector2 start, Vector2 end, out double time )
 	{
