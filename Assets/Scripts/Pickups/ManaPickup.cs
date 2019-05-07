@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ManaPickup : MonoBehaviour
 {
-    private string potionName = "ManaPotion";
-    
 
     InventoryInfo _inventoryInfo;
 
@@ -18,18 +16,9 @@ public class ManaPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _inventoryInfo.AddItem("ManaPotion", 1, (x) =>
+        _inventoryInfo.TryToAddAmount("ManaPickup", (uint)1, (x) =>
         {
-            if (PlayerBaseClass.current.playerMana.mana != PlayerBaseClass.current.playerMana.maxMana)
-            {
-                PlayerBaseClass.current.playerMana.mana += _inventoryInfo.manaIncrease;
-                _inventoryInfo.TryToRemoveItem();
-            }
-            else
-            {
-                //MANA ÄR FULL
-
-            }
+            PlayerBaseClass.current.playerMana.mana += _inventoryInfo.manaIncrease;
         });
         Destroy(this.gameObject);
     }
