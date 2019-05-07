@@ -14,6 +14,7 @@ public class Destructable : Damageble
 	{
 		CurrentSprite = GetComponent<SpriteRenderer>();
 		//GameController.ClampToGrid(transform.position);
+		CurrentSprite.sprite = Una;
 	}
 
 	public override void DoDamage(DamageInfo info)
