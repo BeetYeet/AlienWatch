@@ -6,6 +6,7 @@ public class HealthPickup : MonoBehaviour
 {
 
     InventoryInfo _inventoryInfo;
+    
 
     private void Start()
     {
@@ -16,20 +17,12 @@ public class HealthPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _inventoryInfo.AddItem("HealtPotion", 1, (x) =>
+        _inventoryInfo.TryToAddAmount("HealthPickup", (uint)1, (x) =>
         {
+            PlayerBaseClass.current.playerHealth.health += _inventoryInfo.healthIncrease;
 
-            if (PlayerBaseClass.current.playerHealth.health != PlayerBaseClass.current.playerHealth.healthMax)
-            {
-                PlayerBaseClass.current.playerHealth.health += _inventoryInfo.healthIncrease;
-                _inventoryInfo.TryToRemoveItem();
-
-            }
-            else
-            {
-                //Display text ("HealthAlready full")
-            }
         });
+        
         Destroy(this.gameObject);
 
         

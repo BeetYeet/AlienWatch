@@ -79,14 +79,14 @@ LightmapSettings:
     m_PVRBounces: 2
     m_PVREnvironmentSampleCount: 500
     m_PVREnvironmentReferencePointCount: 2048
-    m_PVRFilterTypeDirect: 0
-    m_PVRFilterTypeIndirect: 0
-    m_PVRFilterTypeAO: 0
-    m_PVREnvironmentMIS: 0
     m_PVRFilteringMode: 2
     m_PVRDenoiserTypeDirect: 0
     m_PVRDenoiserTypeIndirect: 0
     m_PVRDenoiserTypeAO: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 0
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
@@ -619,6 +619,30 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 893409746, guid: dedf45be3eb59804fbdf2a7d4eea75e3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 893409746, guid: dedf45be3eb59804fbdf2a7d4eea75e3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 873807437, guid: dedf45be3eb59804fbdf2a7d4eea75e3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 873807437, guid: dedf45be3eb59804fbdf2a7d4eea75e3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802022842, guid: dedf45be3eb59804fbdf2a7d4eea75e3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802022842, guid: dedf45be3eb59804fbdf2a7d4eea75e3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dedf45be3eb59804fbdf2a7d4eea75e3, type: 3}
@@ -5951,9 +5975,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2400a1c728a5342aa546ac372760d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemAmounts: []
+  healthPotionAmount: 0
+  manaPotionAmount: 0
   consumeTime: 1
-  healthIncrease: 20
-  manaIncrease: 20
+  healthIncrease: 10
+  manaIncrease: 10
+  movementSpeedMultitplication: 2
 --- !u!1001 &1039333856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7192,7 +7220,7 @@ Transform:
   - {fileID: 544969018}
   - {fileID: 1080489952}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1244180200
 PrefabInstance:
@@ -8708,6 +8736,11 @@ PrefabInstance:
     - target: {fileID: 2189874848703802818, guid: afd098447954c11438b9a5c2839d6702,
         type: 3}
       propertyPath: m_Name
+      value: GameController
+      objectReference: {fileID: 0}
+    - target: {fileID: 2189874848703802818, guid: afd098447954c11438b9a5c2839d6702,
+        type: 3}
+      propertyPath: m_TagString
       value: GameController
       objectReference: {fileID: 0}
     - target: {fileID: 2189874848703802816, guid: afd098447954c11438b9a5c2839d6702,
@@ -12977,6 +13010,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3870523785509128845, guid: 2af697c23e89c604c81b43a08f6499be,
+        type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2af697c23e89c604c81b43a08f6499be, type: 3}
 --- !u!4 &1990348877 stripped
@@ -14020,7 +14058,7 @@ PrefabInstance:
     - target: {fileID: 4614485519917182662, guid: 828f1d945ffd17644a85bf7aaf6b5968,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4614485519917182662, guid: 828f1d945ffd17644a85bf7aaf6b5968,
         type: 3}
@@ -14214,6 +14252,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972510362131727318, guid: 25600a8b7b6588d439a7902526249e3b,
+        type: 3}
+      propertyPath: damage
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25600a8b7b6588d439a7902526249e3b, type: 3}
