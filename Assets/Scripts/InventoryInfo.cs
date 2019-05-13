@@ -22,7 +22,9 @@ public class InventoryInfo : MonoBehaviour
     public int DamageBoost = 30;
     PlayerMelee _playerMelee;
     public int damageModification = 20;
-
+    public Inventory_UI IUI;
+    [SerializeField]
+    public SpriteWithName[] spritesWithNames;
 
     [SerializeField]
     public List<Effect> activeEffects
@@ -44,6 +46,17 @@ public class InventoryInfo : MonoBehaviour
         {
             //det finns ingen slot med health potions
             itemAmounts.Add(new ConsumableSlot(name, (int)amount, (int)slot, useFunction, consumeTime));
+            Sprite s = null;
+            foreach (SpriteWithName swn in spritesWithNames)
+            {
+                if (swn.name == name)
+                {
+                    s = swn.sprite;
+                    break;
+                }
+            }
+            if (s != null)
+                IUI.EnableSlot(s, (int)slot);
         }
         else
         {
@@ -162,7 +175,7 @@ public class InventoryInfo : MonoBehaviour
         TryToAddAmount("ManaPickup", 1, (x) =>
         {
 
-            AddEffect(2, null, () => { PlayerBaseClass.current.playerMana.mana += 50/16; }, null);
+            AddEffect(2, null, () => { PlayerBaseClass.current.playerMana.mana += 50 / 16; }, null);
         });
 
         TryToAddAmount("MovementSpeedPickup", 1, (x) =>
@@ -361,4 +374,13 @@ public class Effect
         OnUpdate = onUpdate;
         OnEnd = onEnd;
     }
+}
+
+[Serializable]
+public class SpriteWithName
+{
+    [SerializeField]
+    public string name;
+    [SerializeField]
+    public Sprite sprite;
 }
