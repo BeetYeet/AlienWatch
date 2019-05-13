@@ -37,6 +37,10 @@ public class PlayerBaseClass: MonoBehaviour
 	{
 		get; private set;
 	}
+    public SpriteRenderer Renderer
+    {
+        get; private set;
+    }
 
 
 	void Awake()
@@ -54,6 +58,7 @@ public class PlayerBaseClass: MonoBehaviour
 		playerHealth = GetComponent<PlayerHeath>();
 		playerGrenades = GetComponent<GrenadeLauncher>();
 		playerSpriteChanger = GetComponent<PlayerSpriteChanger>();
+        Renderer = GetComponent<SpriteRenderer>();
 	}
 
 	private void RegisterCurrentPlayer()

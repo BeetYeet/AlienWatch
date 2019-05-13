@@ -22,7 +22,7 @@ public class InventoryInfo : MonoBehaviour
     public int DamageBoost = 30;
     PlayerMelee _playerMelee;
     public int damageModification = 20;
-    
+
 
     [SerializeField]
     public List<Effect> activeEffects
@@ -156,41 +156,23 @@ public class InventoryInfo : MonoBehaviour
         TryToAddAmount("HealtPickup", 1, (x) =>
         {
 
-            if (PlayerBaseClass.current.playerHealth.health != PlayerBaseClass.current.playerHealth.healthMax)
-            {
-                PlayerBaseClass.current.playerHealth.health += healthIncrease;
-            }
-            else
-            {
-                //Display text ("Health Already full")
-            }
+            AddEffect(2, null, () => { PlayerBaseClass.current.playerHealth.health += 50 / 16; }, null);
+
         });
         TryToAddAmount("ManaPickup", 1, (x) =>
         {
 
-            PlayerBaseClass.current.playerMana.mana += manaIncrease;
+            AddEffect(2, null, () => { PlayerBaseClass.current.playerMana.mana += 50/16; }, null);
         });
 
         TryToAddAmount("MovementSpeedPickup", 1, (x) =>
         {
-            PlayerBaseClass.current.playerMovement.movementSpeed *= 2f;
+            AddEffect(20f, () => { PlayerBaseClass.current.playerMovement.movementSpeed *= 1.5f; }, null, () => { PlayerBaseClass.current.playerMovement.movementSpeed /= 1.5f; });
         });
 
-        TryToAddAmount("DamageBoostPickup", (uint)10, (x) =>
+        TryToAddAmount("DamageBoostPickup", (uint)1, (x) =>
         {
             AddEffect(30f, () => { _playerMelee.damage += damageModification; _playerMelee.postMeleeCooldown *= 1.5f; _playerMelee.meleeTime *= 1.5f; }, null, () => { _playerMelee.damage -= damageModification; _playerMelee.meleeTime /= 1.5f; _playerMelee.postMeleeCooldown /= 1.5f; });
-
-
-
-            //_playerMelee.damage += DamageBoost;
-            //while (TimeLeft > 0)
-            //{
-            //    TimeLeft -= Time.time;
-            //    Debug.Log(TimeLeft);
-            //    Debug.Log(_playerMelee.damage);
-            //}
-            //_playerMelee.damage -= DamageBoost;
-
 
         });
 
