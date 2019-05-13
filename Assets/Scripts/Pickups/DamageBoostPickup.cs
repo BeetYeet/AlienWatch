@@ -7,9 +7,6 @@ public class DamageBoostPickup : MonoBehaviour
     InventoryInfo _inventoryInfo;
     PlayerMelee _playerMelee;
 
-    float TimeLeft = 3;
-    float PotionDuration = 5;
-
 
     private void Start()
     {
@@ -23,14 +20,11 @@ public class DamageBoostPickup : MonoBehaviour
     {
         _inventoryInfo.TryToAddAmount("DamageBoostPickup", (uint)1, (x) =>
         {
-            while (TimeLeft > 0)
-            {
-                TimeLeft -= Time.deltaTime;
-            }
-            _playerMelee.damage += _inventoryInfo.DamageBoost;
-
-
-
+            _inventoryInfo.AddEffect(30f, () => {
+                _playerMelee.damage += _inventoryInfo.damageModification;
+                _playerMelee.postMeleeCooldown *= 1.5f; _playerMelee.meleeTime *= 1.5f;
+            }, null, () => { _playerMelee.damage -= _inventoryInfo.damageModification; _playerMelee.meleeTime /= 1.5f; _playerMelee.postMeleeCooldown /= 1.5f; });
+            
         });
 
         Destroy(this.gameObject);
