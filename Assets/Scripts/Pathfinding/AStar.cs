@@ -9,10 +9,12 @@ namespace Pathing
 	{
 		LayerMask wallMask;
 		float pathWidth = .7f;
+		int quick;
 
 		public AStar( Transform origin, Transform target, int ticksPerPath, LayerMask wallMask ) : base( origin, target, ticksPerPath )
 		{
 			this.wallMask = wallMask;
+			quick = (int) Mathf.Ceil( ticksPerPath * ( 3f / 4f ) );
 		}
 
 		internal override void GenerateNewPath()
@@ -21,14 +23,31 @@ namespace Pathing
 			double time = 0.001d;
 
 			Vector2 diff = target.position - origin.position;
-			Vector2 normDiff = diff.normalized;
+			float diffMag = diff.magnitude;
 
+			Vector2 normDiff = diff.normalized;
 			Vector2 side = new Vector2( normDiff.y, -1 * normDiff.x ) * pathWidth;
 
-			RaycastHit2D hitCenter = Physics2D.Raycast( origin.position, diff, diff.magnitude, wallMask );
-			RaycastHit2D hitSide1 = Physics2D.Raycast( HelperClass.V3toV2( origin.position ) + side / 2, diff, diff.magnitude, wallMask );
-			RaycastHit2D hitSide2 = Physics2D.Raycast( HelperClass.V3toV2( origin.position ) - side / 2, diff, diff.magnitude, wallMask );
-			if ( hitCenter )
+			List<Ray2D> rays = new List<Ray2D>();
+
+			rays.Add( new Ray2D( origin.position, diff ) );
+			rays.Add( new Ray2D( HelperClass.V3toV2( origin.position ) + side / 2, diff ) );
+			rays.Add( new Ray2D( HelperClass.V3toV2( origin.position ) - side / 2, diff ) );
+
+			List<RaycastHit2D> hits = new List<RaycastHit2D>();
+
+			bool collide = false;
+			foreach ( Ray2D r in rays )
+			{
+				RaycastHit2D h = Physics2D.Raycast( r.origin, r.direction, diffMag, wallMask );
+				hits.Add( h );
+				if ( GameController.DebugEnemyPathing )
+					Debug.DrawLine( r.origin, h ? h.point : r.origin + r.direction * diffMag, h ? Color.red : Color.green, .25f);
+				collide |= h;
+			}
+
+
+			if ( collide )
 			{
 				if ( GameController.curr.debugPaths )
 					Debug.Log( "No quick path found, using A*" );
@@ -40,7 +59,7 @@ namespace Pathing
 				if ( GameController.curr.debugPaths )
 					Debug.Log( "Found quicker path" );
 				fin.Enqueue( target.position );
-				ticksSincePath += (int) Mathf.Ceil( ticksPerPath * 3f / 4f );
+				ticksSincePath += quick;
 			}
 
 

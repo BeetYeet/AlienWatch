@@ -17,7 +17,8 @@ public class MovementSpeedPickup : MonoBehaviour
     {
         _inventoryInfo.TryToAddAmount("MovementSpeedPickup", (uint)1, (x) =>
         {
-            PlayerBaseClass.current.playerMovement.movementSpeed *= _inventoryInfo.movementSpeedMultitplication;
+            _inventoryInfo.AddEffect(20f, () => { PlayerBaseClass.current.playerMovement.movementSpeed *= 1.5f; }, null, () => { PlayerBaseClass.current.playerMovement.movementSpeed /= 1.5f; });
+
         });
         Destroy(this.gameObject);
     }

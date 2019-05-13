@@ -19,7 +19,7 @@ public class HealthPickup : MonoBehaviour
     {
         _inventoryInfo.TryToAddAmount("HealthPickup", (uint)1, (x) =>
         {
-            PlayerBaseClass.current.playerHealth.health += _inventoryInfo.healthIncrease;
+            _inventoryInfo.AddEffect(2, null, () => { PlayerBaseClass.current.playerHealth.health += 50 / 16; }, null);
 
         });
         

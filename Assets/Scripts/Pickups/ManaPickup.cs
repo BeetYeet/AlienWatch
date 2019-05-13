@@ -18,7 +18,8 @@ public class ManaPickup : MonoBehaviour
     {
         _inventoryInfo.TryToAddAmount("ManaPickup", (uint)1, (x) =>
         {
-            PlayerBaseClass.current.playerMana.mana += _inventoryInfo.manaIncrease;
+            _inventoryInfo.AddEffect(2, null, () => { PlayerBaseClass.current.playerMana.mana += 50 / 16; }, null);
+
         });
         Destroy(this.gameObject);
     }
