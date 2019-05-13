@@ -97,7 +97,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -606,6 +606,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 717830481}
+    - target: {fileID: 322851928, guid: dedf45be3eb59804fbdf2a7d4eea75e3, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -609726077
+      objectReference: {fileID: 0}
     - target: {fileID: 893409746, guid: dedf45be3eb59804fbdf2a7d4eea75e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.81
@@ -5736,7 +5740,7 @@ SpriteRenderer:
   m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &974063496
@@ -9562,90 +9566,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1437561274
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6868312576884581202, guid: f4e72577bad87fd40bea19509952397c,
-        type: 3}
-      propertyPath: m_Name
-      value: UnaDestroy
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284000917656971791, guid: f4e72577bad87fd40bea19509952397c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.5214026
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284000917656971791, guid: f4e72577bad87fd40bea19509952397c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.7689822
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284000917656971791, guid: f4e72577bad87fd40bea19509952397c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -56.23633
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284000917656971791, guid: f4e72577bad87fd40bea19509952397c,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284000917656971791, guid: f4e72577bad87fd40bea19509952397c,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284000917656971791, guid: f4e72577bad87fd40bea19509952397c,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284000917656971791, guid: f4e72577bad87fd40bea19509952397c,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284000917656971791, guid: f4e72577bad87fd40bea19509952397c,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284000917656971791, guid: f4e72577bad87fd40bea19509952397c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284000917656971791, guid: f4e72577bad87fd40bea19509952397c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3284000917656971791, guid: f4e72577bad87fd40bea19509952397c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4406856469484793688, guid: f4e72577bad87fd40bea19509952397c,
-        type: 3}
-      propertyPath: CollisionModule.type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4406856469484793688, guid: f4e72577bad87fd40bea19509952397c,
-        type: 3}
-      propertyPath: CollisionModule.collisionMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4406856469484793688, guid: f4e72577bad87fd40bea19509952397c,
-        type: 3}
-      propertyPath: CollisionModule.collidesWith.m_Bits
-      value: 15927
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f4e72577bad87fd40bea19509952397c, type: 3}
 --- !u!4 &1446528672 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2706178882919730160, guid: 4db5daa0286e4594e8452e37cbdb73e1,
