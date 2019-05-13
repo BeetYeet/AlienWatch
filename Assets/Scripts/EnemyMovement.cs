@@ -49,7 +49,7 @@ public class EnemyMovement: MovementBaseClass
 
 	private void OnDrawGizmos()
 	{
-		if ( !GameController.curr.debugEnemyPathing || pathfinder == null || pathfinder.path == null || pathfinder.path.nodes == null || pathfinder.path.nodes.Count == 0 )
+		if ( GameController.curr == null || !GameController.curr.debugEnemyPathing || pathfinder == null || pathfinder.path == null || pathfinder.path.nodes == null || pathfinder.path.nodes.Count == 0 )
 			return;
 		Gizmos.color = Color.yellow;
 		Vector2 prev = transform.position;
