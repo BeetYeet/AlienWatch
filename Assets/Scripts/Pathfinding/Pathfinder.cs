@@ -84,6 +84,7 @@ namespace Pathing
 			{
 				ticksSincePath -= ticksPerPath;
 				GenerateNewPath();
+				ticksSincePath += Random.Range( 0, 2 );
 			}
 		}
 
@@ -143,11 +144,11 @@ namespace Pathing
 				}
 			}
 
-			if ( ( path.nodes.Peek() - currpos ).sqrMagnitude < .125f )
+			/*if ( ( path.nodes.Peek() - currpos ).sqrMagnitude < .125f )
 			{
 				//node is very close
 				path.nodes.Dequeue();
-			}
+			}*/
 			while ( travelDistance > 0f && path.nodes.Count != 0 )
 			{
 				Vector2 nextPos = path.nodes.Peek();

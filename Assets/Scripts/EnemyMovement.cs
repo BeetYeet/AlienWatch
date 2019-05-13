@@ -29,7 +29,7 @@ public class EnemyMovement: MovementBaseClass
 	{
 		rb = GetComponent<Rigidbody2D>();
 		health = GetComponent<EnemyHealth>();
-		target = PlayerBaseClass.current.transform;
+		target = PlayerBaseClass.current.playerCenter;
 		speed += Random.Range( -speedVariance * speed, speedVariance * speed );
 		if ( pathfinderType == Pathing.PathfinderType.Straight )
 		{
@@ -47,9 +47,9 @@ public class EnemyMovement: MovementBaseClass
 		}
 	}
 
-	private void OnDrawGizmosSelected()
+	private void OnDrawGizmos()
 	{
-		if ( pathfinder == null || pathfinder.path == null || pathfinder.path.nodes == null || pathfinder.path.nodes.Count == 0 )
+		if ( !GameController.curr.debugEnemyPathing || pathfinder == null || pathfinder.path == null || pathfinder.path.nodes == null || pathfinder.path.nodes.Count == 0 )
 			return;
 		Gizmos.color = Color.yellow;
 		Vector2 prev = transform.position;

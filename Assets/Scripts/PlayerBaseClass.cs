@@ -38,6 +38,7 @@ public class PlayerBaseClass: MonoBehaviour
 		get; private set;
 	}
 
+	public Transform playerCenter;
 
 	void Awake()
 	{
