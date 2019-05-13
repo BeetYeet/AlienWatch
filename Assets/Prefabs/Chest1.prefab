@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 3005367055507170347}
   - component: {fileID: 3005367055507170356}
   - component: {fileID: 3005367055507170357}
-  m_Layer: 0
+  - component: {fileID: 740076309}
+  m_Layer: 17
   m_Name: Chest1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3005367055507170358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.827, y: 16.689, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8190321, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -93,11 +94,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0.5, y: 0.5}
-  sprites:
-  - {fileID: 21300000, guid: b568dbe5f7ac5b84b87fd0feec02e7fe, type: 3}
-  - {fileID: 21300000, guid: 99a8051945bec7844a299dd66b1e0d45, type: 3}
-  - {fileID: 21300000, guid: 7789e431c2219014aaa1db9d16e8309d, type: 3}
+  sprites: {fileID: 21300000, guid: 7789e431c2219014aaa1db9d16e8309d, type: 3}
   Drinks:
   - {fileID: 8938533482753142132, guid: 1c814d8dbe2dae94cac62102ca5aae82, type: 3}
   - {fileID: 6632447747382527078, guid: 637c294bcba090a43b0a098a1eeb2692, type: 3}
-  velMultiplier: 50
+  opened: 0
+  velMultiplier: 200
+--- !u!61 &740076309
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3005367055507170358}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.008717537, y: -0.16998702}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1.28, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.157959, y: 0.9400259}
+  m_EdgeRadius: 0
