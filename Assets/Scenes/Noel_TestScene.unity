@@ -2671,6 +2671,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcf6003c4382aac4dad55e382737d94b, type: 3}
+--- !u!114 &293936588 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 293936588, guid: dedf45be3eb59804fbdf2a7d4eea75e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 35682729}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f190e83036c1eb8458bdf2b8830d55d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &305548194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10775,11 +10787,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
-    - target: {fileID: 2189874848703802818, guid: afd098447954c11438b9a5c2839d6702,
-        type: 3}
-      propertyPath: m_TagString
-      value: GameController
-      objectReference: {fileID: 0}
     - target: {fileID: 2189874848703802816, guid: afd098447954c11438b9a5c2839d6702,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10840,41 +10847,18 @@ PrefabInstance:
       propertyPath: Walls
       value: 
       objectReference: {fileID: 2143158695}
-    - target: {fileID: 2189874848703802819, guid: afd098447954c11438b9a5c2839d6702,
-        type: 3}
-      propertyPath: debugEnemyPathing
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114998989, guid: afd098447954c11438b9a5c2839d6702, type: 3}
       propertyPath: DialogueText
       value: 
       objectReference: {fileID: 258251793}
     - target: {fileID: 1029115239, guid: afd098447954c11438b9a5c2839d6702, type: 3}
-      propertyPath: spritesWithNames.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029115239, guid: afd098447954c11438b9a5c2839d6702, type: 3}
       propertyPath: IUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 293936588}
     - target: {fileID: 1029115239, guid: afd098447954c11438b9a5c2839d6702, type: 3}
-      propertyPath: spritesWithNames.Array.data[0].name
-      value: ManaPickup
-      objectReference: {fileID: 0}
-    - target: {fileID: 1029115239, guid: afd098447954c11438b9a5c2839d6702, type: 3}
-      propertyPath: spritesWithNames.Array.data[0].sprite
+      propertyPath: slotMarker
       value: 
-      objectReference: {fileID: 21300000, guid: dcf06487bf6b6034cbefb79db0294e9a,
-        type: 3}
-    - target: {fileID: 1029115239, guid: afd098447954c11438b9a5c2839d6702, type: 3}
-      propertyPath: spritesWithNames.Array.data[1].sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 61d32bdb004ebd84ab374d4e607a9594,
-        type: 3}
-    - target: {fileID: 1029115239, guid: afd098447954c11438b9a5c2839d6702, type: 3}
-      propertyPath: spritesWithNames.Array.data[1].name
-      value: HealtPickup
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1723301241}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afd098447954c11438b9a5c2839d6702, type: 3}
 --- !u!1001 &1430911275
@@ -13438,6 +13422,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2706178882919730160, guid: 4db5daa0286e4594e8452e37cbdb73e1,
     type: 3}
   m_PrefabInstance: {fileID: 1211798290}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1723301241 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1723301241, guid: dedf45be3eb59804fbdf2a7d4eea75e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 35682729}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1736263348
 PrefabInstance:

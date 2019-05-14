@@ -164,13 +164,13 @@ MonoBehaviour:
   - name: ManaPickup
     sprite: {fileID: 1352937985377501293, guid: dcf06487bf6b6034cbefb79db0294e9a,
       type: 3}
+  - name: HealtPickup
+    sprite: {fileID: -728488644960612398, guid: 61d32bdb004ebd84ab374d4e607a9594,
+      type: 3}
   - name: DamageBoostPickup
     sprite: {fileID: -8145410532683639919, guid: 32a10fbc270bd3141886e96869e8c882,
       type: 3}
   - name: MovementSpeedPickup
     sprite: {fileID: -2117329449298311983, guid: 52373acabba0e4c4283b52315af2edff,
-      type: 3}
-  - name: HealtPickup
-    sprite: {fileID: -728488644960612398, guid: 61d32bdb004ebd84ab374d4e607a9594,
       type: 3}
   slotMarker: {fileID: 0}
