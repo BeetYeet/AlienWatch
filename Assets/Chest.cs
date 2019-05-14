@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
+	AudioSource As;
+	public AudioClip AudioClip;
 	SpriteRenderer sr;
 	public Vector2 offset;
 
@@ -19,6 +21,7 @@ public class Chest : MonoBehaviour
 	void Start()
 	{
 		sr = GetComponent<SpriteRenderer>();
+		As = GetComponent<AudioSource>();
 		GameController.curr.ChangeTraversable(GameController.ClampToGrid(transform.position), false);
 	}
 
@@ -47,6 +50,7 @@ public class Chest : MonoBehaviour
 		if (collision.gameObject == PlayerBaseClass.current.gameObject && !opened)
 		{
 			opened = true;
+			As.PlayOneShot(AudioClip);
 		}
 		else if (collision.gameObject == PlayerBaseClass.current.gameObject && opened)
 			return;
