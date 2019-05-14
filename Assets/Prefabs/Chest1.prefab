@@ -100,6 +100,8 @@ MonoBehaviour:
   Drinks:
   - {fileID: 8938533482753142132, guid: 1c814d8dbe2dae94cac62102ca5aae82, type: 3}
   - {fileID: 6632447747382527078, guid: 637c294bcba090a43b0a098a1eeb2692, type: 3}
+  - {fileID: 4834476762538093166, guid: 86d02b3869130b54dae78cb151df1170, type: 3}
+  - {fileID: 2283221942829664440, guid: de53b25f942c4864589e34d5117106c2, type: 3}
   opened: 0
   velMultiplier: 200
 --- !u!61 &740076309
@@ -140,7 +142,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 243040618902466740, guid: 4978600c5361cf044a0997d2dc1dc3a1,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 5d94a2debe1623a42a20bd0ec5be39a7, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

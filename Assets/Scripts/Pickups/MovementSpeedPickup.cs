@@ -1,25 +1,32 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementSpeedPickup : MonoBehaviour
+public class MovementSpeedPickup : TimeToPick
 {
-    InventoryInfo _inventoryInfo;
+	float time;
+	InventoryInfo _inventoryInfo;
 
-    private void Start()
-    {
-        GameObject go = GameObject.FindGameObjectWithTag("GameController");
+	private void Start()
+	{
+		time = timeUntillPickup;
+		GameObject go = GameObject.FindGameObjectWithTag("GameController");
 
-        _inventoryInfo = go.GetComponent<InventoryInfo>();
-    }
+		_inventoryInfo = go.GetComponent<InventoryInfo>();
+	}
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        _inventoryInfo.TryToAddAmount("MovementSpeedPickup", (uint)1, (x) =>
-        {
-            _inventoryInfo.AddEffect(20f, () => { PlayerBaseClass.current.playerMovement.movementSpeed *= 1.5f; }, null, () => { PlayerBaseClass.current.playerMovement.movementSpeed /= 1.5f; });
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		time -= Time.deltaTime;
+		if (time <= 0f)
+		{
 
-        });
-        Destroy(this.gameObject);
-    }
+			_inventoryInfo.TryToAddAmount("MovementSpeedPickup", (uint)1, (x) =>
+			{
+				_inventoryInfo.AddEffect(20f, () => { PlayerBaseClass.current.playerMovement.movementSpeed *= 1.5f; }, null, () => { PlayerBaseClass.current.playerMovement.movementSpeed /= 1.5f; });
+
+			});
+			Destroy(this.gameObject);
+		}
+	}
 }
