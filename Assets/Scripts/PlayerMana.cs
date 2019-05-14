@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMana : MonoBehaviour
+public class PlayerMana: MonoBehaviour
 {
-    [Header("Mana")]
-    [Space]
+	[Header( "Mana" )]
+	[Space]
 
-    public int maxMana = 10;
-    public int mana = 10;
+	public int maxMana = 10;
+	public int mana = 10;
 	public int ticksPerMana = 10;
 	public int ticksLeft = 10;
 
@@ -17,25 +17,32 @@ public class PlayerMana : MonoBehaviour
 
 	// Start is called before the first frame update
 	void Start()
-    {
-        GameController.curr.Tick += Tick;
-    }
+	{
+		GameController.curr.Tick += Tick;
+	}
+	private void Update()
+	{
+		if ( mana > maxMana )
+		{
+			mana = maxMana;
+		}
+	}
 
-    void Tick()
-    {
+	void Tick()
+	{
 		ticksLeft--;
 		if ( ticksLeft == 0 )
 		{
 			ticksLeft = ticksPerMana;
-			if (mana < maxMana)
+			if ( mana < maxMana )
 			{
 				mana++;
 			}
-		  if(mana == maxMana)
+			if ( mana == maxMana )
 			{
 				mana = maxMana;
 			}
 		}
-    }
+	}
 
 }

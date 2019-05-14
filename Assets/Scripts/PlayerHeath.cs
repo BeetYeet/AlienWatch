@@ -25,9 +25,9 @@ public class PlayerHeath: Damageble
 		{
 			//die
 		}
-		if ( health < healthMax )
+		if ( health > healthMax )
 		{
-			// can heal
+			health = healthMax;
 		}
 	}
 	public override void DoDamage( DamageInfo info )

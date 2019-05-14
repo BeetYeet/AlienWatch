@@ -98,6 +98,7 @@ public class InventoryInfo: MonoBehaviour
 		{
 			if ( itemAmounts[i].amount == 0 )
 			{
+				IUI.DisableSlot( itemAmounts[i].currentSlot );
 				itemAmounts.RemoveAt( i );
 			}
 		}
@@ -171,13 +172,13 @@ public class InventoryInfo: MonoBehaviour
 		TryToAddAmount( "HealtPickup", 1, ( x ) =>
 		 {
 
-			 AddEffect( 2, null, () => { PlayerBaseClass.current.playerHealth.health += 50 / 16; }, null );
+			 AddEffect( 2, null, () => { PlayerBaseClass.current.playerHealth.health += (int) ( 50f / 16f ); }, null );
 
 		 } );
 		TryToAddAmount( "ManaPickup", 1, ( x ) =>
 		 {
 
-			 AddEffect( 2, null, () => { PlayerBaseClass.current.playerMana.mana += 50 / 16; }, null );
+			 AddEffect( 2, null, () => { PlayerBaseClass.current.playerMana.mana += (int) ( 50f / 16f ); }, null );
 		 } );
 
 		TryToAddAmount( "MovementSpeedPickup", 1, ( x ) =>
