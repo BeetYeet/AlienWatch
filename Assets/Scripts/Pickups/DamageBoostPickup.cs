@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageBoostPickup : TimeToPick
+public class DamageBoostPickup : MonoBehaviour
 {
-	float time;
+	float time = 1f;
 	InventoryInfo _inventoryInfo;
 	PlayerMelee _playerMelee;
 
 
 	private void Start()
 	{
-		time = timeUntillPickup;
+
 		GameObject go = GameObject.FindGameObjectWithTag("GameController");
 		_inventoryInfo = go.GetComponent<InventoryInfo>();
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
