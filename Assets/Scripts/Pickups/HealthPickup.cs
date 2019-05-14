@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPickup : TimeToPick
+public class HealthPickup : MonoBehaviour
 {
-	float time;
+	float time = 1f;
 	InventoryInfo _inventoryInfo;
 
 
 	private void Start()
 	{
-		time = timeUntillPickup;
 		GameObject go = GameObject.FindGameObjectWithTag("GameController");
 
 		_inventoryInfo = go.GetComponent<InventoryInfo>();
