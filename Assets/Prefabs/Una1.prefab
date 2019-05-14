@@ -67,8 +67,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -479422503
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 4703738635856978989, guid: 67ecd366e50e947489838a6a552e1ca8,
     type: 3}
@@ -97,7 +97,6 @@ MonoBehaviour:
   health: 1
   UnaDestroyParticle: {fileID: 6868312576884581202, guid: f4e72577bad87fd40bea19509952397c,
     type: 3}
-  Una: {fileID: 4703738635856978989, guid: 67ecd366e50e947489838a6a552e1ca8, type: 3}
   DestroyedUna: {fileID: 21300000, guid: 5f1adea77fb3d4445a71706c66745998, type: 3}
 --- !u!61 &2455585747174518122
 BoxCollider2D:
