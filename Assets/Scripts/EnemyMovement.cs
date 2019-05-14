@@ -29,7 +29,7 @@ public class EnemyMovement: MovementBaseClass
 	{
 		rb = GetComponent<Rigidbody2D>();
 		health = GetComponent<EnemyHealth>();
-		target = PlayerBaseClass.current.transform;
+		target = PlayerBaseClass.current.playerCenter;
 		speed += Random.Range( -speedVariance * speed, speedVariance * speed );
 		if ( pathfinderType == Pathing.PathfinderType.Straight )
 		{
@@ -47,9 +47,9 @@ public class EnemyMovement: MovementBaseClass
 		}
 	}
 
-	private void OnDrawGizmosSelected()
+	private void OnDrawGizmos()
 	{
-		if ( pathfinder == null || pathfinder.path == null || pathfinder.path.nodes == null || pathfinder.path.nodes.Count == 0 )
+		if ( GameController.curr == null || !GameController.curr.debugEnemyPathing || pathfinder == null || pathfinder.path == null || pathfinder.path.nodes == null || pathfinder.path.nodes.Count == 0 )
 			return;
 		Gizmos.color = Color.yellow;
 		Vector2 prev = transform.position;
@@ -63,14 +63,14 @@ public class EnemyMovement: MovementBaseClass
 	void Update()
 	{
 		movementVelocity = Vector2.zero;
-		if ( !agro && ( PlayerBaseClass.current.transform.position - transform.position ).sqrMagnitude < agroDistance * agroDistance )
+		if ( !agro && ( HelperClass.V3toV2( PlayerBaseClass.current.transform.position ) - HelperClass.V3toV2( transform.position ) ).sqrMagnitude < agroDistance * agroDistance )
 			agro = true;
 		pathfinder.active = false;
 		if ( agro == true && Alive == true )
 		{
 			pathfinder.active = true;
 
-			if ( Vector3.Distance( transform.position, target.position ) > range * 3f / 4f )
+			if ( Vector2.Distance( HelperClass.V3toV2( transform.position ), HelperClass.V3toV2( target.position ) ) > range * 3f / 4f )
 			{
 				transform.position = pathfinder.GetMovementVector( speed * Time.deltaTime );
 				attack = false;

@@ -9,7 +9,7 @@ public static class SoundManager
 	public static void Initalize()
 	{
 		soundTimerDictionary = new Dictionary<string, float>();
-		soundTimerDictionary["RunSound"] = 0f;
+		soundTimerDictionary["RunSound"] = 0.5f;
 	}
 	public static void PlaySound( string soundName )
 	{

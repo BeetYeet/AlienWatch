@@ -14,7 +14,13 @@ public class GameController: MonoBehaviour
 	public event System.Action Tick;
 	private bool playerHasDied;
 	public event System.Action OnPlayerDeath;
+
 	public int ticksPerMinute = 600;
+	public int ticksPerSecond
+	{
+		get;
+		private set;
+	}
 	private float TickTime
 	{
 		get
@@ -35,6 +41,7 @@ public class GameController: MonoBehaviour
 		}
 		else
 			regeneratePathGrid();
+		ticksPerSecond = (int) 60f / ticksPerMinute;
 	}
 
 	private void DoTick()
@@ -78,6 +85,26 @@ public class GameController: MonoBehaviour
 	public Color traverseColor = Color.green;
 	public Color noTraverseColor = Color.red;
 	public bool debugPaths = false;
+
+	[HideInInspector]
+	public static bool DebugEnemyPathing
+	{
+		get
+		{
+			return curr.debugEnemyPathing;
+		}
+		set
+		{
+			curr.debugEnemyPathing = value;
+		}
+	}
+
+	public bool debugEnemyPathing = false;
+
+	public void ChangeTraversable( Vector2Int pos, bool val )
+	{
+		pathGrid.cells[pos.x, pos.y].traversable = val;
+	}
 
 	public List<Vector2> PathfindAstar( Vector2 start, Vector2 end, out double time )
 	{
@@ -136,7 +163,7 @@ public class GameController: MonoBehaviour
 			}
 		}
 		Gizmos.color = Color.red;
-		Vector2Int gridPos = ClampToGrid( PlayerBaseClass.current.transform.position );
+		Vector2Int gridPos = ClampToGrid( PlayerBaseClass.current.playerCenter.position );
 		Vector3 pos = HelperClass.V2toV3( pathGrid.cells[gridPos.x, gridPos.y].globalPos );
 		Gizmos.DrawSphere( pos, 1f / 2f );
 	}

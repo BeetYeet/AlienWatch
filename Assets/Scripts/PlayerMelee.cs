@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMelee: MonoBehaviour
 {
+	#region vars
 	public float pausePercent = .5f;
 	PlayerBaseClass player;
 	public int damage;
@@ -56,6 +57,14 @@ public class PlayerMelee: MonoBehaviour
 	public event Action SwingStart; // The sword starts moving
 	public event Action SwingEnd; // The sword stops moving
 
+	public bool swordSheathed = true;
+	public float sheatheTime = 2f;
+	public float timeUntilSheathed;
+	public event Action OnSheathe;
+	public event Action OnUnsheathe;
+
+	#endregion
+
 	void Start()
 	{
 		player = PlayerBaseClass.current;
@@ -76,6 +85,19 @@ public class PlayerMelee: MonoBehaviour
 		{
 			//Debug.Log( "SwingEnd" );
 		};
+		OnSheathe += () =>
+		{
+			Debug.Log( "Sheathed" );
+			swordSheathed = true;
+			meleeSprite.enabled = false;
+		};
+		OnUnsheathe += () =>
+		{
+			Debug.Log( "Unsheathed" );
+			swordSheathed = false;
+			meleeSprite.enabled = true;
+		};
+		OnSheathe();
 	}
 
 	void Tick()
@@ -86,88 +108,93 @@ public class PlayerMelee: MonoBehaviour
 	void Update()
 	{
 
-		meleeSprite.flipX = lastSwipe == MeleeSwipe.LeftToRight ^ flip ^ isMeleeing;
-		float shortest_angle = NormalizeRotation( GetRawRotation( PlayerBaseClass.current.playerMovement.lastValidDirection ), directionalRotation );
+		if ( HandleSheathe() )
+		{
 
-		directionalRotation = directionalRotation + shortest_angle * Time.deltaTime * rotationAgressiveness;
-		float validRotation = 0;
 
-		if ( currPostMeleeCooldown != 0f )
-		{
-			currPostMeleeCooldown -= Time.deltaTime;
-			if ( currPostMeleeCooldown < 0f )
+			meleeSprite.flipX = lastSwipe == MeleeSwipe.LeftToRight ^ flip ^ isMeleeing;
+			float shortest_angle = NormalizeRotation( GetRawRotation( PlayerBaseClass.current.playerMovement.lastValidDirection ), directionalRotation );
+
+			directionalRotation = directionalRotation + shortest_angle * Time.deltaTime * rotationAgressiveness;
+			float validRotation = 0;
+
+			if ( currPostMeleeCooldown != 0f )
 			{
-				currPostMeleeCooldown = 0f;
-				SwingRecover();
+				currPostMeleeCooldown -= Time.deltaTime;
+				if ( currPostMeleeCooldown < 0f )
+				{
+					currPostMeleeCooldown = 0f;
+					SwingRecover();
+				}
 			}
-		}
-		if ( currPreMeleeCooldown != 0f )
-		{
-			currPreMeleeCooldown -= Time.deltaTime;
-			if ( currPreMeleeCooldown < 0f )
+			if ( currPreMeleeCooldown != 0f )
 			{
-				currPreMeleeCooldown = 0f;
-				StartSwipe();
+				currPreMeleeCooldown -= Time.deltaTime;
+				if ( currPreMeleeCooldown < 0f )
+				{
+					currPreMeleeCooldown = 0f;
+					StartSwipe();
+				}
 			}
-		}
-		if ( InputHandler.current.GetWithName( "Melee" ).GetButtonDown() )// && !isMeleeing )
-		{
-			if ( preMeleeCooldown == 0f )
+			if ( InputHandler.current.GetWithName( "Melee" ).GetButtonDown() )// && !isMeleeing )
 			{
-				StartSwipe();
-				SwingTrigger();
+				if ( preMeleeCooldown == 0f )
+				{
+					StartSwipe();
+					SwingTrigger();
+				}
+				else
+				{
+					currPreMeleeCooldown += preMeleeCooldown;
+					SwingTrigger();
+				}
 			}
 			else
 			{
-				currPreMeleeCooldown += preMeleeCooldown;
-				SwingTrigger();
+				switch ( returnTo )
+				{
+					default:
+						break;
+					case SwordReturn.ReturnLeft:
+						if ( !isMeleeing && lastSwipe == MeleeSwipe.LeftToRight )
+						{
+							StartSwipe();
+						}
+						break;
+					case SwordReturn.ReturnRight:
+						if ( !isMeleeing && lastSwipe == MeleeSwipe.RightToLeft )
+						{
+							StartSwipe();
+						}
+						break;
+				}
 			}
-		}
-		else
-		{
-			switch ( returnTo )
+			if ( meleeTimeLeft > 0f )
 			{
-				default:
-					break;
-				case SwordReturn.ReturnLeft:
-					if ( !isMeleeing && lastSwipe == MeleeSwipe.LeftToRight )
-					{
-						StartSwipe();
-					}
-					break;
-				case SwordReturn.ReturnRight:
-					if ( !isMeleeing && lastSwipe == MeleeSwipe.RightToLeft )
-					{
-						StartSwipe();
-					}
-					break;
+				validRotation = GetValidRot( validRotation );
 			}
-		}
-		if ( meleeTimeLeft > 0f )
-		{
-			validRotation = GetValidRot( validRotation );
-		}
-		if ( !isMeleeing )
-		{
-			meleeTransform.localPosition = HelperClass.RotateAroundAxis( new Vector2( defaultPos.x, defaultPos.y ), Vector2.zero, GetRotationFromDirection() );
-			if ( lastSwipe == MeleeSwipe.LeftToRight )
+			if ( !isMeleeing )
 			{
-				validRotation += rotMax;
+				meleeTransform.localPosition = HelperClass.RotateAroundAxis( new Vector2( defaultPos.x, defaultPos.y ), Vector2.zero, GetRotationFromDirection() );
+				if ( lastSwipe == MeleeSwipe.LeftToRight )
+				{
+					validRotation += rotMax;
+				}
+				else
+				{
+					validRotation += rotMin;
+				}
 			}
 			else
 			{
-				validRotation += rotMin;
+				DoPosition();
 			}
-		}
-		else
-		{
-			DoPosition();
+
+			meleeTransform.localEulerAngles = new Vector3( meleeTransform.localEulerAngles.x, meleeTransform.localEulerAngles.y, NormalizeRotation( directionalRotation, validRotation ) );
+			DrawDebug( validRotation );
 		}
 
-		meleeTransform.localEulerAngles = new Vector3( meleeTransform.localEulerAngles.x, meleeTransform.localEulerAngles.y, NormalizeRotation( directionalRotation, validRotation ) );
-		DrawDebug( validRotation );
 	}
-
 	private void DrawDebug( float validRotation )
 	{
 		Vector2 _1 = HelperClass.RotateAroundAxis( Vector2.up, Vector2.zero, NormalizeRotation( directionalRotation, validRotation ) );
@@ -316,6 +343,38 @@ public class PlayerMelee: MonoBehaviour
 			default:
 				return 0f;
 		}
+	}
+
+
+	private bool HandleSheathe()
+	{
+		if ( Input.GetButtonDown( "Melee" ) )
+		{
+			if ( timeUntilSheathed == 0f )
+			{
+				OnUnsheathe?.Invoke();
+			}
+			timeUntilSheathed = sheatheTime;
+		}
+		if ( timeUntilSheathed == 0f )
+		{
+			return true;
+		}
+		if ( timeUntilSheathed > 0 )
+		{
+			timeUntilSheathed -= Time.deltaTime;
+			if ( timeUntilSheathed <= 0f )
+			{
+				timeUntilSheathed = 0f;
+				OnSheathe?.Invoke();
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }
 
