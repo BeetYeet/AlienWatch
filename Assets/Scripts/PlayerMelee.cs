@@ -63,8 +63,9 @@ public class PlayerMelee: MonoBehaviour
 	public event Action OnSheathe;
 	public event Action OnUnsheathe;
 
-	#endregion
-
+    #endregion
+    public Transform position;
+    public ParticleSystem ParticleLancher; 
 	void Start()
 	{
 		player = PlayerBaseClass.current;
@@ -292,6 +293,7 @@ public class PlayerMelee: MonoBehaviour
 
 	private void StartSwipe()
 	{
+        Instantiate(ParticleLancher, position.position, Quaternion.identity);
 		meleeTimeLeft = meleeTime - meleeTimeLeft;
 		player.playerMovement.TriggerFixed( meleeTimeLeft * pausePercent );
 		lastSwipe = InvertSwipe( lastSwipe );
