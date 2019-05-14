@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3eba3848323226428236702bbbfff30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeUntillPickup: 1
 --- !u!50 &2950392963019454768
 Rigidbody2D:
   serializedVersion: 4
