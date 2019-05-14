@@ -56,7 +56,7 @@ MonoBehaviour:
   traverseColor: {r: 0, g: 1, b: 0, a: 0.3137255}
   noTraverseColor: {r: 1, g: 0, b: 0, a: 0.54901963}
   debugPaths: 0
-  debugEnemyPathing: 1
+  debugEnemyPathing: 0
 --- !u!114 &2189874848703802817
 MonoBehaviour:
   m_ObjectHideFlags: 0

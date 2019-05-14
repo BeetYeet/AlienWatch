@@ -14,7 +14,7 @@ namespace Pathing
 		public AStar( Transform origin, Transform target, int ticksPerPath, LayerMask wallMask ) : base( origin, target, ticksPerPath )
 		{
 			this.wallMask = wallMask;
-			quick = (int) Mathf.Ceil( ticksPerPath * ( 3f / 4f ) );
+			quick = (int) Mathf.Ceil( ticksPerPath * ( 7f / 8f ) );
 		}
 
 		internal override void GenerateNewPath()
