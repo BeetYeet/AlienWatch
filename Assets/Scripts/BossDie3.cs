@@ -13,6 +13,8 @@ public class BossDie3 : MonoBehaviour
 		() =>
 		{
 			yellowBossDead = true;
+			BossKilledText.curr.text.text = BossKilledText.curr.StrengthBoss;
+			BossKilledText.curr.time2 = BossKilledText.curr.waitToRem;
 		};
 	}
 }

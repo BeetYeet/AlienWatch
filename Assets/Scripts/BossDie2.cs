@@ -13,6 +13,9 @@ public class BossDie2 : MonoBehaviour
 		() =>
 			{
 				redBossDead = true;
+				BossKilledText.curr.text.text = BossKilledText.curr.SpeedBoss;
+				BossKilledText.curr.time1 = BossKilledText.curr.waitToRem;
+
 			};
 	}
 }
