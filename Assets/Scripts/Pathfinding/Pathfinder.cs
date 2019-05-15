@@ -133,11 +133,11 @@ namespace Pathing
 								float diff = ( c.globalPos - currpos ).magnitude;
 								travelDistance -= diff;
 								currpos = c.globalPos;
-								Debug.Log( "Nudged enemy" );
+								//Debug.Log( "Nudged enemy" );
 							}
 							else
 							{
-								Debug.Log( "Failed to nudge enemy" );
+								//Debug.Log( "Failed to nudge enemy" );
 							}
 						}
 					}

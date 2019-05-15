@@ -9,8 +9,6 @@ public class InventoryInfo: MonoBehaviour
 	public List<ConsumableSlot> itemAmounts = new List<ConsumableSlot>();
 	int selectedSlot;
 
-	ManaPickup _manaPickup;
-	HealthPickup _healthPickup;
 	public int healthPotionAmount;
 	public int manaPotionAmount;
 	int healthPotionSlot = 1, manaPotionSlot = 1;
@@ -25,6 +23,19 @@ public class InventoryInfo: MonoBehaviour
 	public Inventory_UI IUI;
 	[SerializeField]
 	public SpriteWithName[] spritesWithNames;
+	public Dictionary<string, Action<ConsumableSlot>> premadePotions = new Dictionary<string, Action<ConsumableSlot>>();
+	public void AddPremadePotion( string name, uint amount )
+	{
+		Debug.Log( premadePotions.Count );
+		if ( !premadePotions.ContainsKey( name ) )
+		{
+			Debug.LogWarning( "Unknown potion: \"" + name + "\"" );
+			return;
+		}
+		Action<ConsumableSlot> doPotion = premadePotions[name];
+		Debug.Log( "Added potion: \"" + name + "\"" );
+		TryToAddAmount( name, amount, doPotion );
+	}
 
 	public GameObject slotMarker;
 
@@ -116,7 +127,7 @@ public class InventoryInfo: MonoBehaviour
 			if ( NameOnItem == itemAmounts[slot].name )
 			{
 				itemAmounts[slot].amount++;
-				if ( NameOnItem == "HealtPickup" )
+				if ( NameOnItem == "HealthPickup" )
 				{
 					healthPotionAmount = itemAmounts[slot].amount;
 				}
@@ -141,7 +152,7 @@ public class InventoryInfo: MonoBehaviour
 				 TryToRemoveItem();
 			 }
 			   );
-				if ( NameOnItem == "HealtPickup" )
+				if ( NameOnItem == "HealthPickup" )
 				{
 					healthPotionSlot = itemAmounts.Count - 1;
 					healthPotionAmount = (int) Amount;
@@ -169,31 +180,27 @@ public class InventoryInfo: MonoBehaviour
 
 	void Start()
 	{
-		TryToAddAmount( "HealtPickup", 1, ( x ) =>
-		 {
+		premadePotions.Add( "HealthPickup", ( x ) =>
+		{
+			AddEffect( 2, null, () => { PlayerBaseClass.current.playerHealth.health += (int) ( 50f / 16f ); }, null );
+		} );
+		premadePotions.Add( "ManaPickup", ( x ) =>
+		{
+			AddEffect( 2, null, () => { PlayerBaseClass.current.playerMana.mana += (int) ( 50f / 16f ); }, null );
+		} );
+		premadePotions.Add( "MovementSpeedPickup", ( x ) =>
+		{
+			AddEffect( 20f, () => { PlayerBaseClass.current.playerMovement.movementSpeed *= 1.5f; _playerMelee.meleeTime /= 2f; }, null, () => { PlayerBaseClass.current.playerMovement.movementSpeed /= 1.5f; _playerMelee.meleeTime *= 2f; } );
+		} );
+		premadePotions.Add( "DamageBoostPickup", ( x ) =>
+		{
+			AddEffect( 30f, () => { _playerMelee.damage += damageModification; _playerMelee.postMeleeCooldown *= 1.5f; _playerMelee.meleeTime *= 1.5f; }, null, () => { _playerMelee.damage -= damageModification; _playerMelee.meleeTime /= 1.5f; _playerMelee.postMeleeCooldown /= 1.5f; } );
+		} );
 
-			 AddEffect( 2, null, () => { PlayerBaseClass.current.playerHealth.health += (int) ( 50f / 16f ); }, null );
 
-		 } );
-		TryToAddAmount( "ManaPickup", 1, ( x ) =>
-		 {
-
-			 AddEffect( 2, null, () => { PlayerBaseClass.current.playerMana.mana += (int) ( 50f / 16f ); }, null );
-		 } );
-
-		TryToAddAmount( "MovementSpeedPickup", 1, ( x ) =>
-		 {
-			 AddEffect( 20f, () => { PlayerBaseClass.current.playerMovement.movementSpeed *= 1.5f; }, null, () => { PlayerBaseClass.current.playerMovement.movementSpeed /= 1.5f; } );
-		 } );
-
-		TryToAddAmount( "DamageBoostPickup", (uint) 1, ( x ) =>
-		  {
-			  AddEffect( 30f, () => { _playerMelee.damage += damageModification; _playerMelee.postMeleeCooldown *= 1.5f; _playerMelee.meleeTime *= 1.5f; }, null, () => { _playerMelee.damage -= damageModification; _playerMelee.meleeTime /= 1.5f; _playerMelee.postMeleeCooldown /= 1.5f; } );
-
-		  } );
-
+		AddPremadePotion( "DamageBoostPickup", 5 );
+		AddPremadePotion( "MovementSpeedPickup", 5 );
 	}
-
 
 	void Update()
 	{
@@ -368,7 +375,7 @@ public class Effect
 		{
 			OnEnd();
 		}
-		Debug.Log( durationLeft );
+		//Debug.Log( durationLeft );
 	}
 
 	public Effect( float durationLeft, Action onStart, Action onUpdate, Action onEnd )

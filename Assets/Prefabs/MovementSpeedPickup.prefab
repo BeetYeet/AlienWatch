@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2283221942829664421}
   - component: {fileID: 2283221942829664422}
-  - component: {fileID: 2283221942829664423}
   - component: {fileID: 2283221942829664420}
   - component: {fileID: -3511569856965257261}
-  m_Layer: 0
+  - component: {fileID: 2838128810824911910}
+  m_Layer: 16
   m_Name: MovementSpeedPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2283221942829664440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.886919, y: 15.926541, z: 0}
+  m_LocalPosition: {x: 5.81, y: 15.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,18 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2283221942829664423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2283221942829664440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55a1a17d411963948bcb1b7a9962a26e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &2283221942829664420
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -108,9 +96,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.11605173, y: -0.16007066}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.36387753
+  m_Radius: 1
 --- !u!50 &-3511569856965257261
 Rigidbody2D:
   serializedVersion: 4
@@ -132,3 +120,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2838128810824911910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2283221942829664440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b992668ddb4bf1040877521052c63acc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potionName: MovementSpeedPickup

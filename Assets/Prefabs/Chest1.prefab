@@ -98,12 +98,22 @@ MonoBehaviour:
   offset: {x: 0.5, y: 0.5}
   sprites: {fileID: 21300000, guid: 7789e431c2219014aaa1db9d16e8309d, type: 3}
   Drinks:
-  - {fileID: 8938533482753142132, guid: 1c814d8dbe2dae94cac62102ca5aae82, type: 3}
-  - {fileID: 6632447747382527078, guid: 637c294bcba090a43b0a098a1eeb2692, type: 3}
-  - {fileID: 4834476762538093166, guid: 86d02b3869130b54dae78cb151df1170, type: 3}
-  - {fileID: 2283221942829664440, guid: de53b25f942c4864589e34d5117106c2, type: 3}
+  - weight: 2
+    prefab: {fileID: 6632447747382527078, guid: 637c294bcba090a43b0a098a1eeb2692,
+      type: 3}
+  - weight: 3
+    prefab: {fileID: 8938533482753142132, guid: 1c814d8dbe2dae94cac62102ca5aae82,
+      type: 3}
+  - weight: 1
+    prefab: {fileID: 4834476762538093166, guid: 86d02b3869130b54dae78cb151df1170,
+      type: 3}
+  - weight: 0.5
+    prefab: {fileID: 2283221942829664440, guid: de53b25f942c4864589e34d5117106c2,
+      type: 3}
   opened: 0
   velMultiplier: 200
+  minSpawn: 2
+  maxSpawn: 5
 --- !u!61 &740076309
 BoxCollider2D:
   m_ObjectHideFlags: 0

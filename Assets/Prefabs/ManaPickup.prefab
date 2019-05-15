@@ -98,7 +98,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!114 &8938533482753142133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b992668ddb4bf1040877521052c63acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeUntillPickup: 1
+  potionName: ManaPickup
 --- !u!50 &2062473280659838208
 Rigidbody2D:
   serializedVersion: 4

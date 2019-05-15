@@ -62,7 +62,7 @@ public class PlayerMelee: MonoBehaviour
 	public float timeUntilSheathed;
 	public event Action OnSheathe;
 	public event Action OnUnsheathe;
-
+	public bool debugSheathe = false;
 	#endregion
 
 	void Start()
@@ -87,13 +87,15 @@ public class PlayerMelee: MonoBehaviour
 		};
 		OnSheathe += () =>
 		{
-			Debug.Log( "Sheathed" );
+			if ( debugSheathe )
+				Debug.Log( "Sheathed" );
 			swordSheathed = true;
 			meleeSprite.enabled = false;
 		};
 		OnUnsheathe += () =>
 		{
-			Debug.Log( "Unsheathed" );
+			if ( debugSheathe )
+				Debug.Log( "Unsheathed" );
 			swordSheathed = false;
 			meleeSprite.enabled = true;
 		};

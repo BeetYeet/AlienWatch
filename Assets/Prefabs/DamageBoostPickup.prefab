@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4834476762538093160}
   - component: {fileID: 4834476762538093161}
   - component: {fileID: -3194072579402130226}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: DamageBoostPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,9 +92,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4834476762538093166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d31c7283e4556548b518bd86e6e4a7b, type: 3}
+  m_Script: {fileID: 11500000, guid: b992668ddb4bf1040877521052c63acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  potionName: DamageBoostPickup
 --- !u!58 &4834476762538093161
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -108,9 +109,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02714634, y: 0}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.39568424
+  m_Radius: 1
 --- !u!50 &-3194072579402130226
 Rigidbody2D:
   serializedVersion: 4

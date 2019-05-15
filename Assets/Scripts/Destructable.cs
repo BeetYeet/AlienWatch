@@ -26,6 +26,7 @@ public class Destructable: Damageble
 		Instantiate( UnaDestroyParticle, transform.position, Quaternion.identity );
 		CurrentSprite.sprite = DestroyedUna;
 		GetComponent<Collider2D>().enabled = false;
+		gameObject.layer = LayerMask.NameToLayer( "Terrain_Passable" );
 		Destroy( this );
 	}
 }
