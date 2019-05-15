@@ -113,7 +113,7 @@ MonoBehaviour:
   opened: 0
   velMultiplier: 200
   minSpawn: 2
-  maxSpawn: 5
+  maxSpawn: 3
 --- !u!61 &740076309
 BoxCollider2D:
   m_ObjectHideFlags: 0
