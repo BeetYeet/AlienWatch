@@ -26,14 +26,14 @@ public class InventoryInfo: MonoBehaviour
 	public Dictionary<string, Action<ConsumableSlot>> premadePotions = new Dictionary<string, Action<ConsumableSlot>>();
 	public void AddPremadePotion( string name, uint amount )
 	{
-		Debug.Log( premadePotions.Count );
+		//Debug.Log( premadePotions.Count );
 		if ( !premadePotions.ContainsKey( name ) )
 		{
 			Debug.LogWarning( "Unknown potion: \"" + name + "\"" );
 			return;
 		}
 		Action<ConsumableSlot> doPotion = premadePotions[name];
-		Debug.Log( "Added potion: \"" + name + "\"" );
+		//Debug.Log( "Added potion: \"" + name + "\"" );
 		TryToAddAmount( name, amount, doPotion );
 	}
 
@@ -69,7 +69,10 @@ public class InventoryInfo: MonoBehaviour
 				}
 			}
 			if ( s != null )
+			{
 				IUI.EnableSlot( s, (int) slot );
+				IUI.Display( (int) slot, amount );
+			}
 		}
 		else
 		{
@@ -110,6 +113,7 @@ public class InventoryInfo: MonoBehaviour
 			if ( itemAmounts[i].amount == 0 )
 			{
 				IUI.DisableSlot( itemAmounts[i].currentSlot );
+				IUI.DontDisplay( itemAmounts[i].currentSlot );
 				itemAmounts.RemoveAt( i );
 			}
 		}
@@ -127,6 +131,7 @@ public class InventoryInfo: MonoBehaviour
 			if ( NameOnItem == itemAmounts[slot].name )
 			{
 				itemAmounts[slot].amount++;
+				IUI.Display( slot, (uint) itemAmounts[slot].amount );
 				if ( NameOnItem == "HealthPickup" )
 				{
 					healthPotionAmount = itemAmounts[slot].amount;
@@ -149,6 +154,7 @@ public class InventoryInfo: MonoBehaviour
 			 ( x ) =>
 			 {
 				 UseAction?.Invoke( x );
+				 IUI.Display( __, (uint) x.amount );
 				 TryToRemoveItem();
 			 }
 			   );
@@ -345,9 +351,9 @@ public class ConsumableSlot
 			consumeTimeLeft -= deltatime;
 			if ( consumeTimeLeft < 0 )
 			{
+				amount--;
 				use?.Invoke( this );
 				StopConsume();
-				amount--;
 			}
 		}
 
