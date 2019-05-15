@@ -5232,21 +5232,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3870523785509128855, guid: 2af697c23e89c604c81b43a08f6499be,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3870523785509128842, guid: 2af697c23e89c604c81b43a08f6499be,
-        type: 3}
-      propertyPath: maxMana
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3870523785509128846, guid: 2af697c23e89c604c81b43a08f6499be,
-        type: 3}
-      propertyPath: manaForDash
-      value: -105
-      objectReference: {fileID: 0}
     - target: {fileID: 3870523785509128845, guid: 2af697c23e89c604c81b43a08f6499be,
         type: 3}
       propertyPath: ParticleLancher
@@ -5258,6 +5243,16 @@ PrefabInstance:
       propertyPath: position
       value: 
       objectReference: {fileID: 354087852}
+    - target: {fileID: 3870523785509128855, guid: 2af697c23e89c604c81b43a08f6499be,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870523785509128846, guid: 2af697c23e89c604c81b43a08f6499be,
+        type: 3}
+      propertyPath: manaForDash
+      value: -105
+      objectReference: {fileID: 0}
     - target: {fileID: 1928422391, guid: 2af697c23e89c604c81b43a08f6499be, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -5270,6 +5265,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3870523785509128842, guid: 2af697c23e89c604c81b43a08f6499be,
+        type: 3}
+      propertyPath: maxMana
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2af697c23e89c604c81b43a08f6499be, type: 3}
@@ -5293,10 +5293,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Point: {fileID: 499446774}
   pSystem: {fileID: 8999646738732809708, guid: 05ba8ac50e009b14ba125b47fedba704, type: 3}
-  stopSpawning: 1
+  stopSpawning: 0
   spawnTime: 500
   spawnDelay: 0
-  ticksPerSpawn: 0
+  ticksPerSpawn: 8
   ticksSoFar: 2
 --- !u!1 &1629484926
 GameObject:
